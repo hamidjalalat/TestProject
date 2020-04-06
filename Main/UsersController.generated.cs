@@ -23,7 +23,7 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace HJ_Template_MVC.Controllers
+namespace Main.Controllers
 {
     public partial class UsersController
     {
@@ -200,7 +200,7 @@ namespace HJ_Template_MVC.Controllers
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_UsersController : HJ_Template_MVC.Controllers.UsersController
+    public partial class T4MVC_UsersController : Main.Controllers.UsersController
     {
         public T4MVC_UsersController() : base(Dummy.Instance) { }
 

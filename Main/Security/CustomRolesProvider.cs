@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 
-namespace HJ_Template_MVC.Security
+namespace Main.Security
 {
     public class CustomRolesProvider:RoleProvider
     {

@@ -64,6 +64,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="DataBaseContext.cs" />
     <Compile Include="Infrastructure\MaxWordsAttribute.cs" />
+    <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="User.cs" />

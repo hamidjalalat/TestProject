@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace HJ_Template_MVC.Controllers
+namespace Main.Controllers
 {
     public partial class HomeController : Infrastructure.BaseController
     {
@@ -25,6 +25,7 @@ namespace HJ_Template_MVC.Controllers
 
             Response.Redirect(strUrlReferrer, endResponse: false);
         }
+        
    
     }
 }

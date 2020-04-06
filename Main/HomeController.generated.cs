@@ -23,7 +23,7 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace HJ_Template_MVC.Controllers
+namespace Main.Controllers
 {
     public partial class HomeController
     {
@@ -98,7 +98,7 @@ namespace HJ_Template_MVC.Controllers
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_HomeController : HJ_Template_MVC.Controllers.HomeController
+    public partial class T4MVC_HomeController : Main.Controllers.HomeController
     {
         public T4MVC_HomeController() : base(Dummy.Instance) { }
 

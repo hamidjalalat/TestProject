@@ -42,7 +42,7 @@ namespace Infrastructure
 
             string Output = string.Format("<div class='form-group'>" +
                 htmlHelper.LabelFor(expression, htmlAttributes: new { @class = "control-label col-md-2" }) +
-                "<div class='col-md-10'>" +
+                "<div class='col-md-8'>" +
                 htmlHelper.EditorFor(expression, new { htmlAttributes = new { @class = "form-control" } }) +
                 htmlHelper.ValidationMessageFor(expression, "", new { @class = "text-danger" }) +
                 "</div></div>"

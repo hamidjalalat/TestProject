@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace HJ_Template_MVC.Controllers
+namespace Main.Controllers
 {
     public partial class AccountController : Infrastructure.BaseController
     {

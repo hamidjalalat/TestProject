@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace HJ_Template_MVC
+namespace Main
 {
     public class RouteConfig
     {
@@ -20,7 +20,7 @@ namespace HJ_Template_MVC
                name: "Googooli",
                url: "L",
                defaults: new { controller = "Account", action = "Login"},
-               namespaces: new[] { "HJ_Template_MVC.Controllers" }
+               namespaces: new[] { "Main.Controllers" }
            );
 
             //دستورات پيش فرض
@@ -29,7 +29,7 @@ namespace HJ_Template_MVC
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Users", action = "Create", id = UrlParameter.Optional },
-                namespaces: new[] { "HJ_Template_MVC.Controllers" }
+                namespaces: new[] { "Main.Controllers" }
             );
         }
     }

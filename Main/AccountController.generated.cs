@@ -23,7 +23,7 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace HJ_Template_MVC.Controllers
+namespace Main.Controllers
 {
     public partial class AccountController
     {
@@ -130,7 +130,7 @@ namespace HJ_Template_MVC.Controllers
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_AccountController : HJ_Template_MVC.Controllers.AccountController
+    public partial class T4MVC_AccountController : Main.Controllers.AccountController
     {
         public T4MVC_AccountController() : base(Dummy.Instance) { }
 

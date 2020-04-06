@@ -60,6 +60,21 @@
 			}
 		}
 		// **************************************************
+		private IProductRepository _productRepository;
+		public IProductRepository ProductRepository
+		{
+			get
+			{
+				if (_productRepository == null)
+				{
+					_productRepository =
+						new ProductRepository(DataBaseContext);
+				}
+
+				return (_productRepository);
+			}
+		}
+		// **************************************************
 
 		public void Save()
 		{

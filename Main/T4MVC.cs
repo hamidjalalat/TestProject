@@ -27,9 +27,9 @@ using T4MVC;
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 public static partial class MVC
 {
-    public static HJ_Template_MVC.Controllers.AccountController Account = new HJ_Template_MVC.Controllers.T4MVC_AccountController();
-    public static HJ_Template_MVC.Controllers.HomeController Home = new HJ_Template_MVC.Controllers.T4MVC_HomeController();
-    public static HJ_Template_MVC.Controllers.UsersController Users = new HJ_Template_MVC.Controllers.T4MVC_UsersController();
+    public static Main.Controllers.AccountController Account = new Main.Controllers.T4MVC_AccountController();
+    public static Main.Controllers.HomeController Home = new Main.Controllers.T4MVC_HomeController();
+    public static Main.Controllers.UsersController Users = new Main.Controllers.T4MVC_UsersController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 
@@ -100,6 +100,10 @@ namespace Links
         public const string UrlPath = "~/scripts";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+        public static readonly string axios_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/axios.min.js") ? Url("axios.min.js") : Url("axios.js");
+        public static readonly string axios_map = Url("axios.map");
+        public static readonly string axios_min_js = Url("axios.min.js");
+        public static readonly string axios_min_map = Url("axios.min.map");
         public static readonly string bootstrap_rtl_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap-rtl.min.js") ? Url("bootstrap-rtl.min.js") : Url("bootstrap-rtl.js");
         public static readonly string bootstrap_rtl_min_js = Url("bootstrap-rtl.min.js");
         public static readonly string bootstrap_bundle_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap.bundle.min.js") ? Url("bootstrap.bundle.min.js") : Url("bootstrap.bundle.js");
@@ -125,6 +129,8 @@ namespace Links
         public static readonly string jquery_validate_unobtrusive_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery.validate.unobtrusive.min.js") ? Url("jquery.validate.unobtrusive.min.js") : Url("jquery.validate.unobtrusive.js");
         public static readonly string jquery_validate_unobtrusive_min_js = Url("jquery.validate.unobtrusive.min.js");
         public static readonly string modernizr_2_6_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/modernizr-2.6.2.min.js") ? Url("modernizr-2.6.2.min.js") : Url("modernizr-2.6.2.js");
+        public static readonly string vue_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/vue.min.js") ? Url("vue.min.js") : Url("vue.js");
+        public static readonly string vue_min_js = Url("vue.min.js");
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -154,7 +160,10 @@ namespace Links
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
             public static readonly string bootstrap_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap.min.css") ? Url("bootstrap.min.css") : Url("bootstrap.css");
+            public static readonly string chicago_png = Url("chicago.png");
             public static readonly string conference_banner2017_v1_jpg = Url("conference-banner2017-v1.jpg");
+            public static readonly string la_png = Url("la.png");
+            public static readonly string ny_png = Url("ny.png");
             public static readonly string SCADE_User_Group_Conference_Banner_png = Url("SCADE-User-Group-Conference-Banner.png");
             public static readonly string WelcomePresentationbanner_jpg = Url("WelcomePresentationbanner.jpg");
         }
@@ -171,6 +180,8 @@ namespace Links
         {
             public static class Assets
             {
+                public const string axios_js = "~/scripts/axios.js"; 
+                public const string axios_min_js = "~/scripts/axios.min.js"; 
                 public const string bootstrap_rtl_js = "~/scripts/bootstrap-rtl.js"; 
                 public const string bootstrap_rtl_min_js = "~/scripts/bootstrap-rtl.min.js"; 
                 public const string bootstrap_bundle_js = "~/scripts/bootstrap.bundle.js"; 
@@ -189,6 +200,8 @@ namespace Links
                 public const string jquery_validate_unobtrusive_js = "~/scripts/jquery.validate.unobtrusive.js"; 
                 public const string jquery_validate_unobtrusive_min_js = "~/scripts/jquery.validate.unobtrusive.min.js"; 
                 public const string modernizr_2_6_2_js = "~/scripts/modernizr-2.6.2.js"; 
+                public const string vue_js = "~/scripts/vue.js"; 
+                public const string vue_min_js = "~/scripts/vue.min.js"; 
             }
         }
         public static partial class Content 

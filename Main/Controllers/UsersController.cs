@@ -10,7 +10,7 @@ using Models;
 using ViewModels.Users;
 using Infrastructure;
 
-namespace HJ_Template_MVC.Controllers
+namespace Main.Controllers
 {
     [Authorize]
     //[Infrastructure.Log]
