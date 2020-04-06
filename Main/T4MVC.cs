@@ -100,20 +100,23 @@ namespace Links
         public const string UrlPath = "~/scripts";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
-        public static readonly string ai_0_15_0_build58334_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/ai.0.15.0-build58334.min.js") ? Url("ai.0.15.0-build58334.min.js") : Url("ai.0.15.0-build58334.js");
-        public static readonly string ai_0_15_0_build58334_min_js = Url("ai.0.15.0-build58334.min.js");
+        public static readonly string bootstrap_rtl_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap-rtl.min.js") ? Url("bootstrap-rtl.min.js") : Url("bootstrap-rtl.js");
+        public static readonly string bootstrap_rtl_min_js = Url("bootstrap-rtl.min.js");
+        public static readonly string bootstrap_bundle_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap.bundle.min.js") ? Url("bootstrap.bundle.min.js") : Url("bootstrap.bundle.js");
+        public static readonly string bootstrap_bundle_js_map = Url("bootstrap.bundle.js.map");
+        public static readonly string bootstrap_bundle_min_js = Url("bootstrap.bundle.min.js");
+        public static readonly string bootstrap_bundle_min_js_map = Url("bootstrap.bundle.min.js.map");
         public static readonly string bootstrap_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap.min.js") ? Url("bootstrap.min.js") : Url("bootstrap.js");
-        public static readonly string bootstrap_min_css = Url("bootstrap.min.css");
+        public static readonly string bootstrap_js_map = Url("bootstrap.js.map");
         public static readonly string bootstrap_min_js = Url("bootstrap.min.js");
-        public static readonly string jquery_1_10_2_intellisense_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery-1.10.2.intellisense.min.js") ? Url("jquery-1.10.2.intellisense.min.js") : Url("jquery-1.10.2.intellisense.js");
-        public static readonly string jquery_1_10_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery-1.10.2.min.js") ? Url("jquery-1.10.2.min.js") : Url("jquery-1.10.2.js");
-        public static readonly string jquery_1_10_2_min_js = Url("jquery-1.10.2.min.js");
-        public static readonly string jquery_1_10_2_min_map = Url("jquery-1.10.2.min.map");
-        public static readonly string jquery_1_9_1_intellisense_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery-1.9.1.intellisense.min.js") ? Url("jquery-1.9.1.intellisense.min.js") : Url("jquery-1.9.1.intellisense.js");
-        public static readonly string jquery_1_9_1_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery-1.9.1.min.js") ? Url("jquery-1.9.1.min.js") : Url("jquery-1.9.1.js");
-        public static readonly string jquery_1_9_1_min_js = Url("jquery-1.9.1.min.js");
-        public static readonly string jquery_1_9_1_min_map = Url("jquery-1.9.1.min.map");
-        public static readonly string jquery_3_2_1_min_js = Url("jquery-3.2.1.min.js");
+        public static readonly string bootstrap_min_js_map = Url("bootstrap.min.js.map");
+        public static readonly string jquery_3_4_1_intellisense_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery-3.4.1.intellisense.min.js") ? Url("jquery-3.4.1.intellisense.min.js") : Url("jquery-3.4.1.intellisense.js");
+        public static readonly string jquery_3_4_1_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery-3.4.1.min.js") ? Url("jquery-3.4.1.min.js") : Url("jquery-3.4.1.js");
+        public static readonly string jquery_3_4_1_min_js = Url("jquery-3.4.1.min.js");
+        public static readonly string jquery_3_4_1_min_map = Url("jquery-3.4.1.min.map");
+        public static readonly string jquery_3_4_1_slim_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery-3.4.1.slim.min.js") ? Url("jquery-3.4.1.slim.min.js") : Url("jquery-3.4.1.slim.js");
+        public static readonly string jquery_3_4_1_slim_min_js = Url("jquery-3.4.1.slim.min.js");
+        public static readonly string jquery_3_4_1_slim_min_map = Url("jquery-3.4.1.slim.min.map");
         public static readonly string jquery_unobtrusive_ajax_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery.unobtrusive-ajax.min.js") ? Url("jquery.unobtrusive-ajax.min.js") : Url("jquery.unobtrusive-ajax.js");
         public static readonly string jquery_unobtrusive_ajax_min_js = Url("jquery.unobtrusive-ajax.min.js");
         public static readonly string jquery_validate_vsdoc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery.validate-vsdoc.min.js") ? Url("jquery.validate-vsdoc.min.js") : Url("jquery.validate-vsdoc.js");
@@ -129,10 +132,22 @@ namespace Links
         public const string UrlPath = "~/Content";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+        public static readonly string bootstrap_grid_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap-grid.min.css") ? Url("bootstrap-grid.min.css") : Url("bootstrap-grid.css");
+        public static readonly string bootstrap_grid_css_map = Url("bootstrap-grid.css.map");
+        public static readonly string bootstrap_grid_min_css = Url("bootstrap-grid.min.css");
+        public static readonly string bootstrap_grid_min_css_map = Url("bootstrap-grid.min.css.map");
+        public static readonly string bootstrap_reboot_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap-reboot.min.css") ? Url("bootstrap-reboot.min.css") : Url("bootstrap-reboot.css");
+        public static readonly string bootstrap_reboot_css_map = Url("bootstrap-reboot.css.map");
+        public static readonly string bootstrap_reboot_min_css = Url("bootstrap-reboot.min.css");
+        public static readonly string bootstrap_reboot_min_css_map = Url("bootstrap-reboot.min.css.map");
+        public static readonly string bootstrap_rtl_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap-rtl.min.css") ? Url("bootstrap-rtl.min.css") : Url("bootstrap-rtl.css");
         public static readonly string bootstrap_rtl_min_css = Url("bootstrap-rtl.min.css");
-        public static readonly string bootstrap_theme_min_css = Url("bootstrap-theme.min.css");
+        public static readonly string bootstrap_theme_rtl_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap-theme-rtl.min.css") ? Url("bootstrap-theme-rtl.min.css") : Url("bootstrap-theme-rtl.css");
+        public static readonly string bootstrap_theme_rtl_min_css = Url("bootstrap-theme-rtl.min.css");
+        public static readonly string bootstrap_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap.min.css") ? Url("bootstrap.min.css") : Url("bootstrap.css");
+        public static readonly string bootstrap_css_map = Url("bootstrap.css.map");
         public static readonly string bootstrap_min_css = Url("bootstrap.min.css");
-        public static readonly string bootstrap_min_js = Url("bootstrap.min.js");
+        public static readonly string bootstrap_min_css_map = Url("bootstrap.min.css.map");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class Image {
             public const string UrlPath = "~/Content/Image";
@@ -156,18 +171,17 @@ namespace Links
         {
             public static class Assets
             {
-                public const string ai_0_15_0_build58334_js = "~/scripts/ai.0.15.0-build58334.js"; 
-                public const string ai_0_15_0_build58334_min_js = "~/scripts/ai.0.15.0-build58334.min.js"; 
+                public const string bootstrap_rtl_js = "~/scripts/bootstrap-rtl.js"; 
+                public const string bootstrap_rtl_min_js = "~/scripts/bootstrap-rtl.min.js"; 
+                public const string bootstrap_bundle_js = "~/scripts/bootstrap.bundle.js"; 
+                public const string bootstrap_bundle_min_js = "~/scripts/bootstrap.bundle.min.js"; 
                 public const string bootstrap_js = "~/scripts/bootstrap.js"; 
-                public const string bootstrap_min_css = "~/scripts/bootstrap.min.css";
                 public const string bootstrap_min_js = "~/scripts/bootstrap.min.js"; 
-                public const string jquery_1_10_2_intellisense_js = "~/scripts/jquery-1.10.2.intellisense.js"; 
-                public const string jquery_1_10_2_js = "~/scripts/jquery-1.10.2.js"; 
-                public const string jquery_1_10_2_min_js = "~/scripts/jquery-1.10.2.min.js"; 
-                public const string jquery_1_9_1_intellisense_js = "~/scripts/jquery-1.9.1.intellisense.js"; 
-                public const string jquery_1_9_1_js = "~/scripts/jquery-1.9.1.js"; 
-                public const string jquery_1_9_1_min_js = "~/scripts/jquery-1.9.1.min.js"; 
-                public const string jquery_3_2_1_min_js = "~/scripts/jquery-3.2.1.min.js"; 
+                public const string jquery_3_4_1_intellisense_js = "~/scripts/jquery-3.4.1.intellisense.js"; 
+                public const string jquery_3_4_1_js = "~/scripts/jquery-3.4.1.js"; 
+                public const string jquery_3_4_1_min_js = "~/scripts/jquery-3.4.1.min.js"; 
+                public const string jquery_3_4_1_slim_js = "~/scripts/jquery-3.4.1.slim.js"; 
+                public const string jquery_3_4_1_slim_min_js = "~/scripts/jquery-3.4.1.slim.min.js"; 
                 public const string jquery_unobtrusive_ajax_js = "~/scripts/jquery.unobtrusive-ajax.js"; 
                 public const string jquery_unobtrusive_ajax_min_js = "~/scripts/jquery.unobtrusive-ajax.min.js"; 
                 public const string jquery_validate_js = "~/scripts/jquery.validate.js"; 
@@ -188,10 +202,16 @@ namespace Links
             }
             public static class Assets
             {
+                public const string bootstrap_grid_css = "~/Content/bootstrap-grid.css";
+                public const string bootstrap_grid_min_css = "~/Content/bootstrap-grid.min.css";
+                public const string bootstrap_reboot_css = "~/Content/bootstrap-reboot.css";
+                public const string bootstrap_reboot_min_css = "~/Content/bootstrap-reboot.min.css";
+                public const string bootstrap_rtl_css = "~/Content/bootstrap-rtl.css";
                 public const string bootstrap_rtl_min_css = "~/Content/bootstrap-rtl.min.css";
-                public const string bootstrap_theme_min_css = "~/Content/bootstrap-theme.min.css";
+                public const string bootstrap_theme_rtl_css = "~/Content/bootstrap-theme-rtl.css";
+                public const string bootstrap_theme_rtl_min_css = "~/Content/bootstrap-theme-rtl.min.css";
+                public const string bootstrap_css = "~/Content/bootstrap.css";
                 public const string bootstrap_min_css = "~/Content/bootstrap.min.css";
-                public const string bootstrap_min_js = "~/Content/bootstrap.min.js"; 
                 public const string Site_css = "~/Content/Site.css";
             }
         }
