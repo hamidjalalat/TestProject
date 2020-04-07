@@ -40,9 +40,9 @@ namespace Infrastructure
 
             string DisplayName = oModelMetadata.DisplayName;
 
-            string Output = string.Format("<div class='form-group'>" +
-                htmlHelper.LabelFor(expression, htmlAttributes: new { @class = "control-label col-md-2" }) +
-                "<div class='col-md-8'>" +
+            string Output = string.Format("<div class='form-group row'>" +
+                htmlHelper.LabelFor(expression, htmlAttributes: new { @class = "control-label col-sm-2" }) +
+                "<div class='col-sm-8'>" +
                 htmlHelper.EditorFor(expression, new { htmlAttributes = new { @class = "form-control" } }) +
                 htmlHelper.ValidationMessageFor(expression, "", new { @class = "text-danger" }) +
                 "</div></div>"

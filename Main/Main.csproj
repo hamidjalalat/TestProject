@@ -144,6 +144,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\Yekan.ttf" />
     <Content Include="fonts\YekanWeb-Regular.woff" />
+    <Content Include="js\Orders\Index.js" />
     <Content Include="packages.config" />
     <Content Include="scripts\axios.js" />
     <Content Include="scripts\axios.min.js" />
@@ -182,6 +183,7 @@
     <Content Include="scripts\vue.min.js" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Order\Create.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

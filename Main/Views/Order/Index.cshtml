@@ -1,0 +1,59 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/scripts/axios.js"></script>
+    <script src="~/scripts/axios.min.js"></script>
+</head>
+<body>
+
+
+    <div id="app">
+        <br />
+        <form action="/" method="post">
+            <div class="form-group row">
+                <div class="col-sm-1">
+                    <label> نام غذا</label>
+                </div>
+                <div class="col-sm-2" >
+                    <input type="text" name="name" id="name" value="" v-model="product.name" />
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-primary" type="button" v-on:click="onSerche()"> جستجو</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-xs-12 table-responsive">
+
+                <table id="data" class="table table-bordered table-condensed table-striped table-hover">
+                    <tr>
+                        <th>
+                            نام غذا
+                        </th>
+                        <th>
+                            قیمت
+                        </th>
+                        <th>
+                            توضیحات
+                        </th>
+
+                    </tr>
+                    <tr v-for="i  in listProduct">
+                        <td>{{i.Name}}</td>
+                        <td>{{i.Price}}</td>
+                        <td>{{i.Description}}</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/Orders/Index.js"></script>
+</body>
+</html>

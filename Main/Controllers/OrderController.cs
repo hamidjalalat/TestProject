@@ -15,6 +15,28 @@ namespace HJ_Template_MVC.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public JsonResult GetProduct(string name,int skip=0,int take=10)
+        {
+            List<Product> listProduct = null;
+         
+
+            if (name == null)
+            {
+                listProduct = db.Products
+                    .OrderBy(C => C.Name)
+                    .Skip(skip).Take(take)
+                    .ToList();
+            }
+            else
+            {
+              listProduct = db.Products
+             .Where(C => C.Name.Contains(name))
+             .ToList();
+            }
+
+            return Json(listProduct, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Create()
         {
             return View();
