@@ -16,7 +16,7 @@ namespace ViewModels.Orders
         [Display(Name = "نام غذا")]
         public string Name { get; set; }
         [Display(Name = "قیمت")]
-        public Int64 Price { get; set; }
+        public Int64? Price { get; set; }
         [Display(Name = "توضیحات")]
         public string Description { get; set; }
     }

@@ -10,32 +10,65 @@ namespace HJ_Template_MVC.Controllers
 {
     public class OrderController : Infrastructure.BaseController
     {
+    
+    
         // GET: Order
         public ActionResult Index()
         {
             return View();
         }
         [HttpPost]
-        public JsonResult GetProduct(string name,int skip=0,int take=10)
+        public JsonResult GetProduct(ViewModels.Orders.ProductsViewModel  product,int pageIndex ,int pageSize )
         {
-            List<Product> listProduct = null;
-         
+            var listProduct =
+                db.Products
+                .OrderBy(current => current.Name)
+                .Skip(pageIndex * pageSize)
+                .Take(pageSize)
+                .ToList()
+                ;
 
-            if (name == null)
-            {
-                listProduct = db.Products
+            //var listProduct =
+            //        db.Products
+            //        .AsQueryable()
+            //        ;
+            //if (product.Name !=null )
+            //{
+            //    listProduct =
+            //        listProduct
+            //        .Where(current => current.Name.Contains(product.Name))
+            //        ;
+            //}
+            //if (product.Price != null)
+            //{
+            //    listProduct =
+            //        listProduct
+            //        .Where(current => current.Price == product.Price.Value);
+            //        ;
+            //}
+
+            var result = new {data=listProduct };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        private int GetCountryCount()
+        {
+            int intCount =
+                db.Products
+                .Count();
+
+            return (intCount);
+        }
+        [HttpPost]
+        public JsonResult GetListProduct()
+        {
+           
+           var     listProduct = db.Products
                     .OrderBy(C => C.Name)
-                    .Skip(skip).Take(take)
+                    .Skip(0).Take(10)
                     .ToList();
-            }
-            else
-            {
-              listProduct = db.Products
-             .Where(C => C.Name.Contains(name))
-             .ToList();
-            }
-
-            return Json(listProduct, JsonRequestBehavior.AllowGet);
+            var result = new { data = listProduct, count = GetCountryCount() };
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Create()
         {
