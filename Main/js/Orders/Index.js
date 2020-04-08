@@ -3,11 +3,12 @@
     el: "#app",
     data: {
         listProduct: null,
-        //labelPageIndex: null,
-        //labelPageCount: null,
+        labelPageIndex: null,
+        labelPageCount: null,
 
         count:null,
         product: {
+          
             pageSize :10,
             pageIndex : 0,
             name: null,
@@ -19,29 +20,26 @@
         GetLastPageIndex: function () {
             let intCount = this.count;
 
-            if (intCount % this.product.pageSize == 0) {
-                return ((intCount / this.product.pageSize) - 1);
+            if (parseInt(intCount) % parseInt(this.product.pageSize) == 0) {
+
+                return ((parseInt(intCount) / parseInt(this.product.pageSize)) - 1);
             }
             else {
-                return (intCount / this.product.pageSize);
+                return (parseInt(intCount) / parseInt(this.product.pageSize));
             }
         },
-        firstButtonClick: function myfunction() {
-            alert("firstButtonClick");
+        firstButtonClick: function () {
             this.product.pageIndex = 0;
             this.onSerche();
         },
         previousButtonClick: function () {
-            alert("previousButtonClick");
             if (this.product.pageIndex > 0) {
-                this.product.pageIndex --;
-                alert("");
+                this.product.pageIndex--;
                 this.onSerche();
             }
         },
-   
-        nextButtonClick: function myfunction() {
-            alert("nextButtonClick");
+
+        nextButtonClick: function () {
             if (this.product.pageIndex < this.GetLastPageIndex()) {
                 this.product.pageIndex++;
                 this.onSerche();
@@ -53,14 +51,17 @@
             this.onSerche();
         },
         onSerche: function () {
-           
+            this.labelPageIndex = (parseInt(this.product.pageIndex) + 1);
+            this.labelPageCount = (parseInt( this.GetLastPageIndex()) + 1);
+
+
             this.listProduct = null;
             axios.post('/order/GetProduct', this.product)
 
                 .then(response => {
 
                     this.listProduct = response.data.data;
-                 
+                    //this.count = response.data.count;
 
                 })
                 .catch(error => {
@@ -73,9 +74,13 @@
                 })
         }
     },
+    computed: {
+      
+    },
     mounted() {
+       
         axios.post('/order/GetListProduct')
-
+    
             .then(response => {
 
                 this.listProduct = response.data.data;
@@ -88,7 +93,8 @@
 
             })
             .finally(() => {
-
+                this.labelPageIndex = (parseInt(this.product.pageIndex) + 1);
+                this.labelPageCount = (parseInt(this.GetLastPageIndex()) + 1);
             })
 
          

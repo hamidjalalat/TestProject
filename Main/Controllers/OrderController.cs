@@ -18,36 +18,37 @@ namespace HJ_Template_MVC.Controllers
             return View();
         }
         [HttpPost]
-        public JsonResult GetProduct(ViewModels.Orders.ProductsViewModel  product,int pageIndex ,int pageSize )
+        public JsonResult GetProduct(ViewModels.Orders.ProductsViewModel  product,int pageIndex ,int pageSize)
         {
-            var listProduct =
-                db.Products
-                .OrderBy(current => current.Name)
-                .Skip(pageIndex * pageSize)
-                .Take(pageSize)
-                .ToList()
+         
+
+            var listProductQuery =
+                    db.Products
+                    .AsQueryable()
+                    ;
+            if (product.Name != null)
+            {
+                listProductQuery =
+                    listProductQuery
+                    .Where(current => current.Name.Contains(product.Name))
+                    ;
+            }
+            if (product.Price != null)
+            {
+                listProductQuery =
+                    listProductQuery
+                    .Where(current => current.Price == product.Price.Value);
                 ;
+            }
+            listProductQuery =
+              listProductQuery
+              .OrderBy(current => current.Name)
+              .Skip(pageIndex * pageSize)
+              .Take(pageSize);
 
-            //var listProduct =
-            //        db.Products
-            //        .AsQueryable()
-            //        ;
-            //if (product.Name !=null )
-            //{
-            //    listProduct =
-            //        listProduct
-            //        .Where(current => current.Name.Contains(product.Name))
-            //        ;
-            //}
-            //if (product.Price != null)
-            //{
-            //    listProduct =
-            //        listProduct
-            //        .Where(current => current.Price == product.Price.Value);
-            //        ;
-            //}
+            var listProduct = listProductQuery.ToList();
 
-            var result = new {data=listProduct };
+            var result = new {data=listProduct,count= listProduct.Count };
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
