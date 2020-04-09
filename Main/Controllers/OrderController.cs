@@ -20,8 +20,11 @@ namespace HJ_Template_MVC.Controllers
         [HttpPost]
         public JsonResult GetProduct(ViewModels.Orders.ProductsViewModel  product,int pageIndex ,int pageSize)
         {
-         
 
+            if (pageIndex < 0)
+            {
+                pageIndex = 0;
+            }
             var listProductQuery =
                     db.Products
                     .AsQueryable()
