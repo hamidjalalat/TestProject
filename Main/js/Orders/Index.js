@@ -48,7 +48,7 @@
             if (this.product.pageIndex == this.GetLastPageIndex()) {
                 alert("آخر صفحه");
             }
-            if (this.product.pageIndex < (this.GetLastPageIndex()-1)) {
+            if (this.product.pageIndex < (this.GetLastPageIndex())) {
                 this.product.pageIndex++;
                 this.onSerche();
             }
@@ -75,7 +75,7 @@
                 .then(response => {
 
                     this.listProduct = response.data.data;
-                    //this.count = response.data.count;
+                    this.count = response.data.count;
                     this.labelPageIndex = (parseInt(this.product.pageIndex) + 1);
                     this.labelPageCount = (parseInt(this.GetLastPageIndex()) + 1);
 
