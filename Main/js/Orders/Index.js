@@ -18,25 +18,25 @@
     },
     methods: {
         GetLastPageIndex: function () {
-            alert("GetLastPageIndex");
+            //alert("GetLastPageIndex");
             let intCount = this.count;
-            let ss = (parseInt(intCount) % parseInt(this.product.pageSize));
+
             if ((parseInt(intCount) % parseInt(this.product.pageSize) )== 0) {
 
                 return ((parseInt(intCount) / parseInt(this.product.pageSize)) - 1);
             }
             else {
-                return (parseInt(intCount) / parseInt(this.product.pageSize));
+                return Math.floor( (parseInt(intCount) / parseInt(this.product.pageSize)));
             }
         },
    
         firstButtonClick: function () {
-            alert("firstButtonClick");
+            //alert("firstButtonClick");
             this.product.pageIndex = 0;
             this.onSerche();
         },
         previousButtonClick: function () {
-            alert("previousButtonClick");
+            //alert("previousButtonClick");
             if (this.product.pageIndex > 0) {
                 this.product.pageIndex--;
                 this.onSerche();
@@ -44,14 +44,18 @@
         },
 
         nextButtonClick: function () {
-            alert("nextButtonClick");
-            if (this.product.pageIndex < this.GetLastPageIndex()) {
+            //alert("nextButtonClick");
+            if (this.product.pageIndex == this.GetLastPageIndex()) {
+                alert("آخر صفحه");
+            }
+            if (this.product.pageIndex < (this.GetLastPageIndex()-1)) {
                 this.product.pageIndex++;
                 this.onSerche();
             }
+           
         },
         lastButtonClick: function () {
-            alert("lastButtonClick");
+            //alert("lastButtonClick");
             this.product.pageIndex = this.GetLastPageIndex();
 
             this.onSerche();
@@ -63,7 +67,7 @@
             this.product.pageIndex = 0;
         },
         onSerche: function () {
-            alert("onserch");
+            //alert("onserch");
             
             this.listProduct = null;
             axios.post('/order/GetProduct', this.product)
