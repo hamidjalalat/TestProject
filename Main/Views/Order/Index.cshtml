@@ -56,17 +56,17 @@
         <div class="row">
 
             <div class="col-sm-10">
-                <button v-on:click="firstButtonClick()"> اول</button>&nbsp;
+                <button v-on:click="firstButtonClick()"> <<  اول</button>&nbsp;
 
-                <button v-on:click="nextButtonClick()" > بعدی</button>&nbsp;
+                <button v-on:click="nextButtonClick()" > >  بعدی  </button>&nbsp;
 
-                <button v-on:click="previousButtonClick()"> قبلی</button>&nbsp;
+                <button v-on:click="previousButtonClick()"> <  قبلی </button>&nbsp;
 
-                <button v-on:click="lastButtonClick()"> آخری</button>&nbsp;
+                <button v-on:click="lastButtonClick()"> >>  آخری  </button>&nbsp;
             </div>
             <div class="col-sm-2">
-                <label>{{labelPageIndex}}</label>
-                ----
+                <label>{{labelPageIndex}}</label>&nbsp;
+                از
                 <label>{{labelPageCount}}</label>
 
             </div>

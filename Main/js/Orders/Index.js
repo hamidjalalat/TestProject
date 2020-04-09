@@ -46,7 +46,7 @@
         nextButtonClick: function () {
             //alert("nextButtonClick");
             if (this.product.pageIndex == this.GetLastPageIndex()) {
-                alert("آخر صفحه");
+               
             }
             if (this.product.pageIndex < (this.GetLastPageIndex())) {
                 this.product.pageIndex++;
@@ -61,7 +61,7 @@
             this.onSerche();
         },
         setParameter: function () {
-            alert("ff");
+           
             this.product.pageSize = 10;
 
             this.product.pageIndex = 0;
@@ -94,24 +94,9 @@
 
 },
     mounted() {
-       
-        axios.post('/order/GetListProduct')
+
+        this.onSerche();
     
-            .then(response => {
-
-                this.listProduct = response.data.data;
-                this.count = response.data.count;
-                this.labelPageIndex = (parseInt(this.product.pageIndex) + 1);
-                this.labelPageCount = (parseInt(this.GetLastPageIndex()) + 1);
-            })
-            .catch(error => {
-
-                console.error(error)
-
-            })
-            .finally(() => {
-       
-            })
 
          
     }

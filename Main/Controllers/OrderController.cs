@@ -25,6 +25,8 @@ namespace HJ_Template_MVC.Controllers
             {
                 pageIndex = 0;
             }
+          
+
             var listProductQuery =
                     db.Products
                     .AsQueryable()
@@ -43,6 +45,9 @@ namespace HJ_Template_MVC.Controllers
                     .Where(current => current.Price == product.Price.Value);
                 ;
             }
+
+           int Count = listProductQuery.Count();
+
             listProductQuery =
               listProductQuery
               .OrderBy(current => current.Name)
@@ -51,7 +56,7 @@ namespace HJ_Template_MVC.Controllers
 
             var listProduct = listProductQuery.ToList();
 
-            var result = new {data=listProduct,count= listProduct.Count };
+            var result = new {data=listProduct,count= Count };
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
