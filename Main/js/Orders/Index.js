@@ -1,11 +1,15 @@
-﻿const app = new Vue({
+﻿
+
+
+const app = new Vue({
 
     el: "#app",
     data: {
+        idDelete:null,
         listProduct: null,
         labelPageIndex: null,
         labelPageCount: null,
-
+        
         count:null,
         product: {
           
@@ -17,6 +21,13 @@
         },
     },
     methods: {
+    
+        
+        deleteProducts: function (id) {
+            alert(id);
+            idDelete = id;
+            $(`div#loadingModal`).modal();
+        },
         GetLastPageIndex: function () {
             //alert("GetLastPageIndex");
             let intCount = this.count;
@@ -67,6 +78,7 @@
             this.product.pageIndex = 0;
         },
         onSerche: function () {
+            
             //alert("onserch");
             
             this.listProduct = null;
@@ -91,14 +103,11 @@
         }
     },
     computed:{
-
+     
 },
     mounted() {
 
         this.onSerche();
-    
-
-         
     }
 
 })

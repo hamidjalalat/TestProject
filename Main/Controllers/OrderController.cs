@@ -8,29 +8,28 @@ using ViewModels.Orders;
 
 namespace HJ_Template_MVC.Controllers
 {
-    public class OrderController : Infrastructure.BaseController
+    public partial class OrderController : Infrastructure.BaseController
     {
-    
-    
         // GET: Order
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View();
         }
         [HttpPost]
-        public JsonResult GetProduct(ViewModels.Orders.ProductsViewModel  product,int pageIndex ,int pageSize)
+        public virtual JsonResult GetProduct(ViewModels.Orders.ProductsViewModel product, int pageIndex, int pageSize)
         {
-
             if (pageIndex < 0)
             {
                 pageIndex = 0;
             }
-          
+
+            int rowNumber = pageIndex * pageSize;
 
             var listProductQuery =
                     db.Products
                     .AsQueryable()
                     ;
+
             if (product.Name != null)
             {
                 listProductQuery =
@@ -38,15 +37,16 @@ namespace HJ_Template_MVC.Controllers
                     .Where(current => current.Name.Contains(product.Name))
                     ;
             }
+
             if (product.Price != null)
             {
                 listProductQuery =
                     listProductQuery
-                    .Where(current => current.Price == product.Price.Value);
-                ;
+                    .Where(current => current.Price == product.Price.Value)
+                    ;
             }
 
-           int Count = listProductQuery.Count();
+            int Count = listProductQuery.Count();
 
             listProductQuery =
               listProductQuery
@@ -56,35 +56,50 @@ namespace HJ_Template_MVC.Controllers
 
             var listProduct = listProductQuery.ToList();
 
-            var result = new {data=listProduct,count= Count };
+            List<ProductsViewModel> listProductViewModel = new List<ProductsViewModel>();
+
+            foreach (var item in listProduct)
+            {
+                ProductsViewModel objProductsViewModel = new ProductsViewModel();
+
+                objProductsViewModel.Id = item.Id;
+                objProductsViewModel.Name = item.Name;
+                objProductsViewModel.Price = item.Price;
+                objProductsViewModel.Description = item.Description;
+                objProductsViewModel.RowNumber = ++rowNumber;
+
+                listProductViewModel.Add(objProductsViewModel);
+            }
+
+            var result = new { data = listProductViewModel, count = Count };
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-        private int GetCountryCount()
-        {
-            int intCount =
-                db.Products
-                .Count();
+        //private int GetCountryCount()
+        //{
+        //    int intCount =
+        //        db.Products
+        //        .Count();
 
-            return (intCount);
-        }
-        [HttpPost]
-        public JsonResult GetListProduct()
-        {
-           
-           var     listProduct = db.Products
-                    .OrderBy(C => C.Name)
-                    .Skip(0).Take(10)
-                    .ToList();
-            var result = new { data = listProduct, count = GetCountryCount() };
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult Create()
+        //    return (intCount);
+        //}
+        //[HttpPost]
+        //public virtual JsonResult GetListProduct()
+        //{
+
+        //    var listProduct = db.Products
+        //             .OrderBy(C => C.Name)
+        //             .Skip(0).Take(10)
+        //             .ToList();
+        //    var result = new { data = listProduct, count = GetCountryCount() };
+        //    return Json(result, JsonRequestBehavior.AllowGet);
+        //}
+        public virtual ActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Product product)
+        public virtual ActionResult Create(Product product)
         {
             MyUnitOfWork.ProductRepository.Insert(product);
             MyUnitOfWork.Save();

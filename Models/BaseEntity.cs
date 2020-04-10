@@ -8,11 +8,10 @@ namespace Models
 {
  public  class BaseEntity
     {
-        public BaseEntity() : base()
+        public BaseEntity()
         {
-            Id = Guid.NewGuid();
-        }
 
-        public Guid Id { get; set; }
+        }
+        public int Id { get; set; }
     }
 }

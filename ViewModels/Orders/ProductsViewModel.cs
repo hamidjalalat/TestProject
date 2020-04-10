@@ -13,6 +13,8 @@ namespace ViewModels.Orders
         {
 
         }
+        public int RowNumber { get; set; }
+        public int Id { get; set; }
         [Display(Name = "نام غذا")]
         public string Name { get; set; }
         [Display(Name = "قیمت")]

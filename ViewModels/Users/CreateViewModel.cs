@@ -14,7 +14,7 @@ namespace ViewModels.Users
         {
         }
         // **********
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         // **********
 
         // **********

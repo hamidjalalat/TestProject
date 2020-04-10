@@ -37,7 +37,7 @@ namespace Main.Controllers
         }
 
         // GET: Users/Details/5
-        public virtual ActionResult Details(Guid? id)
+        public virtual ActionResult Details(int? id)
         {
             if (id.HasValue == false)
             {
@@ -113,7 +113,7 @@ namespace Main.Controllers
         }
 
         // GET: Users/Edit/5
-        public virtual ActionResult Edit(Guid? id)
+        public virtual ActionResult Edit(int? id)
         {
         
             if (id == null)
@@ -170,7 +170,7 @@ namespace Main.Controllers
         }
 
         // GET: Users/Delete/5
-        public virtual ActionResult Delete(Guid? id)
+        public virtual ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -201,7 +201,7 @@ namespace Main.Controllers
         //    db.SaveChanges();
         //    return RedirectToAction(MVC.Users.Index());
         //}
-        public virtual JsonResult DeleteAJAX(Guid id)
+        public virtual JsonResult DeleteAJAX(int id)
         {
             //System.Threading.Thread.Sleep(5000);
             User user = db.Users.Where(p => p.Id == id).FirstOrDefault();

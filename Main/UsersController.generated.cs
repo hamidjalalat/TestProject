@@ -216,10 +216,10 @@ namespace Main.Controllers
         }
 
         [NonAction]
-        partial void DetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid? id);
+        partial void DetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Details(System.Guid? id)
+        public override System.Web.Mvc.ActionResult Details(int? id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
@@ -263,10 +263,10 @@ namespace Main.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid? id);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(System.Guid? id)
+        public override System.Web.Mvc.ActionResult Edit(int? id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
@@ -287,10 +287,10 @@ namespace Main.Controllers
         }
 
         [NonAction]
-        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid? id);
+        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Delete(System.Guid? id)
+        public override System.Web.Mvc.ActionResult Delete(int? id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
@@ -299,10 +299,10 @@ namespace Main.Controllers
         }
 
         [NonAction]
-        partial void DeleteAJAXOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, System.Guid id);
+        partial void DeleteAJAXOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int id);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult DeleteAJAX(System.Guid id)
+        public override System.Web.Mvc.JsonResult DeleteAJAX(int id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.DeleteAJAX);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);

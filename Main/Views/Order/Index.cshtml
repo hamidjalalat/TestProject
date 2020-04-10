@@ -13,13 +13,34 @@
 
 
     <div id="app">
+        <div class="modal" id="loadingModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">حذف</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>آیا از حذف سطر مورد نظر مطمن هستید؟</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">خیر</button>
+                        <button type="button" v-on:click="confirmDelete()" class="btn btn-primary">بله</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <br />
         <form action="/" method="post">
             <div class="form-group row">
                 <div class="col-sm-1">
                     <label> نام غذا</label>
                 </div>
-                <div class="col-sm-2" >
+                <div class="col-sm-2">
                     <input type="text" name="name" id="name" value="" v-model="product.name" />
                 </div>
                 <div class="col-sm-2">
@@ -32,6 +53,7 @@
 
                 <table id="data" class="table table-bordered table-condensed table-striped table-hover">
                     <tr>
+                        <td>ردیف</td>
                         <th>
                             نام غذا
                         </th>
@@ -41,12 +63,24 @@
                         <th>
                             توضیحات
                         </th>
+                        <th>
+                            عملیات
+                        </th>
 
                     </tr>
-                    <tr v-for="i  in listProduct">
+                    <tr v-for="(i,index)  in listProduct" v-bind:key="i.Id">
+                        <td> {{i.RowNumber}}</td>
                         <td>{{i.Name}}</td>
                         <td>{{i.Price}}</td>
                         <td>{{i.Description}}</td>
+                        <td>
+                            <button v-on:click="edit()">ویرایش</button>&nbsp;
+
+
+
+                            <button v-on:click="deleteProducts(i.Id)" >حذف</button> &nbsp;
+
+                        </td>
                     </tr>
 
                 </table>
@@ -58,7 +92,7 @@
             <div class="col-sm-10">
                 <button v-on:click="firstButtonClick()"> <<  اول</button>&nbsp;
 
-                <button v-on:click="nextButtonClick()" > >  بعدی  </button>&nbsp;
+                <button v-on:click="nextButtonClick()"> >  بعدی  </button>&nbsp;
 
                 <button v-on:click="previousButtonClick()"> <  قبلی </button>&nbsp;
 
