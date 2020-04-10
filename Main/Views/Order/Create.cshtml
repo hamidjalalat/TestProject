@@ -13,52 +13,85 @@
 </head>
 <body>
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            <h4>اضافه کردن غذا</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group row">
+    @using (Html.BeginForm("Create", "Order", FormMethod.Post, new
+    {
+        enctype = "multipart/form-data"
+    }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>اضافه کردن غذا</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group row">
 
-                <div class="col-md-2">
-                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label " })
-
-                </div>
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                </div>
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label " })
 
             </div>
-
-            <div class="form-group row">
-                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-                </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
 
-            <div class="form-group row">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <div class="col-md-offset-2 col-md-10">
-                    <button class="btn btn-primary">ایجاد</button>
-
-                </div>
-            </div>
-
-        }
-
-        <div>
-            @Html.ActionLink("برگشت به لیست غذا ها", "Index")
         </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-5">
+                <input type="file" title="search image" id="file" class="custom-file-input" name="file" onchange="show(this)" />
+                <label class="custom-file-label" for="customFile">انتخاب عکس</label>
+
+            </div>
+          
+        </div>
+
+        <div class="form-group row">
+                <div>
+                    <img id="user_img"
+                         height="200"
+                         width="180" />
+                </div>
+            
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-primary">ایجاد</button>
+
+            </div>
+        </div>
+
+
+    }
+
+    <div>
+        @Html.ActionLink("برگشت به لیست غذا ها", "Index")
+    </div>
+    <script type="text/javascript">
+        function show(input) {
+            if (input.files && input.files[0]) {
+                var filerdr = new FileReader();
+                filerdr.onload = function (e) {
+                    $('#user_img').attr('src', e.target.result);
+                }
+                filerdr.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 </body>
 </html>

@@ -65,6 +65,24 @@ namespace HJ_Template_MVC.Controllers
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetProduct);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult DeleteProduct()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.DeleteProduct);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult GetInfoEdit()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetInfoEdit);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult Edit()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Edit);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public OrderController Actions { get { return MVC.Order; } }
@@ -83,7 +101,10 @@ namespace HJ_Template_MVC.Controllers
         {
             public readonly string Index = "Index";
             public readonly string GetProduct = "GetProduct";
+            public readonly string DeleteProduct = "DeleteProduct";
             public readonly string Create = "Create";
+            public readonly string GetInfoEdit = "GetInfoEdit";
+            public readonly string Edit = "Edit";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -91,7 +112,10 @@ namespace HJ_Template_MVC.Controllers
         {
             public const string Index = "Index";
             public const string GetProduct = "GetProduct";
+            public const string DeleteProduct = "DeleteProduct";
             public const string Create = "Create";
+            public const string GetInfoEdit = "GetInfoEdit";
+            public const string Edit = "Edit";
         }
 
 
@@ -105,11 +129,36 @@ namespace HJ_Template_MVC.Controllers
             public readonly string pageIndex = "pageIndex";
             public readonly string pageSize = "pageSize";
         }
+        static readonly ActionParamsClass_DeleteProduct s_params_DeleteProduct = new ActionParamsClass_DeleteProduct();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DeleteProduct DeleteProductParams { get { return s_params_DeleteProduct; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DeleteProduct
+        {
+            public readonly string idDelete = "idDelete";
+        }
         static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
+        {
+            public readonly string product = "product";
+            public readonly string file = "file";
+        }
+        static readonly ActionParamsClass_GetInfoEdit s_params_GetInfoEdit = new ActionParamsClass_GetInfoEdit();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_GetInfoEdit GetInfoEditParams { get { return s_params_GetInfoEdit; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_GetInfoEdit
+        {
+            public readonly string idEdit = "idEdit";
+        }
+        static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Edit
         {
             public readonly string product = "product";
         }
@@ -162,6 +211,18 @@ namespace HJ_Template_MVC.Controllers
         }
 
         [NonAction]
+        partial void DeleteProductOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int idDelete);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult DeleteProduct(int idDelete)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.DeleteProduct);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "idDelete", idDelete);
+            DeleteProductOverride(callInfo, idDelete);
+            return callInfo;
+        }
+
+        [NonAction]
         partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
@@ -173,14 +234,39 @@ namespace HJ_Template_MVC.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Models.Product product);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Models.Product product, System.Web.HttpPostedFileBase file);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(Models.Product product)
+        public override System.Web.Mvc.ActionResult Create(Models.Product product, System.Web.HttpPostedFileBase file)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "product", product);
-            CreateOverride(callInfo, product);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "file", file);
+            CreateOverride(callInfo, product, file);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetInfoEditOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int idEdit);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetInfoEdit(int idEdit)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetInfoEdit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "idEdit", idEdit);
+            GetInfoEditOverride(callInfo, idEdit);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, ViewModels.Orders.ProductsViewModel product);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult Edit(ViewModels.Orders.ProductsViewModel product)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Edit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "product", product);
+            EditOverride(callInfo, product);
             return callInfo;
         }
 

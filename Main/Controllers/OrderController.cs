@@ -1,6 +1,7 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -75,35 +76,77 @@ namespace HJ_Template_MVC.Controllers
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-        //private int GetCountryCount()
-        //{
-        //    int intCount =
-        //        db.Products
-        //        .Count();
 
-        //    return (intCount);
-        //}
-        //[HttpPost]
-        //public virtual JsonResult GetListProduct()
-        //{
+        [HttpPost]
+        public virtual JsonResult DeleteProduct(int idDelete)
+        {
+            bool deleted = true;
+            try
+            {
+                var result = db.Products.Where(C => C.Id == idDelete).FirstOrDefault();
+                db.Products.Remove(result);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                deleted = false;
+            }
 
-        //    var listProduct = db.Products
-        //             .OrderBy(C => C.Name)
-        //             .Skip(0).Take(10)
-        //             .ToList();
-        //    var result = new { data = listProduct, count = GetCountryCount() };
-        //    return Json(result, JsonRequestBehavior.AllowGet);
-        //}
+            return Json(deleted);
+        }
         public virtual ActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public virtual ActionResult Create(Product product)
+        public virtual ActionResult Create(Product product, HttpPostedFileBase file)
         {
+            var allowedExtensions = new[] {
+             ".Jpg", ".png", ".jpg", "jpeg"};
+
+            product.Image_url = file.ToString(); 
+            var fileName = Path.GetFileName(file.FileName);  
+            var ext = Path.GetExtension(file.FileName);  
+            
+            if (allowedExtensions.Contains(ext))   
+            {
+                string name = Path.GetFileNameWithoutExtension(fileName); 
+                string myfile = name + "_" + product.Name + ext; 
+                var path = Path.Combine(Server.MapPath("~/Picture"), myfile);
+                product.Image_url = path;
+               file.SaveAs(path);
+            }
+
             MyUnitOfWork.ProductRepository.Insert(product);
             MyUnitOfWork.Save();
             return View();
+        }
+        [HttpPost]
+        public virtual JsonResult GetInfoEdit(int idEdit)
+        {
+            var result = db.Products.Where(C => C.Id == idEdit).FirstOrDefault();
+
+            return Json(result);
+        }
+        [HttpPost]
+        public virtual JsonResult Edit(ViewModels.Orders.ProductsViewModel product)
+        {
+            bool updated = false;
+            try
+            {
+                var rowEdit = db.Products.Where(C => C.Id == product.Id).FirstOrDefault();
+                rowEdit.Name = product.Name;
+                rowEdit.Description = product.Description;
+                rowEdit.Price = product.Price.Value;
+                db.SaveChanges();
+                updated = true;
+            }
+            catch (Exception)
+            {
+
+            }
+            return Json(updated);
+
         }
     }
 }

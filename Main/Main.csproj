@@ -275,6 +275,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Picture\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>

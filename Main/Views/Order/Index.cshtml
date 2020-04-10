@@ -11,7 +11,6 @@
 </head>
 <body>
 
-
     <div id="app">
         <div class="modal" id="loadingModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -23,7 +22,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>آیا از حذف سطر مورد نظر مطمن هستید؟</p>
+                        <p>آیا از حذف سطر مورد نظر مطمئن هستید؟</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">خیر</button>
@@ -32,6 +31,56 @@
                 </div>
             </div>
         </div>
+        <div class="modal" id="editModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">ویرایش</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/" method="post">
+                            <div class="row form-group">
+                                <div class="col-sm-4">
+                                    <label>نام غذا</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" v-model="edit.name" name="name" class="form-control" id="name" value="" />
+                                </div>
+
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-sm-4">
+                                    <label>قیمت</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" name="price" v-model="edit.price" class="form-control" id="price" value="" />
+                                </div>
+
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-4">
+                                    <label>توضیحات</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" v-model="edit.description" name="description" id="description" value="" />
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" v-on:click="editeProduct()" class="btn btn-primary">ذخیره</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hj-modal v-bind:message="'عملیات با موفقیت انجام شد'" v-bind:idmodal="'messagemodal'"></hj-modal>
+        <hj-modal v-bind:message="'مشکلی در سرور  رخ داده است'" v-bind:idmodal="'errordelete'"></hj-modal>
 
 
         <br />
@@ -53,7 +102,7 @@
 
                 <table id="data" class="table table-bordered table-condensed table-striped table-hover">
                     <tr>
-                        <td>ردیف</td>
+                        <th>ردیف</th>
                         <th>
                             نام غذا
                         </th>
@@ -74,12 +123,8 @@
                         <td>{{i.Price}}</td>
                         <td>{{i.Description}}</td>
                         <td>
-                            <button v-on:click="edit()">ویرایش</button>&nbsp;
-
-
-
-                            <button v-on:click="deleteProducts(i.Id)" >حذف</button> &nbsp;
-
+                            <button v-on:click="editshow(i.Id)">ویرایش</button>&nbsp;
+                            <button v-on:click="deleteProducts(i.Id)">حذف</button> &nbsp;
                         </td>
                     </tr>
 
@@ -104,10 +149,8 @@
                 <label>{{labelPageCount}}</label>
 
             </div>
-
         </div>
     </div>
-
     <script src="~/js/Orders/Index.js"></script>
 </body>
 </html>
