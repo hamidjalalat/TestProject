@@ -16,10 +16,13 @@ namespace Models
             //Database.SetInitializer
             //    (new DropCreateDatabaseAlways<DataBaseContext>());
 
+            System.Data.Entity.Database
+            .SetInitializer(new DatabaseContextInitializer());
+
             // فقط به درد برنامه نويسان آنهم در زمان پياده سازی می خورد
             //اگر تغییری روی مدل بدهیم پاک میکنه از اول می سازه
-            Database.SetInitializer
-                (new System.Data.Entity.DropCreateDatabaseIfModelChanges<DataBaseContext>());
+            //Database.SetInitializer
+            //    (new System.Data.Entity.DropCreateDatabaseIfModelChanges<DataBaseContext>());
 
             // به درد مشتری می خورد
             //اگر وجود نداشت می سازه
@@ -41,5 +44,6 @@ namespace Models
             //modelBuilder.Configurations.Add(new User.Configuration());
         }
 
+        public System.Data.Entity.DbSet<Models.GroupProduct> GroupProducts { get; set; }
     }
 }

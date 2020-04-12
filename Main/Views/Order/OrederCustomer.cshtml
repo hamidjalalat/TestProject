@@ -1,0 +1,50 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OrederCustomer</title>
+</head>
+<body>
+    <div id="app" class="container">
+        <br />
+        <select v-model="selectedGroupProductId">
+            <option v-bind:value="null">فیلتر بر اساس نوع</option>
+            <option v-for="item in groupList" v-bind:value="item.Id">{{ item.Name }}</option>
+        </select>
+        <br />
+        <br />
+        <div class="card-columns">
+            <div class="card" style="width: 14rem;" v-for="item in listProduct" v-show="selectedGroupProductId === null || item.GroupProductId == selectedGroupProductId">
+                <img class="card-img-top" src="~/Picture/19022006(004)_0.jpg" alt="Card image cap">
+                <div class="card-body" v-show="item.displayDetails">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text" v-if="item.Description" v-show="item.displayDetails">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+
+
+            @*<div class="card" v-for="item in listProduct" v-show="selectedGroupProductId === null || item.GroupProductId == selectedGroupProductId">
+                <div class="card-header bg-info" v-on:click="toggleDisplayDetails(item)">
+                    {{ item.Name }}
+                </div>
+
+                <div class="card-body" v-show="item.displayDetails">
+                    Age: {{ item.Name }}
+                    <br />
+                    Role: {{ item.Name }}
+                </div>
+
+                <div class="card-footer" v-if="item.Description" v-show="item.displayDetails">
+                    {{ item.Description }}
+                </div>
+            </div>*@
+        </div>
+
+    </div>
+    <script src="~/js/Orders/ordercustomer.js"></script>
+ 
+</body>
+</html>

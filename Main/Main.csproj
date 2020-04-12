@@ -144,7 +144,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\Yekan.ttf" />
     <Content Include="fonts\YekanWeb-Regular.woff" />
+    <Content Include="js\hjcomponent.js" />
+    <Content Include="js\Orders\create.js" />
     <Content Include="js\Orders\Index.js" />
+    <Content Include="js\Orders\ordercustomer.js" />
     <Content Include="packages.config" />
     <Content Include="scripts\axios.js" />
     <Content Include="scripts\axios.min.js" />
@@ -184,6 +187,12 @@
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Order\Create.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\OrederCustomer.cshtml" />
+    <Content Include="Views\test\Create.cshtml" />
+    <Content Include="Views\test\Delete.cshtml" />
+    <Content Include="Views\test\Details.cshtml" />
+    <Content Include="Views\test\Edit.cshtml" />
+    <Content Include="Views\test\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -234,6 +243,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\test.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

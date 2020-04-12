@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using ViewModels.Orders;
 
 namespace HJ_Template_MVC.Controllers
@@ -96,37 +97,53 @@ namespace HJ_Template_MVC.Controllers
         }
         public virtual ActionResult Create()
         {
+            ViewBag.GroupProductId = new SelectList(db.GroupProducts, "Id", "Name");
             return View();
         }
         [HttpPost]
         public virtual ActionResult Create(Product product, HttpPostedFileBase file)
         {
-            var allowedExtensions = new[] {
-             ".Jpg", ".png", ".jpg", "jpeg"};
 
-            product.Image_url = file.ToString(); 
-            var fileName = Path.GetFileName(file.FileName);  
-            var ext = Path.GetExtension(file.FileName);  
-            
-            if (allowedExtensions.Contains(ext))   
+            if (file == null)
             {
-                string name = Path.GetFileNameWithoutExtension(fileName); 
-                string myfile = name + "_" + product.Name + ext; 
-                var path = Path.Combine(Server.MapPath("~/Picture"), myfile);
-                product.Image_url = path;
-               file.SaveAs(path);
+                ModelState.AddModelError(key: "Available", errorMessage: "انتخاب عکس اجباری می باشد");
+              
+            }
+            if (ModelState.IsValid)
+            {
+                var allowedExtensions = new[] { ".Jpg", ".png", ".jpg", "jpeg" };
+
+                var fileName = Path.GetFileName(file.FileName);
+                var ext = Path.GetExtension(file.FileName);
+
+                if (allowedExtensions.Contains(ext))
+                {
+                    string name = Path.GetFileNameWithoutExtension(fileName);
+                    string myfile = name + "_" + product.Name + ext;
+                    var path = Path.Combine(Server.MapPath("~/Picture"), myfile);
+                    product.Image_url = path;
+                    file.SaveAs(path);
+                }
+
+                MyUnitOfWork.ProductRepository.Insert(product);
+                MyUnitOfWork.Save();
+                return RedirectToAction(MVC.Order.Index());
             }
 
-            MyUnitOfWork.ProductRepository.Insert(product);
-            MyUnitOfWork.Save();
-            return View();
+            return View(product);
         }
         [HttpPost]
         public virtual JsonResult GetInfoEdit(int idEdit)
         {
-            var result = db.Products.Where(C => C.Id == idEdit).FirstOrDefault();
+            var listProduct = db.Products.Where(C => C.Id == idEdit)
+            .Select(C => new { Name = C.Name, Price = C.Price, Description = C.Description, Available = C.Available, GroupProductId= C.GroupProductId })
+            .FirstOrDefault();
 
-            return Json(result);
+            var listGruopProduct = db.GroupProducts.Select(C=> new {Id=C.Id,Name=C.Name }).ToList();
+
+            var result = new { listProduct= listProduct, listGruopProduct= listGruopProduct };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public virtual JsonResult Edit(ViewModels.Orders.ProductsViewModel product)
@@ -135,6 +152,8 @@ namespace HJ_Template_MVC.Controllers
             try
             {
                 var rowEdit = db.Products.Where(C => C.Id == product.Id).FirstOrDefault();
+                rowEdit.GroupProductId = product.GroupProductId;
+                rowEdit.Available = product.Available;
                 rowEdit.Name = product.Name;
                 rowEdit.Description = product.Description;
                 rowEdit.Price = product.Price.Value;
@@ -147,6 +166,23 @@ namespace HJ_Template_MVC.Controllers
             }
             return Json(updated);
 
+        }
+        public ActionResult OrederCustomer()
+        {
+            return View();
+        }
+        [HttpPost]
+        public JsonResult GetListProduct()
+        {
+            var listProduct = db.Products
+         .Select(C => new { Name = C.Name, Price = C.Price, Description = C.Description, Available = C.Available, GroupProductId = C.GroupProductId }).ToList();
+       
+
+            var listGruopProduct = db.GroupProducts.Select(C => new { Id = C.Id, Name = C.Name }).ToList();
+
+            var result = new { listProduct = listProduct, listGruopProduct = listGruopProduct };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -12,6 +12,7 @@
     <title>Create</title>
 </head>
 <body>
+    <hj-modal v-bind:message="'عملیات با موفقیت انجام شد'" v-bind:idmodal="'messagemodal'"></hj-modal>
 
     @using (Html.BeginForm("Create", "Order", FormMethod.Post, new
     {
@@ -50,23 +51,40 @@
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="form-group row">
+            @Html.LabelFor(model => model.GroupProductId, "گروه غذا", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("GroupProductId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.GroupProductId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Available, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.CheckBoxFor(model => model.Available, new { @checked = "checked" })
+                </div>
+            </div>
+        </div>
+
+
 
         <div class="form-group row">
             <div class="col-md-5">
                 <input type="file" title="search image" id="file" class="custom-file-input" name="file" onchange="show(this)" />
                 <label class="custom-file-label" for="customFile">انتخاب عکس</label>
-
             </div>
-          
+            <div class="col-md-7">
+                @Html.ValidationMessageFor(model => model.Available, "", new { @class = "text-danger" })
+            </div>
         </div>
-
         <div class="form-group row">
-                <div>
-                    <img id="user_img"
-                         height="200"
-                         width="180" />
-                </div>
-            
+            <div>
+                <img id="user_img"
+                     height="200"
+                     width="180" />
+            </div>
+
         </div>
 
         <div class="form-group row">
@@ -75,23 +93,20 @@
 
             </div>
         </div>
-
+        <div class="form-group row">
+            <div class=" col-md-10">
+                @if (ViewBag.Inseted != null)
+                {
+                    <label>اطلاعات با موفقیت ذخیره شد</label>
+                }
+            </div>
+        </div>
 
     }
 
     <div>
         @Html.ActionLink("برگشت به لیست غذا ها", "Index")
     </div>
-    <script type="text/javascript">
-        function show(input) {
-            if (input.files && input.files[0]) {
-                var filerdr = new FileReader();
-                filerdr.onload = function (e) {
-                    $('#user_img').attr('src', e.target.result);
-                }
-                filerdr.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
+    <script src="~/js/Orders/create.js"></script>
 </body>
 </html>

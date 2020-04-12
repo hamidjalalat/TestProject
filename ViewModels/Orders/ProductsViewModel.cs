@@ -27,5 +27,6 @@ namespace ViewModels.Orders
         [Display(Name = "تصوير", Prompt = "تصوير", Description = "تصوير")]
         public string Image_url { get; set; }
         public string ImageName { get; set; }
+        public int GroupProductId { get; set; }
     }
 }

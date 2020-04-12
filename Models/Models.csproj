@@ -63,6 +63,8 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="DataBaseContext.cs" />
+    <Compile Include="DatabaseContextInitializer.cs" />
+    <Compile Include="GroupProduct.cs" />
     <Compile Include="Infrastructure\MaxWordsAttribute.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,45 +1,19 @@
 ﻿
-Vue.component(`hj-modal`, {
-
-   props: ['message','idmodal'],
-    data: function () {
-
-        return ({
-            id: this.idmodal,
-        })
-    },
-    
-    template:
-        ` <div class="modal" v-bind:id="id" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>{{message}}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-                    </div>
-                </div>
-            </div>
-        </div>`,
-
-})
 
 
 const app = new Vue({
 
     el: "#app",
     data: {
-        edit: {
+        selectGroupId: null,
+        groupList: null,
+        editParameters: {
             id:0,
             name: null,
             price: null,
-            description:null,
+            description: null,
+            available: null,
+            groupProductId: null,
         },
         id: {
             idDelete: 0,
@@ -57,12 +31,16 @@ const app = new Vue({
             name: null,
             price: null,
             description: null,
+          
         },
     },
     methods: {
+       
         editeProduct: function () {
-            axios.post('/order/Edit', this.edit)
 
+            this.editParameters.groupProductId = this.selectGroupId;
+          
+            axios.post('/order/Edit', this.editParameters)
                 .then(response => {
                     if (response.data) {
                         $(`div#editModal`).modal('hide');
@@ -86,18 +64,23 @@ const app = new Vue({
         },
         editshow: function (id) {
             this.id.idEdit = id;
-            this.edit.id = id;
+            this.editParameters.id = id;
             axios.post('/order/GetInfoEdit', this.id)
 
                 .then(response => {
-                    console.log(response.data)
-                    this.edit.name = response.data.Name;
-                    this.edit.price = response.data.Price;
-                    this.edit.description = response.data.Description;
+                    console.log(response.data.listGruopProduct);
+                    this.editParameters.name = response.data.listProduct.Name;
+                    this.editParameters.price = response.data.listProduct.Price;
+                    this.editParameters.description = response.data.listProduct.Description;
+                    this.editParameters.available = response.data.listProduct.Available;
+                    //this.editParameters.groupProductId = response.data.listProduct.GroupProductId;
+                    this.selectGroupId = response.data.listProduct.GroupProductId;
+                    this.groupList = response.data.listGruopProduct;
+
                 })
                 .catch(error => {
 
-                    console.error(error)
+                    console.log(error)
 
                 })
                 .finally(() => {
