@@ -149,6 +149,7 @@
     <Content Include="js\Orders\Index.js" />
     <Content Include="js\Orders\ordercustomer.js" />
     <Content Include="packages.config" />
+    <Content Include="Picture\5cf35c62644be.jpg" />
     <Content Include="scripts\axios.js" />
     <Content Include="scripts\axios.min.js" />
     <Content Include="scripts\bootstrap-rtl.js" />
@@ -285,7 +286,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Picture\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>

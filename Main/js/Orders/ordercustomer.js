@@ -4,42 +4,74 @@
     data: {
         selectedGroupProductId: null,
         listProduct: null,
-        groupList:null,
+        groupList: null,
+        selectionProduct:[],
     }, 
     methods: {
-        toggleDisplayDetails: function (item) {
+        getAddProduct: function (item) {
+          
 
-            item.displayDetails = !item.displayDetails
+            this.selectionProduct.push(item);
+        },
+
+
+
+
+        plus: function (item) {
+
+            if (item.count < 10) {
+
+                item.count++
+
+            }
 
         },
+
+        minus: function (item) {
+
+            if (item.count > 0) {
+
+                item.count--
+
+            }
+
+        },
+
+        getSubTotal: function (item) {
+            let result =
+                item.count * item.Price
+
+         
+         
+            return result
+
+        },
+
+        getTotal: function () {
+
+            let total = 0
+
+            for (let index = 0; index < this.selectionProduct.length; index++) {
+
+                let currentItem = this.selectionProduct[index]
+
+                total +=
+                    this.getSubTotal(currentItem)
+
+            }
+
+            return total
+
+        },
+
     },
     computed: {
-        //getUniqueGroupProductList: function () {
-
-        //    const groupProducs = [];
-
-        //    this.groupList.forEach(item => {
-
-        //        if (groupProducs.includes(item.Name) == false) {
-
-        //            groupProducs.push(item.Name)
-
-        //        }
-
-        //    })
-
-        //    return groupProducs
-
-        //},
+   
+   
     },
 
     created: function () {
-        ////alert(" ffff");
-        //for (let index = 0; index < this.listProduct.length; index++) {
-        //    alert(this.listProduct[index]);
-        //    Vue.set(this.listProduct[index], `displayDetails`, true)
-
-        //}
+     
      
     },
       mounted() {
@@ -52,7 +84,8 @@
                   this.groupList = response.data.listGruopProduct;
                 
                   for (let index = 0; index < this.listProduct.length; index++) {
-                      Vue.set(this.listProduct[index], `displayDetails`, true)
+                      Vue.set(this.listProduct[index], `displayDetails`, true);
+                      Vue.set(this.listProduct[index], `count`, 1)
 
                   }
               })

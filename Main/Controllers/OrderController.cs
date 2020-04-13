@@ -121,7 +121,7 @@ namespace HJ_Template_MVC.Controllers
                     string name = Path.GetFileNameWithoutExtension(fileName);
                     string myfile = name + "_" + product.Name + ext;
                     var path = Path.Combine(Server.MapPath("~/Picture"), myfile);
-                    product.Image_url = path;
+                    product.Image_url = "/Picture/"+ myfile;
                     file.SaveAs(path);
                 }
 
@@ -175,7 +175,7 @@ namespace HJ_Template_MVC.Controllers
         public JsonResult GetListProduct()
         {
             var listProduct = db.Products
-         .Select(C => new { Name = C.Name, Price = C.Price, Description = C.Description, Available = C.Available, GroupProductId = C.GroupProductId }).ToList();
+         .Select(C => new { Name = C.Name, Price = C.Price, Description = C.Description, Available = C.Available, GroupProductId = C.GroupProductId , Image_url = C.Image_url }).ToList();
        
 
             var listGruopProduct = db.GroupProducts.Select(C => new { Id = C.Id, Name = C.Name }).ToList();
