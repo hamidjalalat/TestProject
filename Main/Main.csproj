@@ -65,6 +65,9 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
       <Private>True</Private>
@@ -145,6 +148,7 @@
     <Content Include="fonts\Yekan.ttf" />
     <Content Include="fonts\YekanWeb-Regular.woff" />
     <Content Include="js\hjcomponent.js" />
+    <Content Include="js\hjFunction.js" />
     <Content Include="js\Orders\create.js" />
     <Content Include="js\Orders\Index.js" />
     <Content Include="js\Orders\ordercustomer.js" />
@@ -194,6 +198,7 @@
     <Content Include="Views\test\Details.cshtml" />
     <Content Include="Views\test\Edit.cshtml" />
     <Content Include="Views\test\Index.cshtml" />
+    <Content Include="Views\RegisterOrder\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -244,6 +249,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\RegisterOrderController.cs" />
     <Compile Include="Controllers\test.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">

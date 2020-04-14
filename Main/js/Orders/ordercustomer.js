@@ -1,4 +1,5 @@
-﻿var app = new Vue({
+﻿
+var app = new Vue({
 
     el: "#app",
     data: {
@@ -8,32 +9,51 @@
         selectionProduct:[],
     }, 
     methods: {
-        getAddProduct: function (item) {
-          
-
-            this.selectionProduct.push(item);
+        redirectToAction() {
+            //$.post('/RegisterOrder/Check', { jsonOrder: JSON.stringify(this.selectionProduct) });
+            window.location.href = "/RegisterOrder/Check?jsonOrder=" + encodeURIComponent(JSON.stringify(this.selectionProduct));
         },
 
-
-
+        getAddProduct: function (item) {
+            let has = true;
+            this.selectionProduct.forEach(i=> {
+         
+                if (i.Id == item.Id) {
+            
+                    has = false;
+                    i.count++;
+                }
+             
+            });
+            if (has) {
+        
+                this.selectionProduct.push(item);
+            }
+            document.cookie = "listProduct=" + JSON.stringify(this.selectionProduct);
+        },
 
         plus: function (item) {
-
-            if (item.count < 10) {
-
-                item.count++
-
-            }
-
+            item.count++;
+            
+            document.cookie = "listProduct=" + JSON.stringify(this.selectionProduct);
         },
 
         minus: function (item) {
 
-            if (item.count > 0) {
+            if (item.count > 1) {
 
                 item.count--
 
             }
+            else
+            {
+                const index = this.selectionProduct.indexOf(item);
+                if (index > -1) {
+                    this.selectionProduct.splice(index, 1);
+                }
+            }
+            
+            document.cookie = "listProduct=" + JSON.stringify(this.selectionProduct);
 
         },
 
@@ -41,7 +61,7 @@
             let result =
                 item.count * item.Price
 
-         
+           
          
             return result
 
@@ -60,7 +80,7 @@
 
             }
 
-            return total
+            return separate( total)
 
         },
 
@@ -71,13 +91,15 @@
     },
 
     created: function () {
-     
+        let jsonlistProduct = getCookie('listProduct');
+        if (jsonlistProduct != null) {
+            this.selectionProduct = JSON.parse(jsonlistProduct);
+        }
      
     },
       mounted() {
      
           axios.post('/Order/GetListProduct')
-
               .then(response => {
 
                   this.listProduct = response.data.listProduct;

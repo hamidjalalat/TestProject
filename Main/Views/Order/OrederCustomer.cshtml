@@ -1,76 +1,90 @@
 ﻿
 <!DOCTYPE html>
 
-<html>
+<html lang="fa">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>OrederCustomer</title>
     <style>
-      .scroll {
-          direction:ltr;
-    max-height: 800px;
-    overflow-y: auto;
+        .scroll {
+            direction: ltr;
+            max-height: 800px;
+            overflow-y: auto;
+        }
+
+
+        div.card {
+            transition-delay: 0s;
+            transition-duration: 200ms;
+            transition-property: opacity, transform;
+            transition-timing-function: ease-in-out;
+        }
+
+        div.card:hover {
+                transform: scale(1.2);
+            }
+        .getAddProduct {
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 9px #999;
+}
+
+.getAddProduct:hover {background-color: #3e8e41}
+
+.getAddProduct:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
     </style>
 </head>
 <body>
     <div id="app" class="container">
         <br />
-        <select v-model="selectedGroupProductId">
+        <select v-model="selectedGroupProductId" >
             <option v-bind:value="null">فیلتر بر اساس نوع</option>
             <option v-for="item in groupList" v-bind:value="item.Id">{{ item.Name }}</option>
         </select>
         <br />
         <br />
 
-        <div class="row" >
-        
-            <div class="col-md-7 scroll" >
+        <div class="row">
+
+            <div class="col-md-8 scroll">
                 <div class="card-columns " style="direction:rtl">
 
                     <div class="card " style="width: 10rem; " v-for="item in listProduct" v-show="selectedGroupProductId === null || item.GroupProductId == selectedGroupProductId">
-                        <br />
                         <img class="card-img-top" style="height:120px" v-bind:src="item.Image_url" alt="Card image cap">
-                        <div class="card-body" v-show="item.displayDetails">
+                        <div class="card-body" >
                             <h5 class="card-title">{{item.Name}}</h5>
-                            <p class="card-text" v-if="item.Description" v-show="item.displayDetails"> {{item.Price}} تومان</p>
-                            <button class="btn btn-primary" v-on:click="getAddProduct(item)" style="font-size:11px" >افزودن به سبد خرید </button>
+                            <p class="card-text" > {{item.Price}} تومان</p>
+                            <p   >
+                                 {{item.Description}}
+                            </p>
+                            <button v-if="item.Available" class="btn btn-primary getAddProduct" v-on:click="getAddProduct(item)" style="font-size:11px">افزودن به سبد خرید </button>
+                            <p v-else>
+                                ناموجود
+                            </p>
                         </div>
                     </div>
 
-
-                    @*<div class="card" v-for="item in listProduct" v-show="selectedGroupProductId === null || item.GroupProductId == selectedGroupProductId">
-                <div class="card-header bg-info" v-on:click="toggleDisplayDetails(item)">
-                    {{ item.Name }}
-                </div>
-
-                <div class="card-body" v-show="item.displayDetails">
-                    Age: {{ item.Name }}
-                    <br />
-                    Role: {{ item.Name }}
-                </div>
-
-                <div class="card-footer" v-if="item.Description" v-show="item.displayDetails">
-                    {{ item.Description }}
-                </div>
-            </div>*@
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-4">
 
                 <div class="row">
                     <div class="col-12 table-responsive">
                         <table class="table table-bordered table-striped table-hover table-sm">
                             <tr>
-                                <th>#</th>
+                            
                                 <th>نام</th>
                                 <th>قیمت</th>
                                 <th>تعداد</th>
                                 <th>عملیات</th>
                                 <th>جمع</th>
                             </tr>
-                            <tr v-for="(item, index) in selectionProduct" v-bind:key="item.id">
-                                <td>{{ index + 1 }}</td>
+                            <tr v-for="item in selectionProduct" v-bind:key="item.id">
+                             
                                 <td>{{ item.Name }}</td>
                                 <td>{{ item.Price }}</td>
                                 <td>{{ item.count }}</td>
@@ -82,17 +96,33 @@
                                 <td>{{ getSubTotal(item) }}</td>
                             </tr>
                             <tr>
-                                <td colspan="5">جمع کل</td>
+                                <td colspan="4">جمع کل</td>
                                 <td>{{ getTotal() }}</td>
                             </tr>
                         </table>
                     </div>
-                </div>
 
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <label>جمع کل سفارش........................</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <span>{{ getTotal() }} تومان</span>
+                    </div>
+                   
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary btn-block" v-on:click="redirectToAction()">بررسی نهایی</button>
+                   
+                    </div>
+                </div>
             </div>
         </div>
 
     </div>
+    <script src="~/js/hjFunction.js"></script>
     <script src="~/js/Orders/ordercustomer.js"></script>
 
 </body>

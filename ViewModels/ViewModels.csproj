@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Orders\ProductsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterOrder\RegisterOrderViewModel.cs" />
     <Compile Include="Users\EditViewModel.cs" />
     <Compile Include="Users\CreateViewModel.cs" />
   </ItemGroup>

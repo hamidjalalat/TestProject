@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ViewModels.RegisterOrder.RegisterOrderViewModel>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ثبت نهایی</title>
+    <style>
+        
+        .image {
+            width: 100px;
+            background-color:#ffffff;
+            transition-delay: 0s;
+            transition-duration: 200ms;
+            transition-property:  transform;
+            transition-timing-function: ease-in-out;
+        }
+
+        .image:hover {
+                transform: scale(2);
+            }
+    </style>
+</head>
+<body>
+    <br />
+    <table class="table " style="background-color:#ededef">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.count)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+
+
+            <th>
+                d
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                    تومان
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.count)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+
+
+                <td>
+                    <img src="@item.Image_url" class="image" alt="عکس"  />
+
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</body>
+</html>
