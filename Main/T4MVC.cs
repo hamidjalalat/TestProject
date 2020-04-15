@@ -30,8 +30,10 @@ public static partial class MVC
     public static Main.Controllers.AccountController Account = new Main.Controllers.T4MVC_AccountController();
     public static Main.Controllers.HomeController Home = new Main.Controllers.T4MVC_HomeController();
     public static HJ_Template_MVC.Controllers.OrderController Order = new HJ_Template_MVC.Controllers.T4MVC_OrderController();
+    public static Controllers.RegisterOrderController RegisterOrder = new Controllers.T4MVC_RegisterOrderController();
     public static Main.Controllers.UsersController Users = new Main.Controllers.T4MVC_UsersController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
+    public static T4MVC.testController test = new T4MVC.testController();
 }
 
 namespace T4MVC

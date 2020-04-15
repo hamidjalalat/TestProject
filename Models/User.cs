@@ -7,10 +7,10 @@ using System.Web.Mvc;
 
 namespace Models
 {
-    public class User:BaseEntity
+    public class User : BaseEntity
     {
         #region Configuration
-        internal class Configuration:System.Data.Entity.ModelConfiguration.ComplexTypeConfiguration<User>
+        internal class Configuration : System.Data.Entity.ModelConfiguration.ComplexTypeConfiguration<User>
         {
             public Configuration() : base()
             {
@@ -18,18 +18,29 @@ namespace Models
             }
         }
         #endregion /Configuration
-        public User() :base()
+        public User() : base()
         {
+         
         }
 
-
+     
         // **********
         //[RegularExpression(pattern: "[a-zA-Z0-9]")]
         [Remote(action: "CheckUsername", controller: "Account", areaName: "")]
-        [Display(ResourceType = typeof(Resources.Users), Name = Resources.Strings.UsersKeys.Name)]
+        [Display(Name = "نام کاربری")]
         [StringLength(maximumLength: 20, MinimumLength = 8, ErrorMessageResourceType = typeof(Resources.Users),
             ErrorMessageResourceName = Resources.Strings.UsersKeys.minimumlength)]
         public string Name { get; set; }
+        // **********
+
+        // **********
+        [Display(Name = "شماره همراه")]
+        public string Mobile { get; set; }
+        // **********
+
+        // **********
+        [Display(Name = "آدرس")]
+        public string Address { get; set; }
         // **********
 
         // **********

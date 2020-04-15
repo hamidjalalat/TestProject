@@ -17,7 +17,7 @@ namespace Models
         public string Name { get; set; }
         public Int64 Price { get; set; }
         public int Count { get; set; }
-        public int FactorId { get; set; }
+        public Guid FactorId { get; set; }
         public virtual Factor Factor { get; set; }
     }
 }

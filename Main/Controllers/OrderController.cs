@@ -167,16 +167,16 @@ namespace HJ_Template_MVC.Controllers
             return Json(updated);
 
         }
-        public ActionResult OrederCustomer()
+        public virtual ActionResult OrederCustomer()
         {
             return View();
         }
         [HttpPost]
-        public JsonResult GetListProduct()
+        public virtual JsonResult GetListProduct()
         {
             var listProduct = db.Products
-         .Select(C => new { Id = C.Id, Name = C.Name, Price = C.Price, Description = C.Description, Available = C.Available, GroupProductId = C.GroupProductId , Image_url = C.Image_url }).ToList();
-       
+         .Select(C => new { Id = C.Id, Name = C.Name, Price = C.Price, Description = C.Description, Available = C.Available, GroupProductId = C.GroupProductId, Image_url = C.Image_url }).ToList();
+
 
             var listGruopProduct = db.GroupProducts.Select(C => new { Id = C.Id, Name = C.Name }).ToList();
 

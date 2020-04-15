@@ -34,6 +34,7 @@ namespace Main.Controllers
                                    .RedirectFromLoginPage(username,
                                    createPersistentCookie: RememberMe);
                 var hc = new HttpCookie("currentuser", username);
+                
                 hc.Expires = DateTime.Now.AddDays(2);
                 Response.SetCookie(hc);
             }

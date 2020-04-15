@@ -32,5 +32,6 @@ namespace ViewModels.RegisterOrder
       
         [Display(Name = "تعداد")]
         public int count { get; set; }
+     
     }
 }

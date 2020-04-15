@@ -1,4 +1,8 @@
 ﻿
+Vue.filter("formatNumber", function (value) {
+    return separate(value);
+});
+
 var app = new Vue({
 
     el: "#app",
@@ -10,8 +14,8 @@ var app = new Vue({
     }, 
     methods: {
         redirectToAction() {
-            //$.post('/RegisterOrder/Check', { jsonOrder: JSON.stringify(this.selectionProduct) });
-            window.location.href = "/RegisterOrder/Check?jsonOrder=" + encodeURIComponent(JSON.stringify(this.selectionProduct));
+            $.post('/RegisterOrder/Check', { jsonOrder: JSON.stringify(this.selectionProduct) });
+            window.location.href = "/RegisterOrder/Check";
         },
 
         getAddProduct: function (item) {
@@ -61,10 +65,7 @@ var app = new Vue({
             let result =
                 item.count * item.Price
 
-           
-         
             return result
-
         },
 
         getTotal: function () {
@@ -79,7 +80,7 @@ var app = new Vue({
                     this.getSubTotal(currentItem)
 
             }
-
+            this.selectionProduct.Total = total;
             return separate( total)
 
         },

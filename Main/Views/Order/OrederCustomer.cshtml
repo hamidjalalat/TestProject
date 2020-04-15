@@ -41,7 +41,7 @@
 <body>
     <div id="app" class="container">
         <br />
-        <select v-model="selectedGroupProductId" >
+        <select v-model="selectedGroupProductId">
             <option v-bind:value="null">فیلتر بر اساس نوع</option>
             <option v-for="item in groupList" v-bind:value="item.Id">{{ item.Name }}</option>
         </select>
@@ -55,11 +55,11 @@
 
                     <div class="card " style="width: 10rem; " v-for="item in listProduct" v-show="selectedGroupProductId === null || item.GroupProductId == selectedGroupProductId">
                         <img class="card-img-top" style="height:120px" v-bind:src="item.Image_url" alt="Card image cap">
-                        <div class="card-body" >
+                        <div class="card-body">
                             <h5 class="card-title">{{item.Name}}</h5>
-                            <p class="card-text" > {{item.Price}} تومان</p>
-                            <p   >
-                                 {{item.Description}}
+                            <p class="card-text"> {{item.Price|formatNumber}} تومان</p>
+                            <p>
+                                {{item.Description}}
                             </p>
                             <button v-if="item.Available" class="btn btn-primary getAddProduct" v-on:click="getAddProduct(item)" style="font-size:11px">افزودن به سبد خرید </button>
                             <p v-else>
@@ -76,7 +76,7 @@
                     <div class="col-12 table-responsive">
                         <table class="table table-bordered table-striped table-hover table-sm">
                             <tr>
-                            
+
                                 <th>نام</th>
                                 <th>قیمت</th>
                                 <th>تعداد</th>
@@ -84,7 +84,7 @@
                                 <th>جمع</th>
                             </tr>
                             <tr v-for="item in selectionProduct" v-bind:key="item.id">
-                             
+
                                 <td>{{ item.Name }}</td>
                                 <td>{{ item.Price }}</td>
                                 <td>{{ item.count }}</td>
@@ -110,18 +110,19 @@
                     <div class="col-sm-4">
                         <span>{{ getTotal() }} تومان</span>
                     </div>
-                   
+
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <button class="btn btn-primary btn-block" v-on:click="redirectToAction()">بررسی نهایی</button>
-                   
+
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
+    
     <script src="~/js/hjFunction.js"></script>
     <script src="~/js/Orders/ordercustomer.js"></script>
 

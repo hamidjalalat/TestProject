@@ -105,6 +105,8 @@ namespace HJ_Template_MVC.Controllers
             public readonly string Create = "Create";
             public readonly string GetInfoEdit = "GetInfoEdit";
             public readonly string Edit = "Edit";
+            public readonly string OrederCustomer = "OrederCustomer";
+            public readonly string GetListProduct = "GetListProduct";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -116,6 +118,8 @@ namespace HJ_Template_MVC.Controllers
             public const string Create = "Create";
             public const string GetInfoEdit = "GetInfoEdit";
             public const string Edit = "Edit";
+            public const string OrederCustomer = "OrederCustomer";
+            public const string GetListProduct = "GetListProduct";
         }
 
 
@@ -174,9 +178,11 @@ namespace HJ_Template_MVC.Controllers
             {
                 public readonly string Create = "Create";
                 public readonly string Index = "Index";
+                public readonly string OrederCustomer = "OrederCustomer";
             }
             public readonly string Create = "~/Views/Order/Create.cshtml";
             public readonly string Index = "~/Views/Order/Index.cshtml";
+            public readonly string OrederCustomer = "~/Views/Order/OrederCustomer.cshtml";
         }
     }
 
@@ -267,6 +273,28 @@ namespace HJ_Template_MVC.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "product", product);
             EditOverride(callInfo, product);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void OrederCustomerOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult OrederCustomer()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.OrederCustomer);
+            OrederCustomerOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetListProductOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetListProduct()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetListProduct);
+            GetListProductOverride(callInfo);
             return callInfo;
         }
 

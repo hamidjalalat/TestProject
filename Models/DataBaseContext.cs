@@ -36,6 +36,9 @@ namespace Models
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<GroupProduct> GroupProducts { get; set; }
+        public DbSet<Factor> Factors { get; set; }
+        public DbSet<FactorDetail> FactorDetails { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -43,7 +46,5 @@ namespace Models
             //modelBuilder.Configurations.Add(new Role.Configuration());
             //modelBuilder.Configurations.Add(new User.Configuration());
         }
-
-        public System.Data.Entity.DbSet<Models.GroupProduct> GroupProducts { get; set; }
     }
 }

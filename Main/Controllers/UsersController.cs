@@ -83,14 +83,13 @@ namespace Main.Controllers
                 MyUnitOfWork.Save();
                 //db.Users.Add(user);
                 //db.SaveChanges();
-                return RedirectToAction(MVC.Users.Index());
+                return RedirectToAction(MVC.Order.OrederCustomer());
             }
             return View(user);
         }
         [HttpPost]
         public virtual JsonResult CreateAjax(User user)
         {
-            //System.Threading.Thread.Sleep(1000);
             bool success = false;
 
             if (string.Compare(user.Name, "Hjalalat") == 0)
@@ -201,27 +200,27 @@ namespace Main.Controllers
         //    db.SaveChanges();
         //    return RedirectToAction(MVC.Users.Index());
         //}
-        public virtual JsonResult DeleteAJAX(int id)
-        {
-            //System.Threading.Thread.Sleep(5000);
-            User user = db.Users.Where(p => p.Id == id).FirstOrDefault();
-            if (user == null)
-            {
-                throw new Exception("user Not Found!");
-                //return Json("Person not found!", JsonRequestBehavior.AllowGet);
-            }
-            try
-            {
-                db.Users.Remove(user);
-                db.SaveChanges();
-                //PageMessages.Add(new Infrastructure.PageMessages(Infrastructure.PageMessages.Types.Error, "{0} deleted"+user.Name));
-                return Json(new { Succeed = true, Message = string.Format("{0} deleted", user.Name), Id = id });
-            }
-            catch (Exception ex)
-            {
-                return Json(new { Succeed = false, Message = "user not deleted!" + ex.Message, Id = id });
-            }
-        }
+        //public virtual JsonResult DeleteAJAX(int id)
+        //{
+        //    //System.Threading.Thread.Sleep(5000);
+        //    User user = db.Users.Where(p => p.Id == id).FirstOrDefault();
+        //    if (user == null)
+        //    {
+        //        throw new Exception("user Not Found!");
+        //        //return Json("Person not found!", JsonRequestBehavior.AllowGet);
+        //    }
+        //    try
+        //    {
+        //        db.Users.Remove(user);
+        //        db.SaveChanges();
+        //        //PageMessages.Add(new Infrastructure.PageMessages(Infrastructure.PageMessages.Types.Error, "{0} deleted"+user.Name));
+        //        return Json(new { Succeed = true, Message = string.Format("{0} deleted", user.Name), Id = id });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new { Succeed = false, Message = "user not deleted!" + ex.Message, Id = id });
+        //    }
+        //}
      
     }
 }

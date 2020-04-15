@@ -10,11 +10,12 @@ namespace Models
     {
         public Factor()
         {
+            Id = Guid.NewGuid();
 
         }
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public DateTime Date { get; set; }
-        public int UserId { get; set; }
+        public string   UserName { get; set; }
         public virtual List<FactorDetail> FactorDetails { get; set; }
 
     }

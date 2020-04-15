@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<ViewModels.RegisterOrder.RegisterOrderViewModel>
 
-
+@{ 
+    Int64 SumTotal = 0;
+}
 <!DOCTYPE html>
 
 <html>
@@ -25,7 +27,7 @@
 </head>
 <body>
     <br />
-    <table class="table " style="background-color:#ededef">
+    <table class="table " >
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -37,42 +39,59 @@
                 @Html.DisplayNameFor(model => model.count)
             </th>
             <th>
+               جمع
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
 
 
             <th>
-                d
+
             </th>
 
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                    تومان
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.count)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+            تومان
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.count)
+        </td>
+        <td>
+
+            @{
+                int Total = item.Price * item.count;
+                SumTotal = SumTotal + Total;
+                <span>@Total</span>
+
+            }
+         
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
 
 
-                <td>
-                    <img src="@item.Image_url" class="image" alt="عکس"  />
+        <td>
+            <img src="@item.Image_url" class="image" alt="عکس" />
 
-                </td>
+        </td>
 
-            </tr>
+    </tr>
         }
+        
 
     </table>
+    <label>قابل پرداخت</label>
+    <label>@SumTotal</label>
+    @Html.ActionLink("ثبت نهایی","RefisterFactor",null,new {@class="btn btn-primary" })
 </body>
 </html>
