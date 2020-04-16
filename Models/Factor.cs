@@ -16,6 +16,7 @@ namespace Models
         public Guid Id { get; set; }
         public DateTime Date { get; set; }
         public string   UserName { get; set; }
+        public bool approved { get; set; }
         public virtual List<FactorDetail> FactorDetails { get; set; }
 
     }

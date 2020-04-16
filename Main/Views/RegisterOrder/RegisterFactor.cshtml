@@ -1,0 +1,29 @@
+﻿
+@{
+    bool success = ViewBag.success;
+    ViewBag.Title = "RegisterFactor";
+}
+<br />
+@if (success)
+{
+    <div class="card text-white bg-success mb-3" style="max-width: 80rem;">
+        <div class="card-header">ثبت</div>
+        <div class="card-body">
+            <h5 class="card-title">سفارش شما با موفقیت ثبت گردید</h5>
+            <p class="card-text">اگر شما برای اولین بار سفارش داده اید همکاران ما با شما تماس خواهند گرفت</p>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card text-white bg-danger mb-3" style="max-width: 80rem;">
+        <div class="card-header">خطا</div>
+        <div class="card-body">
+            <h5 class="card-title">سفارش شما  ثبت نگردید</h5>
+            <p class="card-text">مشکلی در سرور رخ داده است با همکاران تماس بگرید</p>
+        </div>
+    </div>
+}
+
+
+

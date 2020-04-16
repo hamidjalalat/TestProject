@@ -16,8 +16,10 @@ namespace Controllers
         [HttpGet]
         public virtual ActionResult Check()
         {
+
             if (User.Identity.IsAuthenticated)
             {
+
                 return RedirectToAction("Index");
             }
             else
@@ -38,28 +40,47 @@ namespace Controllers
             TempData.Keep("ListOrder");
             return View(List);
         }
-        public ActionResult RefisterFactor()
+        public virtual ActionResult RegisterFactor()
         {
             List<RegisterOrderViewModel> ListOrder = TempData["ListOrder"] as List<RegisterOrderViewModel>;
             TempData.Keep("ListOrder");
-            Factor oFactor = new Factor();
-           
-            oFactor.Date = DateTime.Now;
-            oFactor.UserName = User.Identity.Name;
-            oFactor.FactorDetails = new List<FactorDetail>();
-            foreach (var item in ListOrder)
+            bool success = false;
+            try
             {
-                FactorDetail oFactorDetail = new FactorDetail();
-                oFactorDetail.Name = item.Name;
-                oFactorDetail.Price = item.Price;
-                oFactorDetail.ProductId = item.Id;
-                oFactorDetail.FactorId = oFactor.Id;
-                oFactorDetail.Count = item.count;
-                oFactor.FactorDetails.Add(oFactorDetail);
+                Factor oFactor = new Factor();
+
+                oFactor.Date = DateTime.Now;
+                oFactor.UserName = User.Identity.Name;
+                oFactor.FactorDetails = new List<FactorDetail>();
+
+                foreach (var item in ListOrder)
+                {
+                    FactorDetail oFactorDetail = new FactorDetail();
+                    oFactorDetail.Name = item.Name;
+                    oFactorDetail.Price = item.Price;
+                    oFactorDetail.ProductId = item.Id;
+                    oFactorDetail.FactorId = oFactor.Id;
+                    oFactorDetail.Count = item.count;
+                    oFactor.FactorDetails.Add(oFactorDetail);
+                }
+
+                db.Factors.Add(oFactor);
+                db.SaveChanges();
+
+                success = true;
+
+                if (Request.Cookies["listProduct"] != null)
+                {
+                    Response.Cookies["listProduct"].Expires = DateTime.Now.AddDays(-1);
+                }
             }
-            db.Factors.Add(oFactor);
-            db.SaveChanges();
-          
+            catch (Exception)
+            {
+                success = false;
+            }
+
+            ViewBag.success = success;
+
             return View();
         }
 

@@ -77,6 +77,7 @@ namespace Controllers
         {
             public readonly string Check = "Check";
             public readonly string Index = "Index";
+            public readonly string RegisterFactor = "RegisterFactor";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -84,6 +85,7 @@ namespace Controllers
         {
             public const string Check = "Check";
             public const string Index = "Index";
+            public const string RegisterFactor = "RegisterFactor";
         }
 
 
@@ -106,8 +108,10 @@ namespace Controllers
             public class _ViewNamesClass
             {
                 public readonly string Index = "Index";
+                public readonly string RegisterFactor = "RegisterFactor";
             }
             public readonly string Index = "~/Views/RegisterOrder/Index.cshtml";
+            public readonly string RegisterFactor = "~/Views/RegisterOrder/RegisterFactor.cshtml";
         }
     }
 
@@ -147,6 +151,17 @@ namespace Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void RegisterFactorOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult RegisterFactor()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RegisterFactor);
+            RegisterFactorOverride(callInfo);
             return callInfo;
         }
 

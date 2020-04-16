@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Models.Factor>
+
+@{
+    Int64 Sum = 0;
+    Int64 temp = 0;
+    ViewBag.Title = "Watch";
+}
+
+<h2>Index</h2>
+<div class="card-columns">
+    @foreach (var fac in Model)
+    {
+        temp = 0;
+        Sum = 0;
+        if (fac.approved == false)
+        {
+            <div class="card  mb-3" style="max-width: 22rem;">
+
+                <div class="card-header">
+                    @fac.UserName
+                    <h5 class="card-title"> @fac.Date.TimeOfDay.ToString().Substring(0, 8)</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 table-responsive">
+                            <table class="table  table-bordered table-striped table-hover table-sm">
+                                <tr>
+
+                                    <th>نام</th>
+                                    <th>قیمت</th>
+                                    <th>تعداد</th>
+
+                                    <th>جمع</th>
+                                </tr>
+                                @foreach (var facDetails in fac.FactorDetails)
+                                {
+
+                                    <tr>
+                                        @{
+
+                                            temp = facDetails.Price * facDetails.Count;
+                                            Sum = Sum + temp;
+                                        }
+                                        <td>@facDetails.Name</td>
+                                        <td>@facDetails.Price</td>
+                                        <td>@facDetails.Count</td>
+
+                                        <td>@temp</td>
+
+
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="3">جمع کل</td>
+                                    <td>@Sum</td>
+                                </tr>
+                            </table>
+                            <form method="post">
+                                <input type="text" hidden="hidden" name="Id" id="Id" value="@fac.Id" />
+                                <button class="btn btn-primary btn-block">تایید</button>
+                            </form>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="card text-white bg-success mb-3" style="max-width: 22rem;">
+
+                <div class="card-header">
+                    @fac.UserName
+                    <h5 class="card-title"> @fac.Date.TimeOfDay.ToString().Substring(0, 8)</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 table-responsive">
+                            <table class="table " style="color:white">
+                                <tr>
+
+                                    <th>نام</th>
+                                    <th>قیمت</th>
+                                    <th>تعداد</th>
+
+                                    <th>جمع</th>
+                                </tr>
+                                @foreach (var facDetails in fac.FactorDetails)
+                                {
+
+                                    <tr>
+                                        @{
+
+                                            temp = facDetails.Price * facDetails.Count;
+                                            Sum = Sum + temp;
+                                        }
+                                        <td>@facDetails.Name</td>
+                                        <td>@facDetails.Price</td>
+                                        <td>@facDetails.Count</td>
+
+                                        <td>@temp</td>
+
+
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="3">جمع کل</td>
+                                    <td>@Sum</td>
+                                </tr>
+                            </table>
+                        </div>
+                   
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+</div>
+
