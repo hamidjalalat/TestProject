@@ -59,8 +59,9 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Price)
-            تومان
+            <label>@item.Price.ToString("0#,##0 ")</label>
+       
+            
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.count)
@@ -70,7 +71,7 @@
             @{
                 int Total = item.Price * item.count;
                 SumTotal = SumTotal + Total;
-                <span>@Total</span>
+                <span>@Total.ToString("0#,##0 ")</span>
 
             }
          
@@ -90,8 +91,10 @@
         
 
     </table>
-    <label>قابل پرداخت</label>
-    <label>@SumTotal</label>
+    <label>قابل پرداخت...................</label>
+    <label>@SumTotal.ToString("0#,##0 ")</label>
+    <br />
+    <br />
     @Html.ActionLink("ثبت نهایی","RegisterFactor",null,new {@class="btn btn-primary" })
 </body>
 </html>

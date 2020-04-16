@@ -83,7 +83,7 @@ namespace Main.Controllers
                 MyUnitOfWork.Save();
                 //db.Users.Add(user);
                 //db.SaveChanges();
-                return RedirectToAction(MVC.Order.OrederCustomer());
+                return RedirectToAction(MVC.Account.Login());
             }
             return View(user);
         }

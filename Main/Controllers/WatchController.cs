@@ -12,7 +12,11 @@ namespace HJ_Template_MVC.Controllers
         // GET: Watch
         public ActionResult Index()
         {
-            var listOrder = db.Factors.Include(C => C.FactorDetails).ToList();
+            var listOrder = db.Factors
+                .Include(C => C.FactorDetails)
+                .Where(Now => Now.Date.Day == DateTime.Now.Day)
+                .OrderBy(Date=>Date.Date)
+                .ToList();
             return View(listOrder);
         }
         [HttpPost]
@@ -29,7 +33,11 @@ namespace HJ_Template_MVC.Controllers
 
            
             }
-            var listOrder = db.Factors.Include(C => C.FactorDetails).ToList();
+            var listOrder = db.Factors
+              .Include(C => C.FactorDetails)
+              .Where(Now=>Now.Date.Day==DateTime.Now.Day)
+              .OrderBy(Date => Date.Date)
+              .ToList();
             return View(listOrder);
         }
     }

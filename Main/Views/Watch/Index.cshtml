@@ -6,7 +6,13 @@
     ViewBag.Title = "Watch";
 }
 
-<h2>Index</h2>
+<br />
+<a href="/Watch/index" class="btn btn-info btn-lg">
+    <span class="glyphicon glyphicon-refresh"></span> بروز رسانی
+</a>
+<br />
+<br />
+
 <div class="card-columns">
     @foreach (var fac in Model)
     {
@@ -19,6 +25,7 @@
                 <div class="card-header">
                     @fac.UserName
                     <h5 class="card-title"> @fac.Date.TimeOfDay.ToString().Substring(0, 8)</h5>
+                    <h5 class="card-title"> dsdss</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -42,17 +49,17 @@
                                             Sum = Sum + temp;
                                         }
                                         <td>@facDetails.Name</td>
-                                        <td>@facDetails.Price</td>
+                                        <td>@facDetails.Price.ToString("0#,##0 ")</td>
                                         <td>@facDetails.Count</td>
 
-                                        <td>@temp</td>
+                                        <td>@temp.ToString("0#,##0 ")</td>
 
 
                                     </tr>
                                 }
                                 <tr>
                                     <td colspan="3">جمع کل</td>
-                                    <td>@Sum</td>
+                                    <td>@Sum.ToString("0#,##0 ")</td>
                                 </tr>
                             </table>
                             <form method="post">
@@ -60,7 +67,7 @@
                                 <button class="btn btn-primary btn-block">تایید</button>
                             </form>
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
@@ -95,21 +102,21 @@
                                             Sum = Sum + temp;
                                         }
                                         <td>@facDetails.Name</td>
-                                        <td>@facDetails.Price</td>
+                                        <td>@facDetails.Price.ToString("0#,##0 ")</td>
                                         <td>@facDetails.Count</td>
 
-                                        <td>@temp</td>
+                                        <td>@temp.ToString("0#,##0 ")</td>
 
 
                                     </tr>
                                 }
                                 <tr>
                                     <td colspan="3">جمع کل</td>
-                                    <td>@Sum</td>
+                                    <td>@Sum.ToString("0#,##0 ")</td>
                                 </tr>
                             </table>
                         </div>
-                   
+
                     </div>
                 </div>
             </div>
