@@ -57,6 +57,7 @@
     <Compile Include="RegisterOrder\RegisterOrderViewModel.cs" />
     <Compile Include="Users\EditViewModel.cs" />
     <Compile Include="Users\CreateViewModel.cs" />
+    <Compile Include="Watch\FactorViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -32,6 +32,7 @@ public static partial class MVC
     public static HJ_Template_MVC.Controllers.OrderController Order = new HJ_Template_MVC.Controllers.T4MVC_OrderController();
     public static Controllers.RegisterOrderController RegisterOrder = new Controllers.T4MVC_RegisterOrderController();
     public static Main.Controllers.UsersController Users = new Main.Controllers.T4MVC_UsersController();
+    public static HJ_Template_MVC.Controllers.WatchController Watch = new HJ_Template_MVC.Controllers.T4MVC_WatchController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
     public static T4MVC.testController test = new T4MVC.testController();
 }
@@ -153,10 +154,12 @@ namespace Links
         public static readonly string bootstrap_rtl_min_css = Url("bootstrap-rtl.min.css");
         public static readonly string bootstrap_theme_rtl_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap-theme-rtl.min.css") ? Url("bootstrap-theme-rtl.min.css") : Url("bootstrap-theme-rtl.css");
         public static readonly string bootstrap_theme_rtl_min_css = Url("bootstrap-theme-rtl.min.css");
+        public static readonly string bootstrap_theme_min_css = Url("bootstrap-theme.min.css");
         public static readonly string bootstrap_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap.min.css") ? Url("bootstrap.min.css") : Url("bootstrap.css");
         public static readonly string bootstrap_css_map = Url("bootstrap.css.map");
         public static readonly string bootstrap_min_css = Url("bootstrap.min.css");
         public static readonly string bootstrap_min_css_map = Url("bootstrap.min.css.map");
+        public static readonly string glyphicons_halflings_regular_ttf = Url("glyphicons-halflings-regular.ttf");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class Image {
             public const string UrlPath = "~/Content/Image";
@@ -226,6 +229,7 @@ namespace Links
                 public const string bootstrap_rtl_min_css = "~/Content/bootstrap-rtl.min.css";
                 public const string bootstrap_theme_rtl_css = "~/Content/bootstrap-theme-rtl.css";
                 public const string bootstrap_theme_rtl_min_css = "~/Content/bootstrap-theme-rtl.min.css";
+                public const string bootstrap_theme_min_css = "~/Content/bootstrap-theme.min.css";
                 public const string bootstrap_css = "~/Content/bootstrap.css";
                 public const string bootstrap_min_css = "~/Content/bootstrap.min.css";
                 public const string Site_css = "~/Content/Site.css";

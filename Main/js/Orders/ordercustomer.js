@@ -10,11 +10,12 @@ var app = new Vue({
         selectedGroupProductId: null,
         listProduct: null,
         groupList: null,
-        selectionProduct:[],
+        selectionProduct: [],
+        description:null,
     }, 
     methods: {
         redirectToAction() {
-            $.post('/RegisterOrder/Check', { jsonOrder: JSON.stringify(this.selectionProduct) });
+            $.post('/RegisterOrder/Check', { jsonOrder: JSON.stringify(this.selectionProduct), description: this.description });
             window.location.href = "/RegisterOrder/Check";
         },
 

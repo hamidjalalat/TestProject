@@ -130,6 +130,7 @@
     <Content Include="Content\bootstrap-rtl.min.css" />
     <Content Include="Content\bootstrap-theme-rtl.css" />
     <Content Include="Content\bootstrap-theme-rtl.min.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Image\bootstrap.css" />
@@ -155,6 +156,8 @@
     <Content Include="js\Orders\create.js" />
     <Content Include="js\Orders\Index.js" />
     <Content Include="js\Orders\ordercustomer.js" />
+    <Content Include="js\Report\Index.js" />
+    <Content Include="js\Watch\Index.js" />
     <Content Include="packages.config" />
     <Content Include="Picture\5cf35c62644be.jpg" />
     <Content Include="scripts\axios.js" />
@@ -178,6 +181,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="scripts\axios.min.map" />
     <Content Include="scripts\axios.map" />
+    <Content Include="Content\glyphicons-halflings-regular.ttf" />
     <None Include="scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="scripts\jquery-3.4.1.js" />
     <Content Include="scripts\jquery-3.4.1.min.js" />
@@ -204,6 +208,7 @@
     <Content Include="Views\RegisterOrder\Index.cshtml" />
     <Content Include="Views\RegisterOrder\RegisterFactor.cshtml" />
     <Content Include="Views\Watch\Index.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -255,6 +260,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\RegisterOrderController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\test.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WatchController.cs" />
@@ -289,6 +295,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="UsersController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WatchController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
   </ItemGroup>

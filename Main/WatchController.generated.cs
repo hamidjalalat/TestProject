@@ -23,15 +23,15 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace Controllers
+namespace HJ_Template_MVC.Controllers
 {
-    public partial class RegisterOrderController
+    public partial class WatchController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public RegisterOrderController() { }
+        public WatchController() { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RegisterOrderController(Dummy d) { }
+        protected WatchController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -59,15 +59,21 @@ namespace Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult approve()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.approve);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public RegisterOrderController Actions { get { return MVC.RegisterOrder; } }
+        public WatchController Actions { get { return MVC.Watch; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "RegisterOrder";
+        public readonly string Name = "Watch";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "RegisterOrder";
+        public const string NameConst = "Watch";
         [GeneratedCode("T4MVC", "2.0")]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -75,28 +81,33 @@ namespace Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Check = "Check";
             public readonly string Index = "Index";
-            public readonly string RegisterFactor = "RegisterFactor";
+            public readonly string approve = "approve";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string Check = "Check";
             public const string Index = "Index";
-            public const string RegisterFactor = "RegisterFactor";
+            public const string approve = "approve";
         }
 
 
-        static readonly ActionParamsClass_Check s_params_Check = new ActionParamsClass_Check();
+        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Check CheckParams { get { return s_params_Check; } }
+        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Check
+        public class ActionParamsClass_Index
         {
-            public readonly string jsonOrder = "jsonOrder";
-            public readonly string description = "description";
+            public readonly string factor = "factor";
+        }
+        static readonly ActionParamsClass_approve s_params_approve = new ActionParamsClass_approve();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_approve approveParams { get { return s_params_approve; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_approve
+        {
+            public readonly string Id = "Id";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -109,41 +120,15 @@ namespace Controllers
             public class _ViewNamesClass
             {
                 public readonly string Index = "Index";
-                public readonly string RegisterFactor = "RegisterFactor";
             }
-            public readonly string Index = "~/Views/RegisterOrder/Index.cshtml";
-            public readonly string RegisterFactor = "~/Views/RegisterOrder/RegisterFactor.cshtml";
+            public readonly string Index = "~/Views/Watch/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_RegisterOrderController : Controllers.RegisterOrderController
+    public partial class T4MVC_WatchController : HJ_Template_MVC.Controllers.WatchController
     {
-        public T4MVC_RegisterOrderController() : base(Dummy.Instance) { }
-
-        [NonAction]
-        partial void CheckOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Check()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Check);
-            CheckOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void CheckOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string jsonOrder, string description);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Check(string jsonOrder, string description)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Check);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "jsonOrder", jsonOrder);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "description", description);
-            CheckOverride(callInfo, jsonOrder, description);
-            return callInfo;
-        }
+        public T4MVC_WatchController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -157,13 +142,26 @@ namespace Controllers
         }
 
         [NonAction]
-        partial void RegisterFactorOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, ViewModels.Watch.FactorViewModel factor);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult RegisterFactor()
+        public override System.Web.Mvc.ActionResult Index(ViewModels.Watch.FactorViewModel factor)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RegisterFactor);
-            RegisterFactorOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "factor", factor);
+            IndexOverride(callInfo, factor);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void approveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid Id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult approve(System.Guid Id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.approve);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
+            approveOverride(callInfo, Id);
             return callInfo;
         }
 

@@ -1,127 +1,194 @@
 ﻿@model IEnumerable<Models.Factor>
 
 @{
+    var serche = ViewBag.Serche as ViewModels.Watch.FactorViewModel;
+    if (serche == null)
+    {
+        serche = new ViewModels.Watch.FactorViewModel();
+
+    }
     Int64 Sum = 0;
     Int64 temp = 0;
     ViewBag.Title = "Watch";
 }
 
-<br />
-<a href="/Watch/index" class="btn btn-info btn-lg">
-    <span class="glyphicon glyphicon-refresh"></span> بروز رسانی
-</a>
-<br />
-<br />
+<!DOCTYPE html>
 
-<div class="card-columns">
-    @foreach (var fac in Model)
-    {
-        temp = 0;
-        Sum = 0;
-        if (fac.approved == false)
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        .solid{
+            
+		    transition-delay: 0s;
+		
+			transition:  transform 200ms ,background-color 4s;
+			transition-timing-function: ease-in-out;
+        }
+        .solidanimation{
+         	transform: scaleX(1.1);
+             background-color:#dc3545;
+        }
+        .bg-success .table {
+            color: white;
+        }
+    </style>
+</head>
+<body onload="JavaScript:timedRefresh(50000);">
+    <br />
+    <form method="post">
+        <button class="btn btn-primary ">بروز رسانی</button>
+        <br />
+        <br />
+
+        @if (serche.approved == "1")
         {
-            <div class="card  mb-3" style="max-width: 22rem;">
-
-                <div class="card-header">
-                    @fac.UserName
-                    <h5 class="card-title"> @fac.Date.TimeOfDay.ToString().Substring(0, 8)</h5>
-                    <h5 class="card-title"> dsdss</h5>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 table-responsive">
-                            <table class="table  table-bordered table-striped table-hover table-sm">
-                                <tr>
-
-                                    <th>نام</th>
-                                    <th>قیمت</th>
-                                    <th>تعداد</th>
-
-                                    <th>جمع</th>
-                                </tr>
-                                @foreach (var facDetails in fac.FactorDetails)
-                                {
-
-                                    <tr>
-                                        @{
-
-                                            temp = facDetails.Price * facDetails.Count;
-                                            Sum = Sum + temp;
-                                        }
-                                        <td>@facDetails.Name</td>
-                                        <td>@facDetails.Price.ToString("0#,##0 ")</td>
-                                        <td>@facDetails.Count</td>
-
-                                        <td>@temp.ToString("0#,##0 ")</td>
-
-
-                                    </tr>
-                                }
-                                <tr>
-                                    <td colspan="3">جمع کل</td>
-                                    <td>@Sum.ToString("0#,##0 ")</td>
-                                </tr>
-                            </table>
-                            <form method="post">
-                                <input type="text" hidden="hidden" name="Id" id="Id" value="@fac.Id" />
-                                <button class="btn btn-primary btn-block">تایید</button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+            <input type="checkbox" class="checkbox" name="approved" id="approved" value="1" checked="checked" />
         }
         else
         {
-            <div class="card text-white bg-success mb-3" style="max-width: 22rem;">
+            <input type="checkbox" class="checkbox" name="approved" id="approved" value="1" />
 
-                <div class="card-header">
-                    @fac.UserName
-                    <h5 class="card-title"> @fac.Date.TimeOfDay.ToString().Substring(0, 8)</h5>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 table-responsive">
-                            <table class="table " style="color:white">
-                                <tr>
+        }
+        <label>فقط تایید نشده ها</label>
 
-                                    <th>نام</th>
-                                    <th>قیمت</th>
-                                    <th>تعداد</th>
+        <div class="row">
 
-                                    <th>جمع</th>
-                                </tr>
-                                @foreach (var facDetails in fac.FactorDetails)
-                                {
+            <div class="col-sm-3">
+                <input class="form-control text-box single-line" type="text" name="username" id="username" value="@serche.UserName" placeholder="نام کاربری" />
+            </div>
+            <div class="col-sm-3">
+                <input class="form-control text-box single-line" type="text" name="mobile" id="mobile" value="@serche.Mobile" placeholder="تلفن همراه" />
+            </div>
+            <div class="col-sm-3">
+                <input class="form-control text-box single-line" type="text" name="address" id="address" value="@serche.Address" placeholder="آدرس" />
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-primary btn-block">جستجو</button>
+            </div>
 
-                                    <tr>
-                                        @{
+        </div>
+    </form>
+    <hr />
+    <br />
 
-                                            temp = facDetails.Price * facDetails.Count;
-                                            Sum = Sum + temp;
-                                        }
-                                        <td>@facDetails.Name</td>
-                                        <td>@facDetails.Price.ToString("0#,##0 ")</td>
-                                        <td>@facDetails.Count</td>
+    <div id="app" class="card-columns">
+        @foreach (var fac in Model)
+        {
+            temp = 0;
+            Sum = 0;
+            if (fac.approved == false)
+            {
+                <div id="@fac.Id" class="card solid mb-3" style="max-width: 22rem;">
 
-                                        <td>@temp.ToString("0#,##0 ")</td>
-
-
-                                    </tr>
-                                }
-                                <tr>
-                                    <td colspan="3">جمع کل</td>
-                                    <td>@Sum.ToString("0#,##0 ")</td>
-                                </tr>
-                            </table>
-                        </div>
+                    <div class="card-header">
+                        <h5 class="card-title"> @fac.UserName</h5>
+                        <h5 class="card-title"> @fac.Date.TimeOfDay.ToString().Substring(0, 8)</h5>
+                        <h5 class="card-title"> موبایل: @fac.Mobile</h5>
+                        <h5 class="card-title">آدرس: @fac.Address</h5>
+                        <h5 class="card-title">توضیحات: @fac.Description</h5>
 
                     </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 table-responsive">
+                                <table class="table  table-bordered table-striped table-hover table-sm">
+                                    <tr>
+
+                                        <th>نام</th>
+                                        <th>قیمت</th>
+                                        <th>تعداد</th>
+
+                                        <th>جمع</th>
+                                    </tr>
+                                    @foreach (var facDetails in fac.FactorDetails)
+                                    {
+
+                                        <tr>
+                                            @{
+
+                                                temp = facDetails.Price * facDetails.Count;
+                                                Sum = Sum + temp;
+                                            }
+                                            <td>@facDetails.Name</td>
+                                            <td>@facDetails.Price.ToString("0#,##0 ")</td>
+                                            <td>@facDetails.Count</td>
+
+                                            <td>@temp.ToString("0#,##0 ")</td>
+
+
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td colspan="3">جمع کل</td>
+                                        <td>@Sum.ToString("0#,##0 ")</td>
+                                    </tr>
+                                </table>
+
+                                <button id="@fac.Id" type="button" class="btn btn-primary btn-block btn-approve">تایید</button>
+
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
+            }
+            else
+            {
+                <div class="card text-white bg-success mb-3" style="max-width: 22rem;">
+
+                    <div class="card-header">
+                        <h5 class="card-title"> @fac.UserName</h5>
+                        <h5 class="card-title"> @fac.Date.TimeOfDay.ToString().Substring(0, 8)</h5>
+                        <h5 class="card-title"> موبایل: @fac.Mobile</h5>
+                        <h5 class="card-title">آدرس: @fac.Address</h5>
+                        <h5 class="card-title">توضیحات: @fac.Description</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 table-responsive">
+                                <table class="table" style="color:white">
+                                    <tr>
+                                        <th>نام</th>
+                                        <th>قیمت</th>
+                                        <th>تعداد</th>
+                                        <th>جمع</th>
+                                    </tr>
+                                    @foreach (var facDetails in fac.FactorDetails)
+                                    {
+                                        <tr>
+                                            @{
+
+                                                temp = facDetails.Price * facDetails.Count;
+                                                Sum = Sum + temp;
+                                            }
+                                            <td>@facDetails.Name</td>
+                                            <td>@facDetails.Price.ToString("0#,##0 ")</td>
+                                            <td>@facDetails.Count</td>
+
+                                            <td>@temp.ToString("0#,##0 ")</td>
+
+
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td colspan="3">جمع کل</td>
+                                        <td>@Sum.ToString("0#,##0 ")</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
         }
+    </div>
+    <div class="scrollingContainer">
 
-    }
-</div>
-
+    </div>
+    <script src="~/js/Watch/Index.js"></script>
+</body>
+</html>

@@ -8,17 +8,26 @@
     <link href="@Links.Content.bootstrap_min_css" rel="stylesheet" />
     <script src="@Links.scripts.jquery_3_4_1_min_js"></script>
     <script src="@Links.scripts.bootstrap_min_js"></script>
+    <link src="@Links.Content.bootstrap_theme_min_css">
     <link href="@Links.Content.bootstrap_rtl_css" rel="stylesheet" />
     <script src="@Links.scripts.jquery_validate_vsdoc_js"></script>
     <script src="@Links.scripts.jquery_validate_min_js"></script>
     <script src="@Links.scripts.jquery_validate_unobtrusive_min_js"></script>
     <script src="@Links.scripts.modernizr_2_6_2_js"></script>
-    <script src="~/js/hjcomponent.js"></script>
+    <link src="@Links.Content.glyphicons_halflings_regular_ttf">
 
+
+    <script src="~/js/hjcomponent.js"></script>
+    <style>
+        .nav-link{
+            color:white !important;
+        }
+    </style>
     <link href="@Links.Content.Site_css" rel="stylesheet" type="text/css" />
     <title>@ViewBag.Title - My ASP.NET Application</title>
 
 </head>
+
 <body>
     <div class="container">
 
@@ -58,27 +67,43 @@
 
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <!-- Brand -->
-            <a class="navbar-brand" href="#">Logo</a>
+       
 
             <!-- Links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">ثبت نام</a>
+                    <a class="nav-link" href="/Users/Create">عضویت/ثبت نام</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">نظرات</a>
+                    <a class="nav-link" href="/Account/Login">ورود</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Order/OrederCustomer">ثبت سفارش</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Report/Index">گزارش سفارشها</a>
+                </li>
+                @if (User.Identity.Name == "AdminAdmin")
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Watch/Index">سفارش ها امروز</a>
+                    </li>
+                }
+
 
                 <!-- Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                      درباره ما
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Link 1</a>
-                        <a class="dropdown-item" href="#">Link 2</a>
-                        <a class="dropdown-item" href="#">Link 3</a>
-                    </div>
+                @*<li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                درباره ما
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Link 1</a>
+                <a class="dropdown-item" href="#">Link 2</a>
+                <a class="dropdown-item" href="#">Link 3</a>
+            </div>
+        </li>*@
+                <li class="nav-item">
+                    <a class="nav-link" href="#">درباره ما</a>
                 </li>
             </ul>
         </nav>

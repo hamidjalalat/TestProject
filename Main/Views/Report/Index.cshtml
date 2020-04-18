@@ -1,0 +1,113 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+  
+</head>
+<body>
+
+    <div id="app">
+    
+     
+
+
+
+        <br />
+        <form action="/" method="post">
+            <div class="form-group row">
+                @*<div class="col-sm-1">
+                    <label> نام غذا</label>
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" name="username" id="username" value="" v-model="factor.username" />
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-primary" type="button" v-on:click="setParameter();onSerche();"> جستجو</button>
+
+                </div>*@
+
+
+                <div class="row">
+
+                    <div class="col-sm-3">
+                        <input class="form-control text-box single-line" type="text" name="username" id="username"   v-model="factor.userName" placeholder="نام کاربری" />
+                    </div>
+                    <div class="col-sm-3">
+                        <input class="form-control text-box single-line" type="text" name="mobile" id="mobile" v-model="factor.mobile" placeholder="تلفن همراه" />
+                    </div>
+                    <div class="col-sm-3">
+                        <input class="form-control text-box single-line" type="text" name="address" id="address" v-model="factor.address" placeholder="آدرس" />
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-primary" type="button" v-on:click="setParameter();onSerche();"> جستجو</button>
+
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-xs-12 table-responsive">
+
+                <table id="data" class="table table-bordered table-condensed table-striped table-hover">
+                    <tr>
+                        <th>ردیف</th>
+                        <th>
+                            نام کاربر
+                        </th>
+                        <th>
+                            آدرس
+                        </th>
+                        <th>
+                            تلفن همراه
+                        </th>
+                        <th>
+                            عملیات
+                        </th>
+
+                    </tr>
+                    <tr v-for="(i,index)  in listFactor" v-bind:key="i.Id">
+                        <td> {{i.RowNumber}}</td>
+                        <td>{{i.UserName}}</td>
+                        <td>{{i.Address}}</td>
+                        <td>{{i.Mobile}}</td>
+                        <td>
+                            @*<button v-on:click="editshow(i.Id)">ویرایش</button>&nbsp;
+                            <button v-on:click="deleteProducts(i.Id)">حذف</button> &nbsp;*@
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-10">
+                <button v-on:click="firstButtonClick()"> <<  اول</button>&nbsp;
+
+                <button v-on:click="nextButtonClick()"> >  بعدی  </button>&nbsp;
+
+                <button v-on:click="previousButtonClick()"> <  قبلی </button>&nbsp;
+
+                <button v-on:click="lastButtonClick()"> >>  آخری  </button>&nbsp;
+            </div>
+            <div class="col-sm-2">
+                <label>{{labelPageIndex}}</label>&nbsp;
+                از
+                <label>{{labelPageCount}}</label>
+
+            </div>
+        </div>
+    </div>
+    <script src="~/js/Report/Index.js"></script>
+</body>
+</html>

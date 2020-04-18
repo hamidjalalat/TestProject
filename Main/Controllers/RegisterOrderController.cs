@@ -29,8 +29,9 @@ namespace Controllers
 
         }
         [HttpPost]
-        public virtual ActionResult Check(string jsonOrder)
+        public virtual ActionResult Check(string jsonOrder,string description)
         {
+            TempData["description"] = description;
             TempData["ListOrder"] = JsonConvert.DeserializeObject<List<RegisterOrderViewModel>>(jsonOrder);
             return Json(true);
         }
@@ -47,12 +48,17 @@ namespace Controllers
             bool success = false;
             try
             {
+                var customer = db.Users
+                    .Where(C => C.Name == User.Identity.Name)
+                    .FirstOrDefault();
                 Factor oFactor = new Factor();
 
                 oFactor.Date = DateTime.Now;
                 oFactor.UserName = User.Identity.Name;
                 oFactor.FactorDetails = new List<FactorDetail>();
-
+                oFactor.Mobile = customer.Mobile;
+                oFactor.Address = customer.Address;
+                oFactor.Description = TempData["description"] as string;
                 foreach (var item in ListOrder)
                 {
                     FactorDetail oFactorDetail = new FactorDetail();
@@ -71,7 +77,9 @@ namespace Controllers
 
                 if (Request.Cookies["listProduct"] != null)
                 {
+                    Response.Cookies.Remove("listProduct");
                     Response.Cookies["listProduct"].Expires = DateTime.Now.AddDays(-1);
+                    Session.Abandon();
                 }
             }
             catch (Exception)

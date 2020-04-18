@@ -17,6 +17,9 @@ namespace Models
         public DateTime Date { get; set; }
         public string   UserName { get; set; }
         public bool approved { get; set; }
+        public string   Address { get; set; }
+        public string Mobile { get; set; }
+        public string Description { get; set; }
         public virtual List<FactorDetail> FactorDetails { get; set; }
 
     }
