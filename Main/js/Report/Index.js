@@ -4,7 +4,7 @@
     data: {
         selectGroupId: null,
         groupList: null,
-      
+        detailsFactor:[],
         id: {
             idDelete: 0,
             idEdit: 0,
@@ -21,10 +21,54 @@
             userName: null,
             address: null,
             mobile: null,
-
         },
     },
     methods: {
+        details(id) {
+            let parameter = { id:id };
+            axios.post('/Report/GetDatialFactor', parameter)
+
+                .then(response => {
+
+                    console.log(response.data);
+                    this.detailsFactor = response.data;
+
+                })
+                .catch(error => {
+
+                    console.log(error)
+
+                })
+                .finally(() => {
+
+                })
+            $(`div#details`).modal();
+        },
+        getSubTotal: function (item) {
+            let result =
+                item.count * item.Price
+
+            return result
+        },
+
+        getTotal: function () {
+
+            let total = 0
+
+            for (let index = 0; index < this.detailsFactor.length; index++) {
+
+                let currentItem = this.detailsFactor[index]
+
+                total +=
+                    this.getSubTotal(currentItem)
+
+            }
+            this.detailsFactor.Total = total;
+            return separate(total)
+
+        },
+
+
         GetLastPageIndex: function () {
 
             let intCount = this.count;

@@ -49,7 +49,7 @@ namespace HJ_Template_MVC.Controllers
 
             listFactorQuery =
               listFactorQuery
-              .OrderBy(current => current.UserName)
+              .OrderBy(current => current.Date)
               .Skip(pageIndex * pageSize)
               .Take(pageSize);
 
@@ -62,16 +62,27 @@ namespace HJ_Template_MVC.Controllers
                 FactorViewModel objFactor = new FactorViewModel();
                 objFactor.UserName = item.UserName;
                 objFactor.Address = item.Address;
-                objFactor.approved = item.approved.ToString();
+                objFactor.approved = (item.approved.ToString()=="True")?"بله":"خیر";
                 objFactor.Mobile = item.Mobile;
                 objFactor.RowNumber = ++rowNumber;
-
+                objFactor.Id = item.Id;
 
 
                 listFactorViewModel.Add(objFactor);
             }
 
-            var result = new { data = listFactorViewModel, count = Count };
+            var result = new { data = listFactorViewModel , count = Count };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult GetDatialFactor(Guid id)
+        {
+            var result = db.FactorDetails
+                .Where(C => C.FactorId == id)
+                .Select(D=>new {Name=D.Name,Price=D.Price,count=D.Count,Id=D.Id })
+                .ToList();
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }

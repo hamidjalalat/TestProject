@@ -13,6 +13,7 @@ namespace ViewModels.Watch
 
         }
         public int RowNumber { get; set; }
+        public Guid Id { get; set; }
         public string UserName { get; set; }
         public string Mobile { get; set; }
         public string Address { get; set; }
