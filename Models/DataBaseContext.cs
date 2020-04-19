@@ -46,5 +46,7 @@ namespace Models
             //modelBuilder.Configurations.Add(new Role.Configuration());
             //modelBuilder.Configurations.Add(new User.Configuration());
         }
+
+        public System.Data.Entity.DbSet<Models.Config> Configs { get; set; }
     }
 }

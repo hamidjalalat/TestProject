@@ -51,7 +51,14 @@ namespace Models
 			oGroupProduct.Name = "نوشیدنی";
 			databaseContext.GroupProducts.Add(oGroupProduct);
 
-			
+			Config oConfig = null;
+			oConfig = new Config();
+			oConfig.Name = "non";
+			oConfig.Value = "1000";
+			oConfig.Text = "قیمت نان";
+
+			databaseContext.Configs.Add(oConfig);
+
 
 			// Optional
 			databaseContext.SaveChanges();

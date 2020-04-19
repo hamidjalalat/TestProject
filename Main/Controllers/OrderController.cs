@@ -175,12 +175,30 @@ namespace HJ_Template_MVC.Controllers
         public virtual JsonResult GetListProduct()
         {
             var listProduct = db.Products
-         .Select(C => new { Id = C.Id, Name = C.Name, Price = C.Price, Description = C.Description, Available = C.Available, GroupProductId = C.GroupProductId, Image_url = C.Image_url }).ToList();
+            .ToList();
 
+            List<ProductsViewModel> listProductVM = new List<ProductsViewModel>();
+
+            foreach (var C in listProduct)
+            {
+                ProductsViewModel obj = new ProductsViewModel();
+
+                obj.Id = C.Id;
+                obj.Name = C.Name;
+                obj.Price = C.Price;
+                obj.Description = C.Description;
+                obj.Available = C.Available;
+                obj.GroupProductId = C.GroupProductId;
+                obj.Image_url = C.Image_url;
+                obj.GroupProductId = C.GroupProductId;
+                obj.ShowBread = (C.GroupProductId == 3) ? true : false;
+
+                listProductVM.Add(obj);
+            }
 
             var listGruopProduct = db.GroupProducts.Select(C => new { Id = C.Id, Name = C.Name }).ToList();
 
-            var result = new { listProduct = listProduct, listGruopProduct = listGruopProduct };
+            var result = new {listProduct = listProductVM, listGruopProduct = listGruopProduct };
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }

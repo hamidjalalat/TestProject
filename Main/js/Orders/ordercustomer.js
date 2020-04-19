@@ -7,6 +7,7 @@ var app = new Vue({
 
     el: "#app",
     data: {
+        breadPrice: null,
         selectedGroupProductId: null,
         listProduct: null,
         groupList: null,
@@ -14,26 +15,36 @@ var app = new Vue({
         description:null,
     }, 
     methods: {
+
+     
         redirectToAction() {
             $.post('/RegisterOrder/Check', { jsonOrder: JSON.stringify(this.selectionProduct), description: this.description });
             window.location.href = "/RegisterOrder/Check";
         },
 
         getAddProduct: function (item) {
-            let has = true;
-            this.selectionProduct.forEach(i=> {
-         
-                if (i.Id == item.Id) {
+            let itemGlobal = { Id: item.Id, Name: item.Name, Price: item.Price, count: item.count, hasBread: item.hasBread,Image_url:item.Image_url};
             
+            if (itemGlobal.hasBread == true) {
+                itemGlobal.Price += parseInt(this.breadPrice);
+                itemGlobal.Name +=  "  با نون اضافه  "
+            } 
+
+
+            let has = true;
+            this.selectionProduct.forEach(i => {
+
+                if (i.Id == itemGlobal.Id && itemGlobal.hasBread == i.hasBread ) {
                     has = false;
                     i.count++;
                 }
-             
+
             });
             if (has) {
-        
-                this.selectionProduct.push(item);
+                this.selectionProduct.push(itemGlobal);
+                
             }
+       
             document.cookie = "listProduct=" + JSON.stringify(this.selectionProduct);
         },
 
@@ -106,9 +117,9 @@ var app = new Vue({
 
                   this.listProduct = response.data.listProduct;
                   this.groupList = response.data.listGruopProduct;
-                
+                  
                   for (let index = 0; index < this.listProduct.length; index++) {
-                      Vue.set(this.listProduct[index], `displayDetails`, true);
+                      Vue.set(this.listProduct[index], `hasBread`, false)
                       Vue.set(this.listProduct[index], `count`, 1)
 
                   }
@@ -121,6 +132,20 @@ var app = new Vue({
               .finally(() => {
 
               })
-          console.log(this.listProduct)
+
+          let parmeters = {name:'non'};
+          axios.post('/Configs/GetConfig', parmeters)
+              .then(response => {
+                  this.breadPrice = response.data.Value;
+                 
+              })
+              .catch(error => {
+
+                  console.error(error)
+
+              })
+              .finally(() => {
+
+              })
     }
 })

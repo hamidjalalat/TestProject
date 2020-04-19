@@ -85,9 +85,15 @@
                         <img class="card-img-top" style="height:120px" v-bind:src="item.Image_url" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{item.Name}}</h5>
+
                             <p class="card-text"> {{item.Price|formatNumber}} تومان</p>
-                            <p>
+                            <p style="font-size:11px">
                                 {{item.Description}}
+                            </p>
+                            <p v-if="item.ShowBread">
+
+                                <input type="checkbox" v-model="item.hasBread" @*v-on:click="changePrice(item.Id)"*@ name="name" value="" />
+                                نون اضافه
                             </p>
                             <button v-if="item.Available" class="btn btn-primary getAddProduct" v-on:click="getAddProduct(item)" style="font-size:11px">افزودن به سبد خرید </button>
                             <p v-else>
