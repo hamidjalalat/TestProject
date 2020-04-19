@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ViewModels.Watch;
 
+
 namespace HJ_Template_MVC.Controllers
 {
     public class ReportController : Infrastructure.BaseController
@@ -62,12 +63,11 @@ namespace HJ_Template_MVC.Controllers
                 FactorViewModel objFactor = new FactorViewModel();
                 objFactor.UserName = item.UserName;
                 objFactor.Address = item.Address;
-                objFactor.approved = (item.approved.ToString()=="True")?"بله":"خیر";
+                objFactor.approved = (item.approved.ToString()=="True")?"تایید شده":"تایید نشده";
                 objFactor.Mobile = item.Mobile;
                 objFactor.RowNumber = ++rowNumber;
                 objFactor.Id = item.Id;
-
-
+                objFactor.Date = item.Date.ToShamsi()+ " |" + item.Date.ToShortTimeString();
                 listFactorViewModel.Add(objFactor);
             }
 

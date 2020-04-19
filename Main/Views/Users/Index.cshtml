@@ -24,7 +24,8 @@
 </div>
 <div class="row">
     <div class="col-xs-12 links">
-        <button class="btn btn-primary" id="btnOpenCreateDialog">Create</button>
+        @Html.ActionLink("ایجاد کاربر","Create")
+        @*<button class="btn btn-primary" id="btnOpenCreateDialog">ایجاد کاربر</button>*@
     </div>
 </div>
 <div class="row">
@@ -48,10 +49,10 @@
             {
                 <tr id="@item.Id">
                     <td>
-                        @Html.ActionLink("Edit", MVC.Users.Edit(item.Id)) |
-                        @Html.ActionLink("Details", MVC.Users.Details(item.Id)) |
+                        @Html.ActionLink("ویرایش", MVC.Users.Edit(item.Id)) |
+                     
                         @*@Html.ActionLink("Delete", MVC.Users.Delete(item.Id))|*@
-                        @Ajax.ActionLink("Delete", "DeleteAJAX", new { Controller = "Users", Id = item.Id }, ajaxOption)
+                        @Ajax.ActionLink("حذف", "DeleteAJAX", new { Controller = "Users", Id = item.Id }, ajaxOption)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)

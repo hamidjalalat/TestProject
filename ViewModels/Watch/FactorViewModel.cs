@@ -18,5 +18,6 @@ namespace ViewModels.Watch
         public string Mobile { get; set; }
         public string Address { get; set; }
         public string approved { get; set; }
+        public string Date { get; set; }
     }
 }

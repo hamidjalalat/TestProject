@@ -124,9 +124,12 @@ namespace Main.Controllers
                 .Where(current => current.Id == id)
                 .FirstOrDefault()
                 ;
-            EditViewModel EditViewModel = new EditViewModel();
+            CreateViewModel EditViewModel = new CreateViewModel();
             EditViewModel.Id = user.Id;
             EditViewModel.Name = user.Name;
+            EditViewModel.Address = user.Address;
+            EditViewModel.Mobile = user.Mobile;
+            
 
             if (user == null)
             {
@@ -186,41 +189,41 @@ namespace Main.Controllers
             return View(user);
         }
 
-        // POST: Users/Delete/5
-        //[HttpPost]
-        //[ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public virtual ActionResult DeleteConfirmed(int id)
-        //{
-        //    User user = db.Users
-        //        .Where(current=>current.Id== id)
-        //        .FirstOrDefault()
-        //        ;
-        //    db.Users.Remove(user);
-        //    db.SaveChanges();
-        //    return RedirectToAction(MVC.Users.Index());
-        //}
-        //public virtual JsonResult DeleteAJAX(int id)
-        //{
-        //    //System.Threading.Thread.Sleep(5000);
-        //    User user = db.Users.Where(p => p.Id == id).FirstOrDefault();
-        //    if (user == null)
-        //    {
-        //        throw new Exception("user Not Found!");
-        //        //return Json("Person not found!", JsonRequestBehavior.AllowGet);
-        //    }
-        //    try
-        //    {
-        //        db.Users.Remove(user);
-        //        db.SaveChanges();
-        //        //PageMessages.Add(new Infrastructure.PageMessages(Infrastructure.PageMessages.Types.Error, "{0} deleted"+user.Name));
-        //        return Json(new { Succeed = true, Message = string.Format("{0} deleted", user.Name), Id = id });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Json(new { Succeed = false, Message = "user not deleted!" + ex.Message, Id = id });
-        //    }
-        //}
-     
+       
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public virtual ActionResult DeleteConfirmed(int id)
+        {
+            User user = db.Users
+                .Where(current => current.Id == id)
+                .FirstOrDefault()
+                ;
+            db.Users.Remove(user);
+            db.SaveChanges();
+            return RedirectToAction(MVC.Users.Index());
+        }
+        public virtual JsonResult DeleteAJAX(int id)
+        {
+            //System.Threading.Thread.Sleep(5000);
+            User user = db.Users.Where(p => p.Id == id).FirstOrDefault();
+            if (user == null)
+            {
+                throw new Exception("user Not Found!");
+                //return Json("Person not found!", JsonRequestBehavior.AllowGet);
+            }
+            try
+            {
+                db.Users.Remove(user);
+                db.SaveChanges();
+                //PageMessages.Add(new Infrastructure.PageMessages(Infrastructure.PageMessages.Types.Error, "{0} deleted"+user.Name));
+                return Json(new { Succeed = true, Message = string.Format("{0} deleted", user.Name), Id = id });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Succeed = false, Message = "user not deleted!" + ex.Message, Id = id });
+            }
+        }
+
     }
 }

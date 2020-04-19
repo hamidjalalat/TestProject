@@ -106,7 +106,10 @@
                             تلفن همراه
                         </th>
                         <th>
-                            تایید شده
+                            وضعیت تایید
+                        </th>
+                        <th>
+                           و ساعت تاریخ
                         </th>
                         <th>
                             عملیات
@@ -119,6 +122,7 @@
                         <td>{{i.Address}}</td>
                         <td>{{i.Mobile}}</td>
                         <td>{{i.approved}}</td>
+                        <td>{{i.Date}}</td>
                         <td>
 
                             <button v-on:click="details(i.Id)">جزییات</button> &nbsp;

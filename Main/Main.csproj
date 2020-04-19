@@ -297,6 +297,9 @@
     <Compile Include="UsersController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utility\PrimeErrorsException.cs" />
+    <Compile Include="Utility\Shamsi.cs" />
+    <Compile Include="Utility\Shamsi.Extension.cs" />
     <Compile Include="WatchController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
