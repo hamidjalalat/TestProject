@@ -41,8 +41,9 @@ var app = new Vue({
 
             });
             if (has) {
+
                 this.selectionProduct.push(itemGlobal);
-                
+
             }
        
             document.cookie = "listProduct=" + JSON.stringify(this.selectionProduct);

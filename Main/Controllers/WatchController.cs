@@ -8,6 +8,7 @@ using ViewModels.Watch;
 
 namespace HJ_Template_MVC.Controllers
 {
+    [Authorize(Users ="AdminAdmin")]
     public partial class WatchController : Infrastructure.BaseController
     {
         // GET: Watch
@@ -18,8 +19,8 @@ namespace HJ_Template_MVC.Controllers
                 .Where(Now => Now.Date.Day == DateTime.Now.Day)
                 .OrderBy(Date => Date.Date)
                 .ToList();
-         
-
+            var FirstOrder = db.Factors.Where(D=>D.approved==true).Select(C => C.UserName).ToArray();
+            ViewBag.FirstOrder = FirstOrder;
             return View(listOrder);
 
         }
@@ -50,6 +51,8 @@ namespace HJ_Template_MVC.Controllers
                 listOrder = listOrder.Where(C => C.approved==false).AsQueryable();
             }
             ViewBag.Serche = factor;
+            var FirstOrder = db.Factors.Where(D => D.approved == true).Select(C => C.UserName).ToArray();
+            ViewBag.FirstOrder = FirstOrder;
 
             var  result = listOrder
                  .Where(Now => Now.Date.Day == DateTime.Now.Day)

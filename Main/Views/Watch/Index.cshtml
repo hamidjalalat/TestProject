@@ -7,6 +7,7 @@
         serche = new ViewModels.Watch.FactorViewModel();
 
     }
+    var ListUsername = ViewBag.FirstOrder as string[];
     Int64 Sum = 0;
     Int64 temp = 0;
     ViewBag.Title = "Watch";
@@ -19,17 +20,17 @@
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
     <style>
-        .solid{
-            
-		    transition-delay: 0s;
-		
-			transition:  transform 200ms ,background-color 4s;
-			transition-timing-function: ease-in-out;
+        .solid {
+            transition-delay: 0s;
+            transition: transform 200ms,background-color 4s;
+            transition-timing-function: ease-in-out;
         }
-        .solidanimation{
-         	transform: scaleX(1.1);
-             background-color:#dc3545;
+
+        .solidanimation {
+            transform: scaleX(1.1);
+            background-color: #dc3545;
         }
+
         .bg-success .table {
             color: white;
         }
@@ -83,6 +84,13 @@
                 <div id="@fac.Id" class="card solid mb-3" style="max-width: 22rem;">
 
                     <div class="card-header">
+                        @if (ListUsername != null)
+                        {
+                            if (!ListUsername.Contains(fac.UserName))
+                            {
+                                <h5 class="card-title" style="color:red"> اولین بار</h5>
+                            }
+                        }
                         <h5 class="card-title"> @fac.UserName</h5>
                         <h5 class="card-title"> @fac.Date.TimeOfDay.ToString().Substring(0, 8)</h5>
                         <h5 class="card-title"> موبایل: @fac.Mobile</h5>

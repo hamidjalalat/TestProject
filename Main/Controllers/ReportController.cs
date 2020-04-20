@@ -8,6 +8,7 @@ using ViewModels.Watch;
 
 namespace HJ_Template_MVC.Controllers
 {
+    [Authorize(Users = "AdminAdmin")]
     public class ReportController : Infrastructure.BaseController
     {
         // GET: Report

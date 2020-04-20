@@ -10,6 +10,7 @@ using Models;
 
 namespace HJ_Template_MVC.Controllers
 {
+    [Authorize(Users = "AdminAdmin")]
     public class ConfigsController : Infrastructure.BaseController
     {
 
@@ -76,6 +77,7 @@ namespace HJ_Template_MVC.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public JsonResult GetConfig(string Name)
         {
             var result = db.Configs.Where(C=>C.Name==Name).FirstOrDefault();

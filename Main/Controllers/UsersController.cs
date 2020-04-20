@@ -12,7 +12,7 @@ using Infrastructure;
 
 namespace Main.Controllers
 {
-    [Authorize]
+
     //[Infrastructure.Log]
     public partial class UsersController : Infrastructure.BaseController
     {
@@ -112,6 +112,7 @@ namespace Main.Controllers
         }
 
         // GET: Users/Edit/5
+        [Authorize(Users = "AdminAdmin")]
         public virtual ActionResult Edit(int? id)
         {
         
@@ -144,6 +145,7 @@ namespace Main.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "AdminAdmin")]
         public virtual ActionResult Edit([Bind(Exclude ="googoli_magooli")] CreateViewModel user)
         {
         
@@ -172,6 +174,7 @@ namespace Main.Controllers
         }
 
         // GET: Users/Delete/5
+        [Authorize(Users = "AdminAdmin")]
         public virtual ActionResult Delete(int? id)
         {
             if (id == null)
@@ -193,6 +196,7 @@ namespace Main.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "AdminAdmin")]
         public virtual ActionResult DeleteConfirmed(int id)
         {
             User user = db.Users
@@ -203,6 +207,7 @@ namespace Main.Controllers
             db.SaveChanges();
             return RedirectToAction(MVC.Users.Index());
         }
+        [Authorize(Users = "AdminAdmin")]
         public virtual JsonResult DeleteAJAX(int id)
         {
             //System.Threading.Thread.Sleep(5000);
