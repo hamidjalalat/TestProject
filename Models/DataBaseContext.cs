@@ -16,9 +16,11 @@ namespace Models
             //Database.SetInitializer
             //    (new DropCreateDatabaseAlways<DataBaseContext>());
 
-            System.Data.Entity.Database
-            .SetInitializer(new DatabaseContextInitializer());
+            //System.Data.Entity.Database
+            //.SetInitializer(new DatabaseContextInitializer());
 
+            //    System.Data.Entity.Database.SetInitializer
+            //(new DatabaseContextInitializerBeforeTheFirstRelease());
             // فقط به درد برنامه نويسان آنهم در زمان پياده سازی می خورد
             //اگر تغییری روی مدل بدهیم پاک میکنه از اول می سازه
             //Database.SetInitializer
@@ -28,6 +30,9 @@ namespace Models
             //اگر وجود نداشت می سازه
             //Database.SetInitializer
             //	(new CreateDatabaseIfNotExists<DataBaseContext>());
+            System.Data.Entity.Database.SetInitializer
+            (new System.Data.Entity.MigrateDatabaseToLatestVersion
+        <DataBaseContext, Migrations.Configuration>());
         }
         public DataBaseContext() : base()
         {

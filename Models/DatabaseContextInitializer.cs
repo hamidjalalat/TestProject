@@ -3,10 +3,9 @@ using System.Data.Entity;
 
 namespace Models
 {
-	internal class DatabaseContextInitializer :
-		System.Data.Entity.DropCreateDatabaseIfModelChanges<DataBaseContext>
+	internal static class DatabaseContextInitializer
 	{
-		public DatabaseContextInitializer() : base()
+		static DatabaseContextInitializer()
 		{
 		}
 
@@ -19,7 +18,7 @@ namespace Models
 		/// اين تابع فقط پس از ايجاد بانک اطلاعاتی فرآخوانی می گردد
 		/// در صورتی که بانک اطلاعاتی وجود داشته باشد، اجرا نخواهد شد
 		/// </summary>
-		protected override void Seed(DataBaseContext databaseContext)
+		internal static void Seed(DataBaseContext databaseContext)
 		{
 			// دقت داشته باشید که وقتی وارد
 			// Seed

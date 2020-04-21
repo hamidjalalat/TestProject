@@ -34,7 +34,13 @@
 <body>
     <div class="container">
 
-
+        <div class="row">
+            <div class="col-sm-11">
+                <span>کاربر جاری:</span>
+                <h5 style="display:inline;color:blue">  @User.Identity.Name</h5>
+            </div>
+            <div class="col-sm-1">   <h6 style="color:blue">@Html.ActionLink(Resources.General.Logout, MVC.Account.Logout(), MVC.Account.Name)</h6></div>
+        </div>
 
         <div id="demo" class="carousel slide" data-ride="carousel">
 
