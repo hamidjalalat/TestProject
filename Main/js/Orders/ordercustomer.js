@@ -23,7 +23,7 @@ var app = new Vue({
         },
 
         getAddProduct: function (item) {
-            let itemGlobal = { Id: item.Id, Name: item.Name, Price: item.Price, count: item.count, hasBread: item.hasBread,Image_url:item.Image_url};
+            let itemGlobal = { Id: item.Id, Name: item.Name, Price: item.Price, count: item.count, hasBread: item.hasBread,Image_url:item.Image_url,Description:item.Description};
             
             if (itemGlobal.hasBread == true) {
                 itemGlobal.Price += parseInt(this.breadPrice);

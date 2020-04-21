@@ -21,6 +21,6 @@ namespace Models
         public int Count { get; set; }
         public Guid FactorId { get; set; }
         public virtual Factor Factor { get; set; }
-        public DateTime Date { get; set; }
+
     }
 }
