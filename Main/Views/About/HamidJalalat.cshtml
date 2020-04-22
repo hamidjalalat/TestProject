@@ -1,0 +1,112 @@
+﻿@model IEnumerable<Models.Contact>
+
+@{
+    ViewBag.Title = "حمید جلالت";
+}
+<style>
+           .basket-header {
+            border: 1px solid #d8d8d8;
+            padding: 7px;
+            background: #fafafa;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 4px 4px 0 0;
+        }
+
+        #text {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: 150px;
+            resize: vertical;
+            font-size: 12px;
+            font-weight: 200;
+            border-radius: 0 0 4px 4px;
+        }
+</style>
+<h2>حمید جلالت</h2>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="row">
+            <div class="col-sm-2">
+                <label>موبایل</label>
+            </div>
+            <div class="col-sm-4">
+                <p>09124881649</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <label>ایمیل</label>
+            </div>
+            <div class="col-sm-4">
+                <p>jalalathamid@yahoo.com</p>
+            </div>
+        </div>
+        <div class="row">
+         
+            <div class="col-sm-4">
+                <a target="_blank" href="https://jobinja.ir/user/EJ-3414824?utm_source=physical&utm_medium=qr_code&utm_campaign=cv_builder">رزومه</a>
+            </div>
+       
+        </div>
+
+        <br />
+        <div class="row">
+  
+            <div class="col-sm-4">
+                <a target="_blank" href="https://github.com/hamidjalalat">Github</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <img style="width:50%" src="~/Content/Image/26438617.png" />
+    </div>
+    
+  
+</div>
+<br />
+<form action="" method="post">
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="box-textarea-container">
+                <div class="basket-header">
+                    <span class="icon-pencil-span"></span>    نظرات و پیشنهادات
+                </div>
+                <textarea v-model="description" id="text" maxlength="1024" name="text" placeholder="اگر پیشنهادی یا نظری دارید در این قسمت بنویسد . خوشحال خواهم شد."></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-2">
+                <button class="btn btn-primary">ارسال</button>
+
+            </div>
+        </div>
+
+    </div>
+</form>
+@foreach (var item in Model)
+{<br />
+    <div class="card" >
+        <div class="card-header">
+            <h5 class="panel-title">
+                @item.UserName
+            </h5>
+        </div>
+        <div class="card-body">
+
+        @item.Text
+            @if (User.Identity.Name == "AdminAdmin")
+            {
+                <button id="@item.Id" class="btn btn-danger delete">حذف</button>
+            }
+        </div>
+    </div>
+}
+<script src="~/js/ContactUs/hamidjalalat.js"></script>
+
+
+

@@ -19,7 +19,7 @@ namespace Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-
+                System.Threading.Thread.Sleep(10);
                 return RedirectToAction("Index");
             }
             else
@@ -31,8 +31,10 @@ namespace Controllers
         [HttpPost]
         public virtual ActionResult Check(string jsonOrder,string description)
         {
+         
             TempData["description"] = description;
             TempData["ListOrder"] = JsonConvert.DeserializeObject<List<RegisterOrderViewModel>>(jsonOrder);
+         
             return Json(true);
         }
         public virtual ActionResult Index()

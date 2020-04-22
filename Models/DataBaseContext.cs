@@ -43,6 +43,8 @@ namespace Models
         public DbSet<Product> Products { get; set; }
         public DbSet<GroupProduct> GroupProducts { get; set; }
         public DbSet<Factor> Factors { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+
         public DbSet<FactorDetail> FactorDetails { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

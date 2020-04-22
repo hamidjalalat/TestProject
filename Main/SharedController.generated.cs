@@ -38,11 +38,9 @@ namespace T4MVC
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string _Layout = "_Layout";
                 public readonly string _Layout_fa_IR = "_Layout_fa-IR";
                 public readonly string DisplayMessages = "DisplayMessages";
             }
-            public readonly string _Layout = "~/Views/Shared/_Layout.cshtml";
             public readonly string _Layout_fa_IR = "~/Views/Shared/_Layout_fa-IR.cshtml";
             public readonly string DisplayMessages = "~/Views/Shared/DisplayMessages.cshtml";
         }

@@ -9,10 +9,10 @@ using ViewModels.Watch;
 namespace HJ_Template_MVC.Controllers
 {
     [Authorize(Users = "AdminAdmin")]
-    public class ReportController : Infrastructure.BaseController
+    public partial class ReportController : Infrastructure.BaseController
     {
         // GET: Report
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View();
         }
@@ -64,25 +64,25 @@ namespace HJ_Template_MVC.Controllers
                 FactorViewModel objFactor = new FactorViewModel();
                 objFactor.UserName = item.UserName;
                 objFactor.Address = item.Address;
-                objFactor.approved = (item.approved.ToString()=="True")?"تایید شده":"تایید نشده";
+                objFactor.approved = (item.approved.ToString() == "True") ? "تایید شده" : "تایید نشده";
                 objFactor.Mobile = item.Mobile;
                 objFactor.RowNumber = ++rowNumber;
                 objFactor.Id = item.Id;
-                objFactor.Date = item.Date.ToShamsi()+ " |" + item.Date.ToShortTimeString();
+                objFactor.Date = item.Date.ToShamsi() + " |" + item.Date.ToShortTimeString();
                 listFactorViewModel.Add(objFactor);
             }
 
-            var result = new { data = listFactorViewModel , count = Count };
+            var result = new { data = listFactorViewModel, count = Count };
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult GetDatialFactor(Guid id)
+        public virtual JsonResult GetDatialFactor(Guid id)
         {
             var result = db.FactorDetails
                 .Where(C => C.FactorId == id)
-                .Select(D=>new {Name=D.Name,Price=D.Price,count=D.Count,Id=D.Id })
+                .Select(D => new { Name = D.Name, Price = D.Price, count = D.Count, Id = D.Id })
                 .ToList();
 
             return Json(result, JsonRequestBehavior.AllowGet);

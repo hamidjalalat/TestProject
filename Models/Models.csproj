@@ -62,6 +62,7 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="Contact.cs" />
     <Compile Include="DataBaseContext.cs" />
     <Compile Include="DatabaseContextInitializer.cs" />
     <Compile Include="DatabaseContextInitializerBeforeTheFirstRelease.cs" />
@@ -80,6 +81,10 @@
     <Compile Include="Migrations\202004210800162_Version002.cs" />
     <Compile Include="Migrations\202004210800162_Version002.designer.cs">
       <DependentUpon>202004210800162_Version002.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004211611310_Version003.cs" />
+    <Compile Include="Migrations\202004211611310_Version003.designer.cs">
+      <DependentUpon>202004211611310_Version003.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Product.cs" />
@@ -133,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004210800162_Version002.resx">
       <DependentUpon>202004210800162_Version002.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004211611310_Version003.resx">
+      <DependentUpon>202004211611310_Version003.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

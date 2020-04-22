@@ -34,11 +34,10 @@
         @Html.HjEditor(model => model.ConfirmPassword)
 
         <div class='form-group row'>
-
             @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label col-sm-2" })
             <div class='col-sm-8'>
 
-                @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control", placeholder = "نمونه:09124881649" } })
                 @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
 
             </div>

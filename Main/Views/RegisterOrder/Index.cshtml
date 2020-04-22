@@ -71,7 +71,7 @@
             @{
                 int Total = item.Price * item.count;
                 SumTotal = SumTotal + Total;
-                <span>@Total.ToString("0#,##0 ")</span>
+                <span>@Total.ToString("#,##0 ")</span>
 
             }
          
@@ -92,9 +92,13 @@
 
     </table>
     <label>قابل پرداخت...................</label>
-    <label>@SumTotal.ToString("0#,##0 ")</label>
+    <label>@SumTotal.ToString("#,##0 ")</label>
+
     <br />
     <br />
     @Html.ActionLink("ثبت نهایی","RegisterFactor",null,new {@class="btn btn-primary" })
+    <br />
+    <br />
+    <a href="/Order/OrederCustomer">اصلاح سفارش</a>
 </body>
 </html>

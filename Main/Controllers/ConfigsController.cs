@@ -11,19 +11,19 @@ using Models;
 namespace HJ_Template_MVC.Controllers
 {
     [Authorize(Users = "AdminAdmin")]
-    public class ConfigsController : Infrastructure.BaseController
+    public partial class ConfigsController : Infrastructure.BaseController
     {
 
         // GET: Configs
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View(db.Configs.ToList());
         }
 
-   
+
 
         // GET: Configs/Create
-        public ActionResult Create()
+        public virtual ActionResult Create()
         {
             return View();
         }
@@ -33,7 +33,7 @@ namespace HJ_Template_MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Text,Value")] Config config)
+        public virtual ActionResult Create([Bind(Include = "Id,Name,Text,Value")] Config config)
         {
             if (ModelState.IsValid)
             {
@@ -46,7 +46,7 @@ namespace HJ_Template_MVC.Controllers
         }
 
         // GET: Configs/Edit/5
-        public ActionResult Edit(int? id)
+        public virtual ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -65,7 +65,7 @@ namespace HJ_Template_MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Text,Value")] Config config)
+        public virtual ActionResult Edit([Bind(Include = "Id,Name,Text,Value")] Config config)
         {
             if (ModelState.IsValid)
             {
@@ -78,9 +78,9 @@ namespace HJ_Template_MVC.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public JsonResult GetConfig(string Name)
+        public virtual JsonResult GetConfig(string Name)
         {
-            var result = db.Configs.Where(C=>C.Name==Name).FirstOrDefault();
+            var result = db.Configs.Where(C => C.Name == Name).FirstOrDefault();
             return Json(result);
         }
 

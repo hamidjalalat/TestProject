@@ -80,6 +80,18 @@ namespace Main.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult DeleteConfirmed()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteConfirmed);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult DeleteAJAX()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.DeleteAJAX);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public UsersController Actions { get { return MVC.Users; } }
@@ -102,6 +114,8 @@ namespace Main.Controllers
             public readonly string CreateAjax = "CreateAjax";
             public readonly string Edit = "Edit";
             public readonly string Delete = "Delete";
+            public readonly string DeleteConfirmed = "Delete";
+            public readonly string DeleteAJAX = "DeleteAJAX";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -113,6 +127,8 @@ namespace Main.Controllers
             public const string CreateAjax = "CreateAjax";
             public const string Edit = "Edit";
             public const string Delete = "Delete";
+            public const string DeleteConfirmed = "Delete";
+            public const string DeleteAJAX = "DeleteAJAX";
         }
 
 
@@ -154,6 +170,22 @@ namespace Main.Controllers
         public ActionParamsClass_Delete DeleteParams { get { return s_params_Delete; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Delete
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_DeleteConfirmed s_params_DeleteConfirmed = new ActionParamsClass_DeleteConfirmed();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DeleteConfirmed DeleteConfirmedParams { get { return s_params_DeleteConfirmed; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DeleteConfirmed
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_DeleteAJAX s_params_DeleteAJAX = new ActionParamsClass_DeleteAJAX();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DeleteAJAX DeleteAJAXParams { get { return s_params_DeleteAJAX; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DeleteAJAX
         {
             public readonly string id = "id";
         }
@@ -259,10 +291,10 @@ namespace Main.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, ViewModels.Users.CreateViewModel user);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, ViewModels.Users.EditViewModel user);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(ViewModels.Users.CreateViewModel user)
+        public override System.Web.Mvc.ActionResult Edit(ViewModels.Users.EditViewModel user)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "user", user);
@@ -279,6 +311,30 @@ namespace Main.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             DeleteOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DeleteConfirmedOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult DeleteConfirmed(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteConfirmed);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            DeleteConfirmedOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DeleteAJAXOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult DeleteAJAX(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.DeleteAJAX);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            DeleteAJAXOverride(callInfo, id);
             return callInfo;
         }
 

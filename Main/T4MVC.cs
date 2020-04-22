@@ -27,10 +27,13 @@ using T4MVC;
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 public static partial class MVC
 {
+    public static HJ_Template_MVC.Controllers.AboutController About = new HJ_Template_MVC.Controllers.T4MVC_AboutController();
     public static Main.Controllers.AccountController Account = new Main.Controllers.T4MVC_AccountController();
+    public static HJ_Template_MVC.Controllers.ConfigsController Configs = new HJ_Template_MVC.Controllers.T4MVC_ConfigsController();
     public static Main.Controllers.HomeController Home = new Main.Controllers.T4MVC_HomeController();
     public static HJ_Template_MVC.Controllers.OrderController Order = new HJ_Template_MVC.Controllers.T4MVC_OrderController();
     public static Controllers.RegisterOrderController RegisterOrder = new Controllers.T4MVC_RegisterOrderController();
+    public static HJ_Template_MVC.Controllers.ReportController Report = new HJ_Template_MVC.Controllers.T4MVC_ReportController();
     public static Main.Controllers.UsersController Users = new Main.Controllers.T4MVC_UsersController();
     public static HJ_Template_MVC.Controllers.WatchController Watch = new HJ_Template_MVC.Controllers.T4MVC_WatchController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
@@ -167,11 +170,9 @@ namespace Links
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
             public static readonly string bootstrap_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap.min.css") ? Url("bootstrap.min.css") : Url("bootstrap.css");
             public static readonly string chicago_png = Url("chicago.png");
-            public static readonly string conference_banner2017_v1_jpg = Url("conference-banner2017-v1.jpg");
             public static readonly string la_png = Url("la.png");
             public static readonly string ny_png = Url("ny.png");
-            public static readonly string SCADE_User_Group_Conference_Banner_png = Url("SCADE-User-Group-Conference-Banner.png");
-            public static readonly string WelcomePresentationbanner_jpg = Url("WelcomePresentationbanner.jpg");
+            public static readonly string PICT0030_jpg = Url("PICT0030.jpg");
         }
     
         public static readonly string loading_gif = Url("loading.gif");

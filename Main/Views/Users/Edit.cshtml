@@ -1,18 +1,22 @@
-﻿@model ViewModels.Users.CreateViewModel
+﻿@model ViewModels.Users.EditViewModel
 
 @{
     ViewBag.Title = "Edit";
 }
 
-
-<h2>Edit</h2>
+<style>
+    #Address {
+        width: 800px;
+        height: 100px;
+    }
+</style>
+<h2>ویرایش</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>User</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 

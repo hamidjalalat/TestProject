@@ -13,7 +13,7 @@ using Infrastructure;
 namespace Main.Controllers
 {
 
-    //[Infrastructure.Log]
+ 
     public partial class UsersController : Infrastructure.BaseController
     {
         //
@@ -125,7 +125,7 @@ namespace Main.Controllers
                 .Where(current => current.Id == id)
                 .FirstOrDefault()
                 ;
-            CreateViewModel EditViewModel = new CreateViewModel();
+            EditViewModel EditViewModel = new EditViewModel();
             EditViewModel.Id = user.Id;
             EditViewModel.Name = user.Name;
             EditViewModel.Address = user.Address;
@@ -146,7 +146,7 @@ namespace Main.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Users = "AdminAdmin")]
-        public virtual ActionResult Edit([Bind(Exclude ="googoli_magooli")] CreateViewModel user)
+        public virtual ActionResult Edit([Bind(Exclude ="googoli_magooli")] EditViewModel user)
         {
         
             User orginalUser =
@@ -157,16 +157,15 @@ namespace Main.Controllers
             {
                 return (HttpNotFound());
             }
-            //foreach (var key in ModelState.Keys.ToList().Where(key => ModelState.ContainsKey("Name")))
-            //{
-            //    //ModelState.Remove(key);
-            //    ModelState[key].Errors.Clear();
-            //}
+         
             if (ModelState.IsValid)
             {
                 orginalUser.Name = user.Name;
                 orginalUser.Password = user.Password;
                 orginalUser.DataCreate = DateTime.Now;
+                orginalUser.Mobile = user.Mobile;
+                orginalUser.Address = user.Address;
+                
                 db.SaveChanges();
                 return RedirectToAction(MVC.Users.Index());
             }
@@ -222,11 +221,11 @@ namespace Main.Controllers
                 db.Users.Remove(user);
                 db.SaveChanges();
                 //PageMessages.Add(new Infrastructure.PageMessages(Infrastructure.PageMessages.Types.Error, "{0} deleted"+user.Name));
-                return Json(new { Succeed = true, Message = string.Format("{0} deleted", user.Name), Id = id });
+                return Json(new { Succeed = true, Message = string.Format("{0} حذف شد", user.Name), Id = id });
             }
             catch (Exception ex)
             {
-                return Json(new { Succeed = false, Message = "user not deleted!" + ex.Message, Id = id });
+                return Json(new { Succeed = false, Message = "حذف نشد!" + ex.Message, Id = id });
             }
         }
 

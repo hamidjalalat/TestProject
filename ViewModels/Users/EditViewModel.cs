@@ -42,6 +42,16 @@ namespace ViewModels.Users
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
         // **********
+        [Display(Name = "شماره همراه")]
+     
+        [Required(AllowEmptyStrings = false, ErrorMessage = "وارد کردن شماره موبایل الزامی می باشد")]
 
+        public string Mobile { get; set; }
+        // **********
+
+        // **********
+        [Display(Name = "آدرس")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "وارد کردن آدرس الزامی می باشد")]
+        public string Address { get; set; }
     }
 }
