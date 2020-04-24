@@ -19,18 +19,31 @@
         #order_comment {
             width: 100% !important;
             max-width: 100% !important;
-            height: 150px;
+            height: 100px;
             resize: vertical;
             font-size: 12px;
             font-weight: 200;
             border-radius: 0 0 4px 4px;
         }
 
+
         .scroll {
             direction: ltr;
             max-height: 800px;
             overflow-y: auto;
+            overflow-y: scroll; /* Add the ability to scroll */
         }
+
+
+            .scroll::-webkit-scrollbar {
+                display: none;
+            }
+
+        /* Hide scrollbar for IE and Edge */
+        .scroll {
+            -ms-overflow-style: none;
+        }
+
 
 
         div.card {
@@ -45,18 +58,19 @@
             width: 99%;
         }
 
-        div.card:hover {
+        /*div.card:hover {
             transform: scale(1.2);
-        }
+        }*/
 
         .getAddProduct {
+            background-color: #ef394e;
+            color: white;
             cursor: pointer;
             outline: none;
-            box-shadow: 0 9px #999;
         }
 
             .getAddProduct:hover {
-                background-color: #3e8e41
+                background-color: #3e8e41;
             }
 
             .getAddProduct:active {
@@ -69,8 +83,8 @@
 <body>
     <div id="app" class="container">
         <br />
-        <select v-model="selectedGroupProductId">
-            <option v-bind:value="null">فیلتر بر اساس نوع</option>
+        <select v-model="selectedGroupProductId" class="browser-default custom-select" style="background-color:#4cd035;color:white">
+            <option v-bind:value="null">فیلتر بر اساس نوع غذا</option>
             <option v-for="item in groupList" v-bind:value="item.Id">{{ item.Name }}</option>
         </select>
         <br />
@@ -81,7 +95,7 @@
             <div class="col-md-8 scroll">
                 <div class="card-columns " style="direction:rtl">
 
-                    <div class="card " style="width: 10rem; " v-for="item in listProduct" v-show="selectedGroupProductId === null || item.GroupProductId == selectedGroupProductId">
+                    <div class="card " style="width: 12rem; " v-for="item in listProduct" v-show="selectedGroupProductId === null || item.GroupProductId == selectedGroupProductId">
                         <img class="card-img-top" style="height:120px" v-bind:src="item.Image_url" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{item.Name}}</h5>
@@ -91,10 +105,10 @@
                                 {{item.Description}}
                             </p>
                             <p v-if="item.ShowBread">
-                                <input type="checkbox" v-model="item.hasBread"  name="name" value="" />
+                                <input type="checkbox" v-model="item.hasBread" name="name" value="" />
                                 نون اضافه
                             </p>
-                            <button v-if="item.Available" class="btn btn-primary getAddProduct" v-on:click="getAddProduct(item)" style="font-size:11px">افزودن به سبد خرید </button>
+                            <button v-if="item.Available" class="btn btn-block  getAddProduct" v-on:click="getAddProduct(item)" style="font-size:11px">افزودن به سبد خرید </button>
                             <p v-else>
                                 ناموجود
                             </p>
@@ -137,10 +151,10 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-8">
-                        <label>جمع کل سفارش........................</label>
+                        <label><b>جمع کل پرداختی........................</b></label>
                     </div>
                     <div class="col-sm-4">
-                        <span>{{ getTotal() }} تومان</span>
+                        <span><b>{{ getTotal() }} تومان</b></span>
                     </div>
 
                 </div>

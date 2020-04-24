@@ -181,6 +181,8 @@
     <Content Include="scripts\axios.map" />
     <Content Include="Content\glyphicons-halflings-regular.ttf" />
     <None Include="scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="scripts\Get_Lat-lon.html" />
+    <Content Include="scripts\HtmlPage1.html" />
     <Content Include="scripts\jquery-3.4.1.js" />
     <Content Include="scripts\jquery-3.4.1.min.js" />
     <Content Include="scripts\jquery-3.4.1.slim.js" />
