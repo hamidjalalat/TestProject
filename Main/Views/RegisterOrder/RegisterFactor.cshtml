@@ -11,8 +11,11 @@
         <div class="card-body">
             <h5 class="card-title">سفارش شما با موفقیت ثبت گردید</h5>
             <p class="card-text">اگر شما برای اولین بار سفارش داده اید همکاران ما با شما تماس خواهند گرفت</p>
+            <p class="card-text"> برای پیگیری سفارش خود می توانید به صفحه سفارش های من بروید</p>
         </div>
     </div>
+    @Html.ActionLink("سفارش های من", "Index", "OrderMe");
+
 }
 else
 {

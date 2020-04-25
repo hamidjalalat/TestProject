@@ -27,7 +27,7 @@ var app = new Vue({
             
             if (itemGlobal.hasBread == true) {
                 itemGlobal.Price += parseInt(this.breadPrice);
-                itemGlobal.Name +=  "  با نون اضافه  "
+                itemGlobal.Name +=  "  با نان اضافه  "
             } 
 
 

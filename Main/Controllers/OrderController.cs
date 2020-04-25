@@ -167,7 +167,7 @@ namespace HJ_Template_MVC.Controllers
             return Json(updated);
 
         }
-        [Infrastructure.Log]
+        //[Infrastructure.Log]
         public virtual ActionResult OrederCustomer()
         {
             return View();

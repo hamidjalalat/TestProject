@@ -46,7 +46,10 @@ namespace Controllers
         public virtual ActionResult RegisterFactor()
         {
             List<RegisterOrderViewModel> ListOrder = TempData["ListOrder"] as List<RegisterOrderViewModel>;
-            TempData.Keep("ListOrder");
+            if (ListOrder==null)
+            {
+               return RedirectToAction("Index", "OrderMe");
+            }
             bool success = false;
             try
             {
