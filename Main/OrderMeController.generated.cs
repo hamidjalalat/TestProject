@@ -25,13 +25,13 @@ using System.Web.Routing;
 using T4MVC;
 namespace HJ_Template_MVC.Controllers
 {
-    public partial class AboutController
+    public partial class OrderMeController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public AboutController() { }
+        public OrderMeController() { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected AboutController(Dummy d) { }
+        protected OrderMeController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -61,19 +61,25 @@ namespace HJ_Template_MVC.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult Delete()
+        public virtual System.Web.Mvc.JsonResult GetFactor()
         {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Delete);
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetFactor);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult GetDatialFactor()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetDatialFactor);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public AboutController Actions { get { return MVC.About; } }
+        public OrderMeController Actions { get { return MVC.OrderMe; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "About";
+        public readonly string Name = "OrderMe";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "About";
+        public const string NameConst = "OrderMe";
         [GeneratedCode("T4MVC", "2.0")]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -82,32 +88,33 @@ namespace HJ_Template_MVC.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
-            public readonly string HamidJalalat = "HamidJalalat";
-            public readonly string Delete = "Delete";
+            public readonly string GetFactor = "GetFactor";
+            public readonly string GetDatialFactor = "GetDatialFactor";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
-            public const string HamidJalalat = "HamidJalalat";
-            public const string Delete = "Delete";
+            public const string GetFactor = "GetFactor";
+            public const string GetDatialFactor = "GetDatialFactor";
         }
 
 
-        static readonly ActionParamsClass_HamidJalalat s_params_HamidJalalat = new ActionParamsClass_HamidJalalat();
+        static readonly ActionParamsClass_GetFactor s_params_GetFactor = new ActionParamsClass_GetFactor();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_HamidJalalat HamidJalalatParams { get { return s_params_HamidJalalat; } }
+        public ActionParamsClass_GetFactor GetFactorParams { get { return s_params_GetFactor; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_HamidJalalat
+        public class ActionParamsClass_GetFactor
         {
-            public readonly string text = "text";
+            public readonly string pageIndex = "pageIndex";
+            public readonly string pageSize = "pageSize";
         }
-        static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
+        static readonly ActionParamsClass_GetDatialFactor s_params_GetDatialFactor = new ActionParamsClass_GetDatialFactor();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Delete DeleteParams { get { return s_params_Delete; } }
+        public ActionParamsClass_GetDatialFactor GetDatialFactorParams { get { return s_params_GetDatialFactor; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Delete
+        public class ActionParamsClass_GetDatialFactor
         {
             public readonly string id = "id";
         }
@@ -121,18 +128,16 @@ namespace HJ_Template_MVC.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string HamidJalalat = "HamidJalalat";
                 public readonly string Index = "Index";
             }
-            public readonly string HamidJalalat = "~/Views/About/HamidJalalat.cshtml";
-            public readonly string Index = "~/Views/About/Index.cshtml";
+            public readonly string Index = "~/Views/OrderMe/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_AboutController : HJ_Template_MVC.Controllers.AboutController
+    public partial class T4MVC_OrderMeController : HJ_Template_MVC.Controllers.OrderMeController
     {
-        public T4MVC_AboutController() : base(Dummy.Instance) { }
+        public T4MVC_OrderMeController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -146,37 +151,27 @@ namespace HJ_Template_MVC.Controllers
         }
 
         [NonAction]
-        partial void HamidJalalatOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void GetFactorOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int pageIndex, int pageSize);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult HamidJalalat()
+        public override System.Web.Mvc.JsonResult GetFactor(int pageIndex, int pageSize)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.HamidJalalat);
-            HamidJalalatOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetFactor);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "pageIndex", pageIndex);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "pageSize", pageSize);
+            GetFactorOverride(callInfo, pageIndex, pageSize);
             return callInfo;
         }
 
         [NonAction]
-        partial void HamidJalalatOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string text);
+        partial void GetDatialFactorOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, System.Guid id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult HamidJalalat(string text)
+        public override System.Web.Mvc.JsonResult GetDatialFactor(System.Guid id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.HamidJalalat);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "text", text);
-            HamidJalalatOverride(callInfo, text);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void DeleteOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int id);
-
-        [NonAction]
-        public override System.Web.Mvc.JsonResult Delete(int id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Delete);
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetDatialFactor);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            DeleteOverride(callInfo, id);
+            GetDatialFactorOverride(callInfo, id);
             return callInfo;
         }
 

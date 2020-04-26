@@ -32,6 +32,7 @@ public static partial class MVC
     public static HJ_Template_MVC.Controllers.ConfigsController Configs = new HJ_Template_MVC.Controllers.T4MVC_ConfigsController();
     public static Main.Controllers.HomeController Home = new Main.Controllers.T4MVC_HomeController();
     public static HJ_Template_MVC.Controllers.OrderController Order = new HJ_Template_MVC.Controllers.T4MVC_OrderController();
+    public static HJ_Template_MVC.Controllers.OrderMeController OrderMe = new HJ_Template_MVC.Controllers.T4MVC_OrderMeController();
     public static Controllers.RegisterOrderController RegisterOrder = new Controllers.T4MVC_RegisterOrderController();
     public static HJ_Template_MVC.Controllers.ReportController Report = new HJ_Template_MVC.Controllers.T4MVC_ReportController();
     public static Main.Controllers.UsersController Users = new Main.Controllers.T4MVC_UsersController();
@@ -121,6 +122,8 @@ namespace Links
         public static readonly string bootstrap_js_map = Url("bootstrap.js.map");
         public static readonly string bootstrap_min_js = Url("bootstrap.min.js");
         public static readonly string bootstrap_min_js_map = Url("bootstrap.min.js.map");
+        public static readonly string Get_Lat_lon_html = Url("Get_Lat-lon.html");
+        public static readonly string HtmlPage1_html = Url("HtmlPage1.html");
         public static readonly string jquery_3_4_1_intellisense_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery-3.4.1.intellisense.min.js") ? Url("jquery-3.4.1.intellisense.min.js") : Url("jquery-3.4.1.intellisense.js");
         public static readonly string jquery_3_4_1_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/jquery-3.4.1.min.js") ? Url("jquery-3.4.1.min.js") : Url("jquery-3.4.1.js");
         public static readonly string jquery_3_4_1_min_js = Url("jquery-3.4.1.min.js");
@@ -145,6 +148,7 @@ namespace Links
         public const string UrlPath = "~/Content";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+        public static readonly string ____bootstrap_rtl_min_css = Url("----bootstrap-rtl.min.css");
         public static readonly string bootstrap_grid_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap-grid.min.css") ? Url("bootstrap-grid.min.css") : Url("bootstrap-grid.css");
         public static readonly string bootstrap_grid_css_map = Url("bootstrap-grid.css.map");
         public static readonly string bootstrap_grid_min_css = Url("bootstrap-grid.min.css");
@@ -154,7 +158,6 @@ namespace Links
         public static readonly string bootstrap_reboot_min_css = Url("bootstrap-reboot.min.css");
         public static readonly string bootstrap_reboot_min_css_map = Url("bootstrap-reboot.min.css.map");
         public static readonly string bootstrap_rtl_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap-rtl.min.css") ? Url("bootstrap-rtl.min.css") : Url("bootstrap-rtl.css");
-        public static readonly string bootstrap_rtl_min_css = Url("bootstrap-rtl.min.css");
         public static readonly string bootstrap_theme_rtl_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap-theme-rtl.min.css") ? Url("bootstrap-theme-rtl.min.css") : Url("bootstrap-theme-rtl.css");
         public static readonly string bootstrap_theme_rtl_min_css = Url("bootstrap-theme-rtl.min.css");
         public static readonly string bootstrap_theme_min_css = Url("bootstrap-theme.min.css");
@@ -168,6 +171,7 @@ namespace Links
             public const string UrlPath = "~/Content/Image";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+            public static readonly string _26438617_png = Url("26438617.png");
             public static readonly string bootstrap_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap.min.css") ? Url("bootstrap.min.css") : Url("bootstrap.css");
             public static readonly string chicago_png = Url("chicago.png");
             public static readonly string la_png = Url("la.png");
@@ -222,12 +226,12 @@ namespace Links
             }
             public static class Assets
             {
+                public const string ____bootstrap_rtl_min_css = "~/Content/----bootstrap-rtl.min.css";
                 public const string bootstrap_grid_css = "~/Content/bootstrap-grid.css";
                 public const string bootstrap_grid_min_css = "~/Content/bootstrap-grid.min.css";
                 public const string bootstrap_reboot_css = "~/Content/bootstrap-reboot.css";
                 public const string bootstrap_reboot_min_css = "~/Content/bootstrap-reboot.min.css";
                 public const string bootstrap_rtl_css = "~/Content/bootstrap-rtl.css";
-                public const string bootstrap_rtl_min_css = "~/Content/bootstrap-rtl.min.css";
                 public const string bootstrap_theme_rtl_css = "~/Content/bootstrap-theme-rtl.css";
                 public const string bootstrap_theme_rtl_min_css = "~/Content/bootstrap-theme-rtl.min.css";
                 public const string bootstrap_theme_min_css = "~/Content/bootstrap-theme.min.css";

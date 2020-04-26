@@ -14,12 +14,11 @@ namespace Controllers
 
     {
         [HttpGet]
-        public virtual ActionResult Check()
+        public virtual ActionResult SecondCheck()
         {
 
             if (User.Identity.IsAuthenticated)
             {
-                System.Threading.Thread.Sleep(10);
                 return RedirectToAction("Index");
             }
             else
@@ -29,11 +28,12 @@ namespace Controllers
 
         }
         [HttpPost]
-        public virtual ActionResult Check(string jsonOrder,string description)
+        public virtual ActionResult FirstCheck(string jsonOrder,string description)
         {
          
             TempData["description"] = description;
             TempData["ListOrder"] = JsonConvert.DeserializeObject<List<RegisterOrderViewModel>>(jsonOrder);
+       
          
             return Json(true);
         }
@@ -41,6 +41,10 @@ namespace Controllers
         {
             List<RegisterOrderViewModel> List = TempData["ListOrder"] as List<RegisterOrderViewModel>;
             TempData.Keep("ListOrder");
+            if (List==null)
+            {
+                List = new List<RegisterOrderViewModel>();
+            }
             return View(List);
         }
         public virtual ActionResult RegisterFactor()

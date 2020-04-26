@@ -17,11 +17,37 @@ var app = new Vue({
     methods: {
 
      
-        redirectToAction() {
-            $.post('/RegisterOrder/Check', { jsonOrder: JSON.stringify(this.selectionProduct), description: this.description });
-            window.location.href = "/RegisterOrder/Check";
-        },
+        //redirectToAction() {
+        //    let result=  $.post('/RegisterOrder/FirstCheck', { jsonOrder: JSON.stringify(this.selectionProduct), description: this.description });
+        //    console.log(result)
+        //    alert(result.readyState)
 
+        //    window.location.href = "/RegisterOrder/SecondCheck";
+
+        //},
+
+        redirectToAction() {
+          let  parameter = { jsonOrder: JSON.stringify(this.selectionProduct), description: this.description };
+            axios.post('/RegisterOrder/FirstCheck', parameter)
+             .then(response => {
+
+                 if(response.data)
+                 {
+                     window.location.href = "/RegisterOrder/SecondCheck";
+                 }
+     
+     })
+     .catch(error => {
+
+         console.error(error)
+
+     })
+     .finally(() => {
+
+     })
+
+        },
+    
         getAddProduct: function (item) {
             let itemGlobal = { Id: item.Id, Name: item.Name, Price: item.Price, count: item.count, hasBread: item.hasBread,Image_url:item.Image_url,Description:item.Description};
             

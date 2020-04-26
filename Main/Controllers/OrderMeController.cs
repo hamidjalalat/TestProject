@@ -8,15 +8,15 @@ using ViewModels.Watch;
 namespace HJ_Template_MVC.Controllers
 {
     [Authorize]
-    public class OrderMeController : Infrastructure.BaseController
+    public partial class OrderMeController : Infrastructure.BaseController
     {
         // GET: OrderMe
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View();
         }
         [HttpPost]
-        public virtual JsonResult GetFactor( int pageIndex, int pageSize)
+        public virtual JsonResult GetFactor(int pageIndex, int pageSize)
         {
             if (pageIndex < 0)
             {
@@ -27,12 +27,12 @@ namespace HJ_Template_MVC.Controllers
 
             var listFactorQuery =
                     db.Factors
-             
+
                     .Where(C => C.UserName == User.Identity.Name)
                     .AsQueryable()
                     ;
 
-     
+
 
             int Count = listFactorQuery.Count();
 

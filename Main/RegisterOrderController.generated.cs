@@ -59,6 +59,12 @@ namespace Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult FirstCheck()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FirstCheck);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public RegisterOrderController Actions { get { return MVC.RegisterOrder; } }
@@ -75,7 +81,8 @@ namespace Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Check = "Check";
+            public readonly string SecondCheck = "SecondCheck";
+            public readonly string FirstCheck = "FirstCheck";
             public readonly string Index = "Index";
             public readonly string RegisterFactor = "RegisterFactor";
         }
@@ -83,17 +90,18 @@ namespace Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string Check = "Check";
+            public const string SecondCheck = "SecondCheck";
+            public const string FirstCheck = "FirstCheck";
             public const string Index = "Index";
             public const string RegisterFactor = "RegisterFactor";
         }
 
 
-        static readonly ActionParamsClass_Check s_params_Check = new ActionParamsClass_Check();
+        static readonly ActionParamsClass_FirstCheck s_params_FirstCheck = new ActionParamsClass_FirstCheck();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Check CheckParams { get { return s_params_Check; } }
+        public ActionParamsClass_FirstCheck FirstCheckParams { get { return s_params_FirstCheck; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Check
+        public class ActionParamsClass_FirstCheck
         {
             public readonly string jsonOrder = "jsonOrder";
             public readonly string description = "description";
@@ -122,26 +130,26 @@ namespace Controllers
         public T4MVC_RegisterOrderController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void CheckOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void SecondCheckOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Check()
+        public override System.Web.Mvc.ActionResult SecondCheck()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Check);
-            CheckOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SecondCheck);
+            SecondCheckOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void CheckOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string jsonOrder, string description);
+        partial void FirstCheckOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string jsonOrder, string description);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Check(string jsonOrder, string description)
+        public override System.Web.Mvc.ActionResult FirstCheck(string jsonOrder, string description)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Check);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FirstCheck);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "jsonOrder", jsonOrder);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "description", description);
-            CheckOverride(callInfo, jsonOrder, description);
+            FirstCheckOverride(callInfo, jsonOrder, description);
             return callInfo;
         }
 

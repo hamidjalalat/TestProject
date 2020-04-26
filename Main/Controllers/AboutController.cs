@@ -21,7 +21,7 @@ namespace HJ_Template_MVC.Controllers
             return View(listContact);
         }
         [HttpPost]
-        public ActionResult HamidJalalat(string text)
+        public virtual ActionResult HamidJalalat(string text)
         {
             if (text != string.Empty)
             {
@@ -45,7 +45,7 @@ namespace HJ_Template_MVC.Controllers
         }
 
         [HttpPost]
-        public JsonResult Delete(int id)
+        public virtual JsonResult Delete(int id)
         {
             bool result = false;
             try
