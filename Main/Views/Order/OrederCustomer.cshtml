@@ -83,6 +83,25 @@
 </head>
 <body>
     <div id="app" class="container">
+        <hj-modal v-bind:message="'شما هیچ غذا را انتخاب نکرده اید'" v-bind:idmodal="'messagemodal'"></hj-modal>
+
+        <div id="loadingModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                           در حال بررسی
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-danger">
+                      لطفا چند لحظه منتظر بمانید...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <br />
         <select v-model="selectedGroupProductId" class="browser-default custom-select" style="background-color:#4cd035;color:white">
             <option v-bind:value="null">فیلتر بر اساس نوع غذا</option>
@@ -93,7 +112,7 @@
 
         <div class="row">
 
-            <div class="col-md-8 scroll">
+            <div class="col-lg-8 scroll">
                 <div class="card-columns " style="direction:rtl">
 
                     <div class="card " style="width: 12rem; " v-for="item in listProduct" v-show="selectedGroupProductId === null || item.GroupProductId == selectedGroupProductId">
@@ -118,7 +137,7 @@
 
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-lg-4">
 
                 <div class="row">
                     <div class="col-12 table-responsive">
@@ -170,7 +189,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <button class="btn btn-primary btn-block" v-on:click="redirectToAction()">بررسی نهایی</button>
+                        <button class="btn btn-primary  btn-block" id="checkfinal" v-on:click="redirectToAction()">بررسی نهایی</button>
 
                     </div>
                 </div>

@@ -12,11 +12,11 @@ var app = new Vue({
         listProduct: null,
         groupList: null,
         selectionProduct: [],
-        description:null,
-    }, 
+        description: null,
+    },
     methods: {
 
-     
+
         //redirectToAction() {
         //    let result=  $.post('/RegisterOrder/FirstCheck', { jsonOrder: JSON.stringify(this.selectionProduct), description: this.description });
         //    console.log(result)
@@ -27,40 +27,48 @@ var app = new Vue({
         //},
 
         redirectToAction() {
-          let  parameter = { jsonOrder: JSON.stringify(this.selectionProduct), description: this.description };
-            axios.post('/RegisterOrder/FirstCheck', parameter)
-             .then(response => {
+            if (this.selectionProduct.length != 0) {
+                $('#checkfinal').hide();
+                $(`div#loadingModal`).modal({ backdrop: false, keyboard: false, });
+                let parameter = { jsonOrder: JSON.stringify(this.selectionProduct), description: this.description };
+                axios.post('/RegisterOrder/FirstCheck', parameter)
+                 .then(response => {
 
-                 if(response.data)
-                 {
-                     window.location.href = "/RegisterOrder/SecondCheck";
-                 }
-     
-     })
-     .catch(error => {
+                     if (response.data) {
+                         window.location.href = "/RegisterOrder/SecondCheck";
+                     }
 
-         console.error(error)
+                 })
+         .catch(error => {
 
-     })
-     .finally(() => {
+             console.error(error)
 
-     })
+         })
+         .finally(() => {
+             $('#checkfinal').show();
+             $(`div#loadingModal`).modal(`hide`)
+         })
+            }
+            else {
+                $(`div#messagemodal`).modal();
+            }
+
 
         },
-    
+
         getAddProduct: function (item) {
-            let itemGlobal = { Id: item.Id, Name: item.Name, Price: item.Price, count: item.count, hasBread: item.hasBread,Image_url:item.Image_url,Description:item.Description};
-            
+            let itemGlobal = { Id: item.Id, Name: item.Name, Price: item.Price, count: item.count, hasBread: item.hasBread, Image_url: item.Image_url, Description: item.Description };
+
             if (itemGlobal.hasBread == true) {
                 itemGlobal.Price += parseInt(this.breadPrice);
-                itemGlobal.Name +=  "  با نان اضافه  "
-            } 
+                itemGlobal.Name += "  با نان اضافه  "
+            }
 
 
             let has = true;
             this.selectionProduct.forEach(i => {
 
-                if (i.Id == itemGlobal.Id && itemGlobal.hasBread == i.hasBread ) {
+                if (i.Id == itemGlobal.Id && itemGlobal.hasBread == i.hasBread) {
                     has = false;
                     i.count++;
                 }
@@ -71,13 +79,13 @@ var app = new Vue({
                 this.selectionProduct.push(itemGlobal);
 
             }
-       
+
             document.cookie = "listProduct=" + JSON.stringify(this.selectionProduct);
         },
 
         plus: function (item) {
             item.count++;
-            
+
             document.cookie = "listProduct=" + JSON.stringify(this.selectionProduct);
         },
 
@@ -88,14 +96,13 @@ var app = new Vue({
                 item.count--
 
             }
-            else
-            {
+            else {
                 const index = this.selectionProduct.indexOf(item);
                 if (index > -1) {
                     this.selectionProduct.splice(index, 1);
                 }
             }
-            
+
             document.cookie = "listProduct=" + JSON.stringify(this.selectionProduct);
 
         },
@@ -120,14 +127,14 @@ var app = new Vue({
 
             }
             this.selectionProduct.Total = total;
-            return separate( total)
+            return separate(total)
 
         },
 
     },
     computed: {
-   
-   
+
+
     },
 
     created: function () {
@@ -135,44 +142,44 @@ var app = new Vue({
         if (jsonlistProduct != null) {
             this.selectionProduct = JSON.parse(jsonlistProduct);
         }
-     
+
     },
-      mounted() {
-     
-          axios.post('/Order/GetListProduct')
-              .then(response => {
+    mounted() {
 
-                  this.listProduct = response.data.listProduct;
-                  this.groupList = response.data.listGruopProduct;
-                  
-                  for (let index = 0; index < this.listProduct.length; index++) {
-                      Vue.set(this.listProduct[index], `hasBread`, false)
-                      Vue.set(this.listProduct[index], `count`, 1)
+        axios.post('/Order/GetListProduct')
+            .then(response => {
 
-                  }
-              })
-              .catch(error => {
+                this.listProduct = response.data.listProduct;
+                this.groupList = response.data.listGruopProduct;
 
-                  console.error(error)
+                for (let index = 0; index < this.listProduct.length; index++) {
+                    Vue.set(this.listProduct[index], `hasBread`, false)
+                    Vue.set(this.listProduct[index], `count`, 1)
 
-              })
-              .finally(() => {
+                }
+            })
+            .catch(error => {
 
-              })
+                console.error(error)
 
-          let parmeters = {name:'non'};
-          axios.post('/Configs/GetConfig', parmeters)
-              .then(response => {
-                  this.breadPrice = response.data.Value;
-                 
-              })
-              .catch(error => {
+            })
+            .finally(() => {
 
-                  console.error(error)
+            })
 
-              })
-              .finally(() => {
+        let parmeters = { name: 'non' };
+        axios.post('/Configs/GetConfig', parmeters)
+            .then(response => {
+                this.breadPrice = response.data.Value;
 
-              })
+            })
+            .catch(error => {
+
+                console.error(error)
+
+            })
+            .finally(() => {
+
+            })
     }
 })

@@ -30,7 +30,7 @@ namespace Controllers
         [HttpPost]
         public virtual ActionResult FirstCheck(string jsonOrder,string description)
         {
-         
+
             TempData["description"] = description;
             TempData["ListOrder"] = JsonConvert.DeserializeObject<List<RegisterOrderViewModel>>(jsonOrder);
          
@@ -40,6 +40,7 @@ namespace Controllers
         {
             List<RegisterOrderViewModel> List = TempData["ListOrder"] as List<RegisterOrderViewModel>;
             TempData.Keep("ListOrder");
+       
             if (List==null)
             {
                 List = new List<RegisterOrderViewModel>();
