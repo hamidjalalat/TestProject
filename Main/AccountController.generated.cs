@@ -84,6 +84,7 @@ namespace Main.Controllers
             public readonly string Login = "Login";
             public readonly string Logout = "Logout";
             public readonly string CheckUsername = "CheckUsername";
+            public readonly string CaptchaImage = "CaptchaImage";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -92,6 +93,7 @@ namespace Main.Controllers
             public const string Login = "Login";
             public const string Logout = "Logout";
             public const string CheckUsername = "CheckUsername";
+            public const string CaptchaImage = "CaptchaImage";
         }
 
 
@@ -104,6 +106,7 @@ namespace Main.Controllers
             public readonly string username = "username";
             public readonly string password = "password";
             public readonly string Remember = "Remember";
+            public readonly string Captcha = "Captcha";
         }
         static readonly ActionParamsClass_CheckUsername s_params_CheckUsername = new ActionParamsClass_CheckUsername();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -146,16 +149,17 @@ namespace Main.Controllers
         }
 
         [NonAction]
-        partial void LoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string username, string password, string Remember);
+        partial void LoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string username, string password, string Remember, string Captcha);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Login(string username, string password, string Remember)
+        public override System.Web.Mvc.ActionResult Login(string username, string password, string Remember, string Captcha)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "username", username);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "password", password);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Remember", Remember);
-            LoginOverride(callInfo, username, password, Remember);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Captcha", Captcha);
+            LoginOverride(callInfo, username, password, Remember, Captcha);
             return callInfo;
         }
 
@@ -179,6 +183,17 @@ namespace Main.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CheckUsername);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "name", name);
             CheckUsernameOverride(callInfo, name);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CaptchaImageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CaptchaImage()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CaptchaImage);
+            CaptchaImageOverride(callInfo);
             return callInfo;
         }
 

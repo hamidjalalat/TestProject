@@ -1,5 +1,6 @@
 ﻿
 @{
+    Layout = "~/Views/Shared/_Layout_Solid.cshtml";
     ViewBag.Title =Resources.General.Login;
 }
 
@@ -8,18 +9,19 @@
     <div class="form-horizontal">
         <h4>@Resources.General.Login</h4>
         <hr />
-        <div class="card">
+
+        <div class="card " >
             <div class="card-header">
                 @Resources.General.Login
             </div>
-            <div class="card-body">
+            <div class="card-body ">
                
-                <div class="form-group">
+                <div class="form-group row">
 
                     <label class="control-label col-md-2"> @Html.ActionLink("ثبت نام", MVC.Users.Create())</label>
                  <br />
                 </div>
-                <div class="form-group">
+                <div class="form-group row">
 
                     <label class="control-label col-md-2">@Resources.General.UserName</label>
                     <div class="col-md-10">
@@ -27,15 +29,35 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group row">
                     <label class="control-label col-md-2">@Resources.General.Password</label>
                     <div class="col-md-10">
                         <input name="password" id="password" class="form-control " type="password" /><span style="color:red">@ViewBag.MessageCheck</span>
                     </div>
                 </div>
 
+                @*captha*@
+                @*<div class="form-group row">
+        <div>
+            <img alt="Captcha" id="imgcpatcha" src="@Url.Action(controllerName: "Account",actionName: "CaptchaImage")" style="width:200px;height:40px;display:inline-block" />
+            <button type="button" class="btn btn-light"  id="refresh"  style="margin-top:5px">
+                دوباره
+            </button>
+        </div>
+        <div class="wrap-input100 validate-input username " data-validate="Valid username is required: ex@abc.xyz">
+            <input type="text" name="Captcha" id="Captcha" class="input100" placeholder="کد امنیتی" />
+            <span class=" focus-input100"></span>
+            <span class="symbol-input100">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+            </span>
+        </div>
 
-                <div class="form-group">
+    </div>*@
+
+           
+
+
+                <div class="form-group row">
                     <label class="control-label col-sm-2" for="Remember">@Resources.General.Remember</label>
 
                     <div class="col-sm-10">
@@ -60,3 +82,22 @@
  
     @Html.ActionLink("برگشت به صفحه سفارش", MVC.Order.OrederCustomer())
 </div>
+<script>
+    $(document).ready(function () {
+        $('#refresh').click(function () {
+    
+            $('#Captcha').val('');
+            var random = new Date();
+            jQuery.ajax({
+                url: '@Url.Action("CaptchaImage", "Account")',
+                type: "GET",
+                data: null,
+                success: function (result) {
+                    jQuery("#imgcpatcha").attr("src", "/Account/CaptchaImage?" + random + result);
+                }
+            });
+
+        });
+    });
+
+</script>

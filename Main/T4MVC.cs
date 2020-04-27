@@ -174,6 +174,7 @@ namespace Links
             public static readonly string _26438617_png = Url("26438617.png");
             public static readonly string bootstrap_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap.min.css") ? Url("bootstrap.min.css") : Url("bootstrap.css");
             public static readonly string chicago_png = Url("chicago.png");
+            public static readonly string d1_jpg = Url("d1.jpg");
             public static readonly string la_png = Url("la.png");
             public static readonly string ny_png = Url("ny.png");
             public static readonly string PICT0030_jpg = Url("PICT0030.jpg");

@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="@Links.scripts.vue_js"></script>
+    <script src="@Links.scripts.axios_js"></script>
+    <link href="@Links.Content.bootstrap_min_css" rel="stylesheet" />
+    <script src="@Links.scripts.jquery_3_4_1_min_js"></script>
+    <script src="@Links.scripts.bootstrap_min_js"></script>
+    <link src="@Links.Content.bootstrap_theme_min_css">
+    <link href="@Links.Content.bootstrap_rtl_css" rel="stylesheet" />
+    <script src="@Links.scripts.jquery_validate_vsdoc_js"></script>
+    <script src="@Links.scripts.jquery_validate_min_js"></script>
+    <script src="@Links.scripts.jquery_validate_unobtrusive_min_js"></script>
+    <script src="@Links.scripts.modernizr_2_6_2_js"></script>
+    <link src="@Links.Content.glyphicons_halflings_regular_ttf">
+
+
+    <script src="~/js/hjcomponent.js"></script>
+    <style>
+        .dropdown-item{
+            text-align:right;
+        }
+        .nav-link {
+            color: white !important;
+        }
+    </style>
+    <link href="@Links.Content.Site_css" rel="stylesheet" type="text/css" />
+
+    <title>@ViewBag.Title پیتزا ساندویچ طاها</title>
+
+</head>
+
+<body>
+    <div class="container">
+
+
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer></footer>
+    </div>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
