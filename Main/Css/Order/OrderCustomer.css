@@ -1,0 +1,72 @@
+﻿        .basket-header {
+            border: 1px solid #d8d8d8;
+            padding: 7px;
+            background: #fafafa;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 4px 4px 0 0;
+        }
+
+        #order_comment {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: 100px;
+            resize: vertical;
+            font-size: 12px;
+            font-weight: 200;
+            border-radius: 0 0 4px 4px;
+        }
+
+
+        .scroll {
+            direction: ltr;
+            max-height: 600px;
+            overflow-y: auto;
+            overflow-y: scroll; /* Add the ability to scroll */
+        }
+
+
+            .scroll::-webkit-scrollbar {
+                display: none;
+            }
+
+        /* Hide scrollbar for IE and Edge */
+        .scroll {
+            -ms-overflow-style: none;
+        }
+
+
+
+        div.card {
+            transition-delay: 0s;
+            transition-duration: 200ms;
+            transition-property: opacity, transform;
+            transition-timing-function: ease-in-out;
+        }
+
+
+        .card-img-top {
+            width: 99%;
+        }
+
+        /*div.card:hover {
+            transform: scale(1.2);
+        }*/
+
+        .getAddProduct {
+            background-color: #ef394e;
+            color: white;
+            cursor: pointer;
+            outline: none;
+        }
+
+            .getAddProduct:hover {
+                background-color: #3e8e41;
+            }
+
+            .getAddProduct:active {
+                background-color: #3e8e41;
+                box-shadow: 0 5px #666;
+                transform: translateY(4px);
+            }

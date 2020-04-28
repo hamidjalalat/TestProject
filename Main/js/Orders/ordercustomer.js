@@ -37,12 +37,14 @@ var app = new Vue({
                      if (response.data) {
                          window.location.href = "/RegisterOrder/SecondCheck";
                      }
+                     else {
+                         $(`div#errormodal`).modal();
+                     }
 
                  })
          .catch(error => {
-
-             console.error(error)
-
+           
+             $(`div#errormodal`).modal();
          })
          .finally(() => {
              $('#checkfinal').show();
@@ -52,7 +54,6 @@ var app = new Vue({
             else {
                 $(`div#messagemodal`).modal();
             }
-
 
         },
 

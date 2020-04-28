@@ -141,6 +141,7 @@
     <Content Include="Content\Image\PICT0030.jpg" />
     <Content Include="Content\loading.gif" />
     <Content Include="Content\Site.css" />
+    <Content Include="Css\Order\OrderCustomer.css" />
     <Content Include="fonts\font-awesome.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

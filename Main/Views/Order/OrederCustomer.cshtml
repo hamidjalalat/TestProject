@@ -5,90 +5,18 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>OrederCustomer</title>
-    <style>
-      
-        .basket-header {
-            border: 1px solid #d8d8d8;
-            padding: 7px;
-            background: #fafafa;
-            text-align: center;
-            font-size: 12px;
-            font-weight: 500;
-            border-radius: 4px 4px 0 0;
-        }
-
-        #order_comment {
-            width: 100% !important;
-            max-width: 100% !important;
-            height: 100px;
-            resize: vertical;
-            font-size: 12px;
-            font-weight: 200;
-            border-radius: 0 0 4px 4px;
-        }
-
-
-        .scroll {
-            direction: ltr;
-            max-height: 600px;
-            overflow-y: auto;
-            overflow-y: scroll; /* Add the ability to scroll */
-        }
-
-
-            .scroll::-webkit-scrollbar {
-                display: none;
-            }
-
-        /* Hide scrollbar for IE and Edge */
-        .scroll {
-            -ms-overflow-style: none;
-        }
-
-
-
-        div.card {
-            transition-delay: 0s;
-            transition-duration: 200ms;
-            transition-property: opacity, transform;
-            transition-timing-function: ease-in-out;
-        }
-
-
-        .card-img-top {
-            width: 99%;
-        }
-
-        /*div.card:hover {
-            transform: scale(1.2);
-        }*/
-
-        .getAddProduct {
-            background-color: #ef394e;
-            color: white;
-            cursor: pointer;
-            outline: none;
-        }
-
-            .getAddProduct:hover {
-                background-color: #3e8e41;
-            }
-
-            .getAddProduct:active {
-                background-color: #3e8e41;
-                box-shadow: 0 5px #666;
-                transform: translateY(4px);
-            }
-    </style>
+    <link href="~/Css/Order/OrderCustomer.css" rel="stylesheet" />
 </head>
 <body>
     <div id="app" class="container">
         <hj-modal v-bind:message="'شما هیچ غذا را انتخاب نکرده اید'" v-bind:idmodal="'messagemodal'"></hj-modal>
+        <hj-modal v-bind:message="'مشکلی در سرور رخ داده است'" v-bind:idmodal="'errormodal'"></hj-modal>
+
 
         <div id="loadingModal" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header" style="background-color:rgb(76, 208, 53);color:white">
                         <h5 class="modal-title">
                            در حال بررسی
                         </h5>
@@ -115,24 +43,24 @@
             <div class="col-lg-8 scroll">
                 <div class="card-columns " style="direction:rtl">
 
-                    <div class="card " style="width: 12rem; " v-for="item in listProduct" v-show="selectedGroupProductId === null || item.GroupProductId == selectedGroupProductId">
-                        <img class="card-img-top" style="height:120px" v-bind:src="item.Image_url" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">{{item.Name}}</h5>
+                    <div class="card" style="width: 12rem; " v-for="item in listProduct" v-show="selectedGroupProductId === null || item.GroupProductId == selectedGroupProductId">
+                                <img class="card-img-top" style="height:120px" v-bind:src="item.Image_url" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{item.Name}}</h5>
 
-                            <p class="card-text"> {{item.Price|formatNumber}} تومان</p>
-                            <p style="font-size:11px">
-                                {{item.Description}}
-                            </p>
-                            <p v-if="item.ShowBread">
-                                <input type="checkbox" v-model="item.hasBread" name="name" value="" />
-                                نان اضافه
-                            </p>
-                            <button v-if="item.Available" class="btn btn-block  getAddProduct" v-on:click="getAddProduct(item)" style="font-size:11px">افزودن به سبد خرید </button>
-                            <p v-else>
-                                ناموجود
-                            </p>
-                        </div>
+                                    <p class="card-text"> {{item.Price|formatNumber}} تومان</p>
+                                    <p style="font-size:11px">
+                                        {{item.Description}}
+                                    </p>
+                                    <p v-if="item.ShowBread">
+                                        <input type="checkbox" v-model="item.hasBread" name="name" value="" />
+                                        نان اضافه
+                                    </p>
+                                    <button v-if="item.Available" class="btn btn-block  getAddProduct " v-on:click="getAddProduct(item)" style="font-size:11px">افزودن به سبد خرید </button>
+                                    <p v-else>
+                                        ناموجود
+                                    </p>
+                                </div>
                     </div>
 
                 </div>
@@ -197,8 +125,39 @@
         </div>
 
     </div>
+
     <script src="~/js/hjFunction.js"></script>
     <script src="~/js/Orders/ordercustomer.js"></script>
+
+    <script>
+
+
+		$(function () {
+
+			$('div.flip-card-back').addClass('isFlipped')
+			$('div.flip-card-front').removeClass('isFlipped')
+
+			$('div.flip-card').click(function () {
+
+				if ($(this).find('div.flip-card-front').hasClass('isFlipped')) {
+
+					$(this).find('div.flip-card-front').removeClass('isFlipped')
+					$(this).find('div.flip-card-back').addClass('isFlipped')
+
+				}
+				else {
+
+					$(this).find('div.flip-card-back').removeClass('isFlipped')
+					$(this).find('div.flip-card-front').addClass('isFlipped')
+
+				}
+
+
+			})
+
+		})
+
+    </script>
 
 </body>
 </html>
