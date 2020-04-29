@@ -193,6 +193,7 @@ namespace HJ_Template_MVC.Controllers
                 obj.Image_url = C.Image_url;
                 obj.GroupProductId = C.GroupProductId;
                 obj.ShowBread = (C.GroupProductId == 3) ? true : false;
+                obj.isFlipped = true;
 
                 listProductVM.Add(obj);
             }

@@ -43,27 +43,60 @@
             <div class="col-lg-8 scroll">
                 <div class="card-columns " style="direction:rtl">
 
-                    <div class="card" style="width: 12rem; " v-for="item in listProduct" v-show="selectedGroupProductId === null || item.GroupProductId == selectedGroupProductId">
-                                <img class="card-img-top" style="height:120px" v-bind:src="item.Image_url" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{item.Name}}</h5>
+                    <div v-for="item in listProduct" v-show="selectedGroupProductId === null || item.GroupProductId == selectedGroupProductId">
+                        <div class="card flip-card" style="width: 12rem;  ">
 
-                                    <p class="card-text"> {{item.Price|formatNumber}} تومان</p>
-                                    <p style="font-size:11px">
-                                        {{item.Description}}
-                                    </p>
-                                    <p v-if="item.ShowBread">
-                                        <input type="checkbox" v-model="item.hasBread" name="name" value="" />
-                                        نان اضافه
-                                    </p>
-                                    <button v-if="item.Available" class="btn btn-block  getAddProduct " v-on:click="getAddProduct(item)" style="font-size:11px">افزودن به سبد خرید </button>
-                                    <p v-else>
-                                        ناموجود
-                                    </p>
+                            <div  style="background-color:rgba(0,0,0,.075)">
+                                <div class="flip-card-front "
+                                     v-bind:class="[item.isFlipped ? isFlippedCssClass : null]" style="background-color:white ;">
+                                    <img class="card-img-top" style="height:120px" v-bind:src="item.Image_url" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{item.Name}}</h5>
+
+                                        <p class="card-text"> {{item.Price|formatNumber}} تومان</p>
+                                        <p style="font-size:11px">
+                                            {{item.Description}}
+                                        </p>
+                                        <p v-if="item.ShowBread">
+                                            <input type="checkbox" v-model="item.hasBread" name="name" value="" />
+                                            نان اضافه
+                                        </p>
+                                        <button v-if="item.Available" class="btn btn-block  getAddProduct " v-on:click="getAddProduct(item)" style="font-size:11px">افزودن به سبد خرید </button>
+                                        <p v-else>
+                                            ناموجود
+                                        </p>
+                                    </div>
                                 </div>
+
+                                <div class="flip-card-back "
+                                     v-bind:class="[item.isFlipped ? null : isFlippedCssClass]" style="background-color:white; ">
+                                    <img class="card-img-top" style="height:120px" v-bind:src="item.Image_url" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{item.Name}}</h5>
+
+                                        <p class="card-text"> {{item.Price|formatNumber}} تومان</p>
+                                        <p style="font-size:11px">
+                                            {{item.Description}}
+                                        </p>
+                                        <p v-if="item.ShowBread">
+                                            <input type="checkbox" v-model="item.hasBread" name="name" value="" />
+                                            نان اضافه
+                                        </p>
+                                        <button v-if="item.Available" class="btn btn-block  getAddProduct " v-on:click="getAddProduct(item)" style="font-size:11px">افزودن به سبد خرید </button>
+                                        <p v-else>
+                                            ناموجود
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
+
+
+
             </div>
             <div class="col-lg-4">
 

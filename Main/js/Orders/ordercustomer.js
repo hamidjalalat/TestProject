@@ -7,6 +7,7 @@ var app = new Vue({
 
     el: "#app",
     data: {
+        isFlippedCssClass: `isFlipped`,
         breadPrice: null,
         selectedGroupProductId: null,
         listProduct: null,
@@ -58,6 +59,8 @@ var app = new Vue({
         },
 
         getAddProduct: function (item) {
+            item.isFlipped = !item.isFlipped;
+
             let itemGlobal = { Id: item.Id, Name: item.Name, Price: item.Price, count: item.count, hasBread: item.hasBread, Image_url: item.Image_url, Description: item.Description };
 
             if (itemGlobal.hasBread == true) {
