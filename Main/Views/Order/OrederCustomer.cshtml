@@ -61,7 +61,7 @@
                                             <input type="checkbox" v-model="item.hasBread" name="name" value="" />
                                             نان اضافه
                                         </p>
-                                        <button v-if="item.Available" class="btn btn-block  getAddProduct " v-on:click="getAddProduct(item)" style="font-size:11px">افزودن به سبد خرید </button>
+                                        <button v-if="item.Available" class="btn btn-block  getAddProduct " v-on:click.stop="getAddProduct(item)" style="font-size:11px">افزودن به سبد خرید </button>
                                         <p v-else>
                                             ناموجود
                                         </p>
@@ -82,7 +82,7 @@
                                             <input type="checkbox" v-model="item.hasBread" name="name" value="" />
                                             نان اضافه
                                         </p>
-                                        <button v-if="item.Available" class="btn btn-block  getAddProduct " v-on:click="getAddProduct(item)" style="font-size:11px">افزودن به سبد خرید </button>
+                                        <button v-if="item.Available" class="btn btn-block  getAddProduct " v-on:click.stop="getAddProduct(item)" style="font-size:11px">افزودن به سبد خرید </button>
                                         <p v-else>
                                             ناموجود
                                         </p>
