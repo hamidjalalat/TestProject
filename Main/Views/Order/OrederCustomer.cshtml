@@ -28,7 +28,7 @@
                     <p style="font-size:11px">
                        توضیحات: {{showproductprop?.Description}}
                     </p>
-                        <img v-bind:src="showproductprop?.Image_url" style="height:300px" alt="Alternate Text" />
+                        <img v-bind:src="showproductprop?.Image_url" style="height:400px" alt="Alternate Text" />
            
              
                 </div>
@@ -73,7 +73,7 @@
                             <div  style="background-color:rgba(0,0,0,.075)">
                                 <div class="flip-card-front "
                                      v-bind:class="[item.isFlipped ? isFlippedCssClass : null]" style="background-color:white ;">
-                                    <img class="card-img-top" style="height:120px!important" v-bind:src="item.Image_url" alt="Card image cap">
+                                    <img class="card-img-top" style="height:150px" v-bind:src="item.Image_url" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">{{item.Name}}</h5>
 
@@ -94,7 +94,7 @@
 
                                 <div class="flip-card-back "
                                      v-bind:class="[item.isFlipped ? null : isFlippedCssClass]" style="background-color:white; ">
-                                    <img class="card-img-top" style="height:120px" v-bind:src="item.Image_url" alt="Card image cap">
+                                    <img class="card-img-top" style="height:150px" v-bind:src="item.Image_url" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">{{item.Name}}</h5>
 
