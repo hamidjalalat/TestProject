@@ -65,15 +65,15 @@
         <div class="row">
 
             <div class="col-lg-8 scroll">
-                <div class="card-columns " style="direction:rtl">
+                <div class="card-deck " style="direction:rtl">
 
                     <div v-for="item in listProduct" v-show="selectedGroupProductId === null || item.GroupProductId == selectedGroupProductId">
-                        <div class="card flip-card" v-on:click="showproduct(item)" style="width: 12rem;  ">
-
-                            <div  style="background-color:rgba(0,0,0,.075)">
+                        <div class="card flip-card" v-on:click="showproduct(item)" style="width: 13rem; ">
+                        
+                            <div style=" background-color:rgba(0,0,0,.075);">
                                 <div class="flip-card-front "
                                      v-bind:class="[item.isFlipped ? isFlippedCssClass : null]" style="background-color:white ;">
-                                    <img class="card-img-top" style="height:150px" v-bind:src="item.Image_url" alt="Card image cap">
+                                    <img class="card-img-top" style="height:170px" v-bind:src="item.Image_url" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">{{item.Name}}</h5>
 
@@ -94,7 +94,7 @@
 
                                 <div class="flip-card-back "
                                      v-bind:class="[item.isFlipped ? null : isFlippedCssClass]" style="background-color:white; ">
-                                    <img class="card-img-top" style="height:150px" v-bind:src="item.Image_url" alt="Card image cap">
+                                    <img class="card-img-top" style="height:170px" v-bind:src="item.Image_url" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">{{item.Name}}</h5>
 
@@ -113,6 +113,7 @@
                                     </div>
                                 </div>
                             </div>
+                       
 
                         </div>
                     </div>
