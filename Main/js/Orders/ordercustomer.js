@@ -7,6 +7,7 @@ var app = new Vue({
 
     el: "#app",
     data: {
+        showproductprop:null,
         isFlippedCssClass: `isFlipped`,
         breadPrice: null,
         selectedGroupProductId: null,
@@ -16,7 +17,10 @@ var app = new Vue({
         description: null,
     },
     methods: {
-
+        showproduct(item) {
+            this.showproductprop = item;
+            $(`#showproduct`).modal();
+        },
 
         //redirectToAction() {
         //    let result=  $.post('/RegisterOrder/FirstCheck', { jsonOrder: JSON.stringify(this.selectionProduct), description: this.description });

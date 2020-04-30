@@ -12,6 +12,30 @@
         <hj-modal v-bind:message="'شما هیچ غذا را انتخاب نکرده اید'" v-bind:idmodal="'messagemodal'"></hj-modal>
         <hj-modal v-bind:message="'مشکلی در سرور رخ داده است'" v-bind:idmodal="'errormodal'"></hj-modal>
 
+        <div id="showproduct" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#4cd035;color:white">
+                    
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+         
+                    </div>
+                    <h5 class="card-title">{{showproductprop?.Name}}</h5>
+
+                    <p class="card-text">قیمت: {{showproductprop?.Price|formatNumber}} تومان</p>
+                    <p style="font-size:11px">
+                       توضیحات: {{showproductprop?.Description}}
+                    </p>
+                        <img v-bind:src="showproductprop?.Image_url" style="height:300px" alt="Alternate Text" />
+           
+             
+                </div>
+            </div>
+        </div>
+
+
 
         <div id="loadingModal" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -44,12 +68,12 @@
                 <div class="card-columns " style="direction:rtl">
 
                     <div v-for="item in listProduct" v-show="selectedGroupProductId === null || item.GroupProductId == selectedGroupProductId">
-                        <div class="card flip-card" style="width: 12rem;  ">
+                        <div class="card flip-card" v-on:click="showproduct(item)" style="width: 12rem;  ">
 
                             <div  style="background-color:rgba(0,0,0,.075)">
                                 <div class="flip-card-front "
                                      v-bind:class="[item.isFlipped ? isFlippedCssClass : null]" style="background-color:white ;">
-                                    <img class="card-img-top" style="height:120px" v-bind:src="item.Image_url" alt="Card image cap">
+                                    <img class="card-img-top" style="height:120px!important" v-bind:src="item.Image_url" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">{{item.Name}}</h5>
 
