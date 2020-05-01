@@ -199,8 +199,8 @@ namespace HJ_Template_MVC.Controllers
             }
 
             var listGruopProduct = db.GroupProducts.Select(C => new { Id = C.Id, Name = C.Name }).ToList();
-
-            var result = new {listProduct = listProductVM, listGruopProduct = listGruopProduct };
+            var listProductresult = listProductVM.OrderBy(C => C.GroupProductId);
+            var result = new {listProduct = listProductresult, listGruopProduct = listGruopProduct };
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
