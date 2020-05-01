@@ -194,7 +194,7 @@ namespace HJ_Template_MVC.Controllers
                 obj.GroupProductId = C.GroupProductId;
                 obj.ShowBread = (C.GroupProductId == 3) ? true : false;
                 obj.isFlipped = true;
-
+                obj.breadPrice = db.Configs.Where(Value => Value.Name == "non").FirstOrDefault().Value;
                 listProductVM.Add(obj);
             }
 

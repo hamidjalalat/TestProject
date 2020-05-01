@@ -28,20 +28,8 @@ const app = new Vue({
         details(id) {
             let parameter = { id:id };
             axios.post('/OrderMe/GetDatialFactor', parameter)
-
                 .then(response => {
-
-                    console.log(response.data);
                     this.detailsFactor = response.data;
-
-                })
-                .catch(error => {
-
-                    console.log(error)
-
-                })
-                .finally(() => {
-
                 })
             $(`div#details`).modal();
         },

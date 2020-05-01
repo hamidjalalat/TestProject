@@ -42,6 +42,7 @@ namespace ViewModels.Orders
         public bool ShowBread { get; set; }
 
         public bool isFlipped  { get; set; }
+        public string breadPrice { get; set; }
 
     }
 }

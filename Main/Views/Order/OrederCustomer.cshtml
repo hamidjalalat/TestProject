@@ -6,13 +6,18 @@
     <meta name="viewport" content="width=device-width" />
     <title>OrederCustomer</title>
     <link href="~/Css/Order/OrderCustomer.css" rel="stylesheet" />
+    <style>
+        	[v-cloak] {
+			display: none;
+		}
+    </style>
 </head>
 <body>
-    <div id="app" class="container">
+    <div id="app" class="container" v-cloak>
         <hj-modal v-bind:message="'شما هیچ غذا را انتخاب نکرده اید'" v-bind:idmodal="'messagemodal'"></hj-modal>
         <hj-modal v-bind:message="'مشکلی در سرور رخ داده است'" v-bind:idmodal="'errormodal'"></hj-modal>
 
-        <div id="showproduct" class="modal" tabindex="-1" role="dialog">
+        <div id="showproduct" v-if="showproductprop" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color:#4cd035;color:white">
@@ -22,14 +27,21 @@
                         </button>
          
                     </div>
-                    <h5 class="card-title">{{showproductprop?.Name}}</h5>
+                    <h5 class="card-title">{{showproductprop.Name}}</h5>
 
-                    <p class="card-text">قیمت: {{showproductprop?.Price|formatNumber}} تومان</p>
+                    <p class="card-text">قیمت: {{showproductprop.Price|formatNumber}} تومان</p>
                     <p style="font-size:11px">
-                       توضیحات: {{showproductprop?.Description}}
+                       توضیحات: {{showproductprop.Description}}
                     </p>
+                    <p v-if="showproductprop.ShowBread">
+                        <input type="checkbox" v-model="showproductprop.hasBread" name="name" value="" />
+                        نان اضافه
+                    </p>
+                    <div> 
+                    <button v-if="showproductprop.Available" class="btn btn-block  getAddProduct " v-on:click.stop="getAddProduct(showproductprop)" style="font-size:11px">افزودن به سبد خرید </button>
+                    </div>
 
-                        <img v-bind:src="showproductprop?.Image_url" style="height:400px" alt="Alternate Text" />
+                        <img v-bind:src="showproductprop.Image_url" style="height:400px" alt="Alternate Text" />
            
              
                 </div>
