@@ -44,6 +44,7 @@ namespace Controllers
             {
                 List = new List<RegisterOrderViewModel>();
             }
+
             return View(List);
         }
         public virtual ActionResult RegisterFactor()

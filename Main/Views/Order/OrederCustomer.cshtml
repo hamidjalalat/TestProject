@@ -16,6 +16,8 @@
     <div id="app" class="container" v-cloak>
         <hj-modal v-bind:message="'شما هیچ غذا را انتخاب نکرده اید'" v-bind:idmodal="'messagemodal'"></hj-modal>
         <hj-modal v-bind:message="'مشکلی در سرور رخ داده است'" v-bind:idmodal="'errormodal'"></hj-modal>
+        <hj-modal v-bind:message="'پذیرش سفارش ها بعد از ماه رمضان انجام  می شود'" v-bind:idmodal="'order'"></hj-modal>
+
 
         <div id="showproduct" v-if="showproductprop" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -27,16 +29,18 @@
                         </button>
          
                     </div>
-                    <h5 class="card-title">{{showproductprop.Name}}</h5>
+                    <div style="margin-right:10px;">
+                        <h5 class="card-title">{{showproductprop.Name}}</h5>
 
-                    <p class="card-text">قیمت: {{showproductprop.Price|formatNumber}} تومان</p>
-                    <p style="font-size:11px">
-                       توضیحات: {{showproductprop.Description}}
-                    </p>
-                    <p v-if="showproductprop.ShowBread">
-                        <input type="checkbox" v-model="showproductprop.hasBread" name="name" value="" />
-                        نان اضافه
-                    </p>
+                        <p class="card-text">قیمت: {{showproductprop.Price|formatNumber}} تومان</p>
+                        <p style="font-size:11px">
+                            توضیحات: {{showproductprop.Description}}
+                        </p>
+                        <p v-if="showproductprop.ShowBread">
+                            <input type="checkbox" v-model="showproductprop.hasBread" name="name" value="" />
+                            نان اضافه
+                        </p>
+                    </div>
                     <div> 
                     <button v-if="showproductprop.Available" class="btn btn-block  getAddProduct " v-on:click.stop="getAddProduct(showproductprop)" style="font-size:11px">افزودن به سبد خرید </button>
                     </div>
@@ -179,7 +183,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="box-textarea-container">
-                            <div class="basket-header">
+                            <div class="basket-header" style="background-color:rgb(76, 208, 53);color:white">
                                 <span class="icon-pencil-span"></span>    توضیحات سفارش
                             </div>
                             <textarea v-model="description" id="order_comment" maxlength="1024" name="order_comment" placeholder="اگر پیشنهادی درمورد نحوه‌ی ارسال یا سفارش خود دارید، در این قسمت بنویسید."></textarea>
@@ -188,7 +192,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <button class="btn btn-primary  btn-block" id="checkfinal" v-on:click="redirectToAction()">بررسی نهایی</button>
+                        <button class="btn btn-primary  btn-block" id="checkfinal" v-on:click="redirectToAction()">ثبت/بررسی </button>
 
                     </div>
                 </div>

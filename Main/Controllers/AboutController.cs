@@ -20,6 +20,7 @@ namespace HJ_Template_MVC.Controllers
 
             return View(listContact);
         }
+        [Authorize]
         [HttpPost]
         public virtual ActionResult HamidJalalat(string text)
         {

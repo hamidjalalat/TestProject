@@ -1,4 +1,7 @@
-﻿
+﻿$(document).ready(function () {
+    $(`#order`).modal();
+});
+
 Vue.filter("formatNumber", function (value) {
     return separate(value);
 });
@@ -146,11 +149,12 @@ var app = new Vue({
     },
 
     created: function () {
+
         let jsonlistProduct = getCookie('listProduct');
         if (jsonlistProduct != null) {
             this.selectionProduct = JSON.parse(jsonlistProduct);
         }
-
+     
     },
     mounted() {
 
