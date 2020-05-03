@@ -19,7 +19,7 @@ namespace HJ_Template_MVC.Controllers
                 .Where(Now => Now.Date.Day == DateTime.Now.Day)
                 .OrderBy(Date => Date.Date)
                 .ToList();
-            var FirstOrder = db.Factors.Where(D=>D.approved==true).Select(C => C.UserName).ToArray();
+            var FirstOrder = db.Factors.Where(D=>D.approved==1).Select(C => C.UserName).ToArray();
             ViewBag.FirstOrder = FirstOrder;
             return View(listOrder);
 
@@ -48,10 +48,10 @@ namespace HJ_Template_MVC.Controllers
             }
             if (factor.approved !=null && factor.approved != null)
             {
-                listOrder = listOrder.Where(C => C.approved==false).AsQueryable();
+                listOrder = listOrder.Where(C => C.approved==0).AsQueryable();
             }
             ViewBag.Serche = factor;
-            var FirstOrder = db.Factors.Where(D => D.approved == true).Select(C => C.UserName).ToArray();
+            var FirstOrder = db.Factors.Where(D => D.approved == 0).Select(C => C.UserName).ToArray();
             ViewBag.FirstOrder = FirstOrder;
 
             var  result = listOrder
@@ -62,13 +62,14 @@ namespace HJ_Template_MVC.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult approve(Guid Id)
+        public virtual ActionResult approve(Guid Id,string ma,int appro)
         {
             bool Success = false;
             try
             {
                 var factor = db.Factors.Where(C => C.Id == Id).FirstOrDefault();
-                factor.approved = true;
+                factor.approved = appro;
+                factor.MessageAdmin = ma;
                 db.SaveChanges();
                 Success = true;
             }

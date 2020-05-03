@@ -52,7 +52,7 @@
             <input type="checkbox" class="checkbox" name="approved" id="approved" value="1" />
 
         }
-        <label>فقط تایید نشده ها</label>
+        <label>فقط سفارش های بررسی نشده</label>
 
         <div class="row">
 
@@ -79,7 +79,7 @@
         {
             temp = 0;
             Sum = 0;
-            if (fac.approved == false)
+            if (fac.approved == 0)
             {
                 <div id="@fac.Id" class="card solid mb-3" style="max-width: 22rem;">
 
@@ -96,6 +96,8 @@
                         <h5 class="card-title"> موبایل: @fac.Mobile</h5>
                         <h5 class="card-title">آدرس: @fac.Address</h5>
                         <h5 class="card-title">توضیحات: @fac.Description</h5>
+                        <span>پیام شما به مشتری:</span>
+                        <input ma="@fac.Id" class="messageadmin" type="text" name="messageadmin" value=" " />
 
                     </div>
                     <div class="card-body">
@@ -127,72 +129,126 @@
 
 
                                         </tr>
-                                    }
+                                                }
                                     <tr>
                                         <td colspan="3">جمع کل</td>
                                         <td>@Sum.ToString("0#,##0 ")</td>
                                     </tr>
                                 </table>
 
-                                <button id="@fac.Id" type="button" class="btn btn-primary btn-block btn-approve">تایید</button>
+                                <button id="@fac.Id" ma="@fac.Id" type="button" class="btn btn-primary btn-block btn-approve">تایید</button>
+
+                                <button id="@fac.Id" ma="@fac.Id" type="button" class="btn btn-danger btn-block btn-cancel">عدم تایید</button>
 
                             </div>
 
                         </div>
                     </div>
                 </div>
-            }
-            else
-            {
-                <div class="card text-white bg-success mb-3" style="max-width: 22rem;">
+                                                }
+                                                if (fac.approved == 1)
+                                                {
+                                                    <div class="card text-white bg-success mb-3" style="max-width: 22rem;">
 
-                    <div class="card-header">
-                        <h5 class="card-title"> @fac.UserName</h5>
-                        <h5 class="card-title"> @fac.Date.TimeOfDay.ToString().Substring(0, 8)</h5>
-                        <h5 class="card-title"> موبایل: @fac.Mobile</h5>
-                        <h5 class="card-title">آدرس: @fac.Address</h5>
-                        <h5 class="card-title">توضیحات: @fac.Description</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-12 table-responsive">
-                                <table class="table" style="color:white">
-                                    <tr>
-                                        <th>نام</th>
-                                        <th>قیمت</th>
-                                        <th>تعداد</th>
-                                        <th>جمع</th>
-                                    </tr>
-                                    @foreach (var facDetails in fac.FactorDetails)
-                                    {
-                                        <tr>
-                                            @{
+                                                        <div class="card-header">
+                                                            <h5 class="card-title"> @fac.UserName</h5>
+                                                            <h5 class="card-title"> @fac.Date.TimeOfDay.ToString().Substring(0, 8)</h5>
+                                                            <h5 class="card-title"> موبایل: @fac.Mobile</h5>
+                                                            <h5 class="card-title">آدرس: @fac.Address</h5>
+                                                            <h5 class="card-title">توضیحات: @fac.Description</h5>
+                                                            <h5 class="card-title">پیام شما به مشتری: @fac.MessageAdmin</h5>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col-12 table-responsive">
+                                                                    <table class="table" style="color:white">
+                                                                        <tr>
+                                                                            <th>نام</th>
+                                                                            <th>قیمت</th>
+                                                                            <th>تعداد</th>
+                                                                            <th>جمع</th>
+                                                                        </tr>
+                                                                        @foreach (var facDetails in fac.FactorDetails)
+                                                                        {
+                                                                            <tr>
+                                                                                @{
 
-                                                temp = facDetails.Price * facDetails.Count;
-                                                Sum = Sum + temp;
-                                            }
-                                            <td>@facDetails.Name</td>
-                                            <td>@facDetails.Price.ToString("0#,##0 ")</td>
-                                            <td>@facDetails.Count</td>
+                                                                                    temp = facDetails.Price * facDetails.Count;
+                                                                                    Sum = Sum + temp;
+                                                                                }
+                                                                                <td>@facDetails.Name</td>
+                                                                                <td>@facDetails.Price.ToString("0#,##0 ")</td>
+                                                                                <td>@facDetails.Count</td>
 
-                                            <td>@temp.ToString("0#,##0 ")</td>
+                                                                                <td>@temp.ToString("0#,##0 ")</td>
 
 
-                                        </tr>
-                                    }
-                                    <tr>
-                                        <td colspan="3">جمع کل</td>
-                                        <td>@Sum.ToString("0#,##0 ")</td>
-                                    </tr>
-                                </table>
-                            </div>
+                                                                            </tr>
+                                                                                    }
+                                                                        <tr>
+                                                                            <td colspan="3">جمع کل</td>
+                                                                            <td>@Sum.ToString("0#,##0 ")</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
 
-                        </div>
-                    </div>
-                </div>
-            }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                                                    }
 
-        }
+                                                                                    if (fac.approved == 2)
+                                                                                    {
+                                                                                        <div class="card text-white bg-danger mb-3" style="max-width: 22rem;">
+
+                                                                                            <div class="card-header">
+                                                                                                <h5 class="card-title"> @fac.UserName</h5>
+                                                                                                <h5 class="card-title"> @fac.Date.TimeOfDay.ToString().Substring(0, 8)</h5>
+                                                                                                <h5 class="card-title"> موبایل: @fac.Mobile</h5>
+                                                                                                <h5 class="card-title">آدرس: @fac.Address</h5>
+                                                                                                <h5 class="card-title">توضیحات: @fac.Description</h5>
+                                                                                                <h5 class="card-title">پیام شما به مشتری: @fac.MessageAdmin</h5>
+                                                                                            </div>
+                                                                                            <div class="card-body">
+                                                                                                <div class="row">
+                                                                                                    <div class="col-12 table-responsive">
+                                                                                                        <table class="table" style="color:white">
+                                                                                                            <tr>
+                                                                                                                <th>نام</th>
+                                                                                                                <th>قیمت</th>
+                                                                                                                <th>تعداد</th>
+                                                                                                                <th>جمع</th>
+                                                                                                            </tr>
+                                                                                                            @foreach (var facDetails in fac.FactorDetails)
+                                                                                                            {
+                                                                                                                <tr>
+                                                                                                                    @{
+
+                                                                                                                        temp = facDetails.Price * facDetails.Count;
+                                                                                                                        Sum = Sum + temp;
+                                                                                                                    }
+                                                                                                                    <td>@facDetails.Name</td>
+                                                                                                                    <td>@facDetails.Price.ToString("0#,##0 ")</td>
+                                                                                                                    <td>@facDetails.Count</td>
+
+                                                                                                                    <td>@temp.ToString("0#,##0 ")</td>
+
+
+                                                                                                                </tr>
+                                                                                                                        }
+                                                                                                            <tr>
+                                                                                                                <td colspan="3">جمع کل</td>
+                                                                                                                <td>@Sum.ToString("0#,##0 ")</td>
+                                                                                                            </tr>
+                                                                                                        </table>
+                                                                                                    </div>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                                                            }
+
+                                                                                                                        }
     </div>
     <div class="scrollingContainer">
 

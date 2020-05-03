@@ -18,6 +18,7 @@ namespace HJ_Template_MVC.Controllers
         [HttpPost]
         public virtual JsonResult GetFactor(int pageIndex, int pageSize)
         {
+            
             if (pageIndex < 0)
             {
                 pageIndex = 0;
@@ -49,10 +50,32 @@ namespace HJ_Template_MVC.Controllers
             foreach (var item in listFactor)
             {
                 FactorViewModel objFactor = new FactorViewModel();
-                objFactor.approved = (item.approved.ToString() == "True") ? "تایید شد" : "منتظر تایید";
+
+                switch (item.approved)
+                {
+                    case 2:
+                        {
+                            objFactor.approved = "پذیرفته نشد!";
+                            break;
+                        }
+                    case 1:
+                        {
+                            objFactor.approved = "تایید شده";
+                            break;
+                        }
+
+                    default:
+                        {
+                            objFactor.approved = "منتظر تایید";
+                            break;
+                        }
+                  
+                }
+
                 objFactor.RowNumber = ++rowNumber;
                 objFactor.Id = item.Id;
                 objFactor.Date = item.Date.ToShamsi() + " و ساعت:  " + item.Date.ToShortTimeString();
+                objFactor.MessageAdmin = item.MessageAdmin;
                 listFactorViewModel.Add(objFactor);
             }
 

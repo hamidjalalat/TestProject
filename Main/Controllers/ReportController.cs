@@ -62,9 +62,28 @@ namespace HJ_Template_MVC.Controllers
             foreach (var item in listFactor)
             {
                 FactorViewModel objFactor = new FactorViewModel();
+                switch (item.approved)
+                {
+                    case 2:
+                        {
+                            objFactor.approved = "پذیرفته نشد!";
+                            break;
+                        }
+                    case 1:
+                        {
+                            objFactor.approved = "تایید شده";
+                            break;
+                        }
+
+                    default:
+                        {
+                            objFactor.approved = "منتظر تایید";
+                            break;
+                        }
+
+                }
                 objFactor.UserName = item.UserName;
                 objFactor.Address = item.Address;
-                objFactor.approved = (item.approved.ToString() == "True") ? "تایید شده" : "تایید نشده";
                 objFactor.Mobile = item.Mobile;
                 objFactor.RowNumber = ++rowNumber;
                 objFactor.Id = item.Id;

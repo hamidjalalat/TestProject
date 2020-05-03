@@ -1,12 +1,16 @@
 ﻿$(document).ready(function () {
 	$('.btn-approve').click(function () {
-		
+	    let ma = $('[ma=' + this.id + ']').val();
+	  
 		let iddiv = this.id;
-		let button = this;
-		$(button).hide();
+		btnhide = $('button[ma=' + this.id + ']');
+		btnhide.hide();
+	
 		var varData =
 		{
-			id: this.id,
+		    ma:ma,
+		    id: this.id,
+		    appro:1,
 		};
 
 		$.ajax({
@@ -20,7 +24,7 @@
 			url: "/Watch/approve",
 
 			error: function (response) {
-				$(button).show();
+			    btnhide.show();
 				console.error(response);
 			},
 
@@ -45,6 +49,56 @@
 			},
 
 		});
+
+	});
+	$('.btn-cancel').click(function () {
+	    let ma = $('[ma=' + this.id + ']').val();
+
+	    let iddiv = this.id;
+	    btnhide = $('button[ma=' + this.id + ']');
+	    btnhide.hide();
+	    var varData =
+		{
+		    ma: ma,
+		    id: this.id,
+		    appro: 2,
+		};
+
+	    $.ajax({
+
+	        type: "POST",
+
+	        dataType: "json",
+
+	        data: varData,
+
+	        url: "/Watch/approve",
+
+	        error: function (response) {
+	            btnhide.show();
+	            console.error(response);
+	        },
+
+	        success: function (response) {
+	            if (response) {
+	               
+	                $('#' + iddiv).addClass('bg-danger text-white');
+	                if ($("#approved").is(':checked')) {
+	                    $('.bg-danger').hide();
+	                    $('#' + iddiv).hide();
+	                }
+	            }
+	            else {
+	                alert("مشکلی در سرور رخ داده است");
+
+	            }
+
+	        },
+	        complete: function (response) {
+
+	        },
+
+	    });
 
 	});
 	animation1();

@@ -108,6 +108,8 @@ namespace HJ_Template_MVC.Controllers
         public class ActionParamsClass_approve
         {
             public readonly string Id = "Id";
+            public readonly string ma = "ma";
+            public readonly string appro = "appro";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -154,14 +156,16 @@ namespace HJ_Template_MVC.Controllers
         }
 
         [NonAction]
-        partial void approveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid Id);
+        partial void approveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid Id, string ma, int appro);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult approve(System.Guid Id)
+        public override System.Web.Mvc.ActionResult approve(System.Guid Id, string ma, int appro)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.approve);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
-            approveOverride(callInfo, Id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ma", ma);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "appro", appro);
+            approveOverride(callInfo, Id, ma, appro);
             return callInfo;
         }
 

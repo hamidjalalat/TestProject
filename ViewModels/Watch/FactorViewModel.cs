@@ -19,5 +19,6 @@ namespace ViewModels.Watch
         public string Address { get; set; }
         public string approved { get; set; }
         public string Date { get; set; }
+        public string MessageAdmin { get; set; }
     }
 }
