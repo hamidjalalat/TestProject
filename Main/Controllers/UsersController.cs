@@ -30,7 +30,7 @@ namespace Main.Controllers
         {
          
             var users = db.Users
-                .OrderBy(current => current.Name)
+                .OrderByDescending(current => current.DataCreate)
                .ToList()
                ;
             return (View(users));

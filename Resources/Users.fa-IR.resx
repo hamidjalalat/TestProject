@@ -127,7 +127,7 @@
     <value>تاریخ ساخت گروه</value>
   </data>
   <data name="donotmatch" xml:space="preserve">
-    <value>فیلد {0} با فییلد {1} یکسان نمی باشد</value>
+    <value>{0} با  {1} یکسان نمی باشد</value>
   </data>
   <data name="Groupid" xml:space="preserve">
     <value>شماره گروه</value>

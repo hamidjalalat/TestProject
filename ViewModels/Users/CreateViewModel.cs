@@ -30,7 +30,7 @@ namespace ViewModels.Users
         // **********
         [Display(Name = "شماره همراه")]
         [RegularExpression(pattern: "09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}",
-        ErrorMessage = "شماره موبایل را به درستی وارد کنید")]
+        ErrorMessage = "شماره موبایل معتبر نمی باشد")]
         [Required(AllowEmptyStrings = false,ErrorMessage ="وارد کردن شماره موبایل الزامی می باشد") ]
 
         public string Mobile { get; set; }
