@@ -14,7 +14,7 @@
 </head>
 <body>
     <div id="app" class="container" v-cloak>
-        <hj-modal v-bind:message="'شما هیچ غذا را انتخاب نکرده اید'" v-bind:idmodal="'messagemodal'"></hj-modal>
+        <hj-modal v-bind:message="'شما هیچ غذای را از منوانتخاب نکرده اید'" v-bind:idmodal="'messagemodal'"></hj-modal>
         <hj-modal v-bind:message="'مشکلی در سرور رخ داده است'" v-bind:idmodal="'errormodal'"></hj-modal>
         <hj-modal v-bind:message="'پذیرش سفارش ها بعد از ماه رمضان انجام  می شود'" v-bind:idmodal="'order'"></hj-modal>
 
@@ -145,6 +145,9 @@
                 <div class="row">
                     <div class="col-12 table-responsive">
                         <table class="table table-bordered table-striped table-hover table-sm">
+                            <tr>
+                                <td colspan="5" style="text-align:center;background-color:rgb(76, 208, 53);color:white">سبد خرید</td>
+                            </tr>
                             <tr>
                                 <th>نام</th>
                                 <th>قیمت</th>
