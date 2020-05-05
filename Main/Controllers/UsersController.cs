@@ -19,8 +19,9 @@ namespace Main.Controllers
         //
         public UsersController()
         {
-
+           
         }
+        Hash oHash = new Hash();
         public UsersController(DAL.IUnitOfWork unitOfWork)
 			: base(unitOfWork)
 		{
@@ -76,7 +77,7 @@ namespace Main.Controllers
             if (ModelState.IsValid)
             {
                
-                Hash oHash = new Hash();
+               
                 user.Password = oHash.GetCreateHash(user.Password);
                 user.DataCreate = DateTime.Now;
                 MyUnitOfWork.UserRepository.Insert(user);
@@ -161,7 +162,7 @@ namespace Main.Controllers
             if (ModelState.IsValid)
             {
                 orginalUser.Name = user.Name;
-                orginalUser.Password = user.Password;
+                orginalUser.Password = oHash.GetCreateHash(user.Password);
                 orginalUser.DataCreate = DateTime.Now;
                 orginalUser.Mobile = user.Mobile;
                 orginalUser.Address = user.Address;
