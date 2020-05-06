@@ -69,7 +69,7 @@ namespace Main.Controllers
         {
             bool blnResult = true;
             var oUser = db.Users
-                .Where(current => current.Name == name)
+                .Where(current => current.Name == name.Trim())
                 .FirstOrDefault()
                 ;
             if (oUser != null)

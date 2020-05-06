@@ -24,6 +24,7 @@ namespace ViewModels.Users
         [Display(Name = "نام کاربری")]
         [StringLength(maximumLength: 20, MinimumLength = 8, ErrorMessageResourceType = typeof(Resources.Users),
             ErrorMessageResourceName = Resources.Strings.UsersKeys.minimumlength)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "وارد کردن نام کاربر ی الزامی می باشد")]
         public string Name { get; set; }
         // **********
 

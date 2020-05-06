@@ -255,10 +255,10 @@ namespace Main.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Models.User user);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, ViewModels.Users.CreateViewModel user);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(Models.User user)
+        public override System.Web.Mvc.ActionResult Create(ViewModels.Users.CreateViewModel user)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "user", user);

@@ -22,7 +22,7 @@
         <div id="showproduct" v-if="showproductprop" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color:#4cd035;color:white">
+                    <div class="modal-header green" >
                     
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -72,7 +72,7 @@
         </div>
 
         <br />
-        <select v-model="selectedGroupProductId" class="browser-default custom-select" style="background-color:#4cd035;color:white">
+        <select v-model="selectedGroupProductId" class="browser-default custom-select green" >
             <option v-bind:value="null">فیلتر بر اساس نوع غذا</option>
             <option v-for="item in groupList" v-bind:value="item.Id">{{ item.Name }}</option>
         </select>
@@ -146,7 +146,7 @@
                     <div class="col-12 table-responsive">
                         <table class="table table-bordered table-striped table-hover table-sm">
                             <tr>
-                                <td colspan="5" style="text-align:center;background-color:rgb(76, 208, 53);color:white">سبد خرید</td>
+                                <td class="green" colspan="5" style="text-align:center;">سبد خرید</td>
                             </tr>
                             <tr>
                                 <th>نام</th>
@@ -160,9 +160,9 @@
                                 <td>{{ item.Price }}</td>
                                 <td>{{ item.count }}</td>
                                 <td>
-                                    <button type="button" v-on:click="plus(item)" class="btn btn-primary">+</button>
+                                    <button type="button" v-on:click="plus(item)" class="btn btn-primary" style="margin-bottom:1px">+</button>
                                     &nbsp;
-                                    <button type="button" v-on:click="minus(item)" class="btn btn-danger">-</button>
+                                    <button type="button" v-on:click="minus(item)" class="btn btn-danger" style="margin-bottom:1px">-</button>
                                 </td>
                                 <td>{{ getSubTotal(item) }}</td>
                             </tr>
@@ -186,7 +186,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="box-textarea-container">
-                            <div class="basket-header" style="background-color:rgb(76, 208, 53);color:white">
+                            <div class="basket-header green" >
                                 <span class="icon-pencil-span"></span>    توضیحات سفارش
                             </div>
                             <textarea v-model="description" id="order_comment" maxlength="1024" name="order_comment" placeholder="اگر پیشنهادی درمورد نحوه‌ی ارسال یا سفارش خود دارید، در این قسمت بنویسید."></textarea>

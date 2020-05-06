@@ -66,21 +66,28 @@ namespace Main.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public virtual ActionResult Create( User user)
+        public virtual ActionResult Create( CreateViewModel user)
         {
-    
-            if (string.Compare(user.Name, "Hjalalat") ==0)
+            string username = user.Name.Trim();
+            if (string.Compare(username, "AdminAdmin") ==0)
             {
                 ModelState.AddModelError(key:"Name", errorMessage: "Some error message!");
             }
-            
+            if (username.Length<7)
+            {
+                ModelState.AddModelError(key: "Name", errorMessage: "نام کاربری باید بیش از هشت حروف باشد");
+            }
+
             if (ModelState.IsValid)
             {
-               
-               
-                user.Password = oHash.GetCreateHash(user.Password);
-                user.DataCreate = DateTime.Now;
-                MyUnitOfWork.UserRepository.Insert(user);
+                User objUser = new User();
+
+                objUser.Mobile = user.Mobile;
+                objUser.Address = user.Address;
+                objUser.Name = username;
+                objUser.Password = oHash.GetCreateHash(user.Password);
+                objUser.DataCreate = DateTime.Now;
+                MyUnitOfWork.UserRepository.Insert(objUser);
                 MyUnitOfWork.Save();
                 //db.Users.Add(user);
                 //db.SaveChanges();

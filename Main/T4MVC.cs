@@ -171,10 +171,11 @@ namespace Links
             public const string UrlPath = "~/Content/Image";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
-            public static readonly string _26438617_png = Url("26438617.png");
+            public static readonly string _26438617_jpg = Url("26438617.jpg");
             public static readonly string bootstrap_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/bootstrap.min.css") ? Url("bootstrap.min.css") : Url("bootstrap.css");
             public static readonly string chicago_png = Url("chicago.png");
             public static readonly string d1_jpg = Url("d1.jpg");
+            public static readonly string hero_banner1400x500_fast_food_png = Url("hero-banner1400x500-fast-food.png");
             public static readonly string la_png = Url("la.png");
             public static readonly string ny_png = Url("ny.png");
             public static readonly string PICT0030_jpg = Url("PICT0030.jpg");
