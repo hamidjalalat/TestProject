@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Models.User>
+@{
+    int row =1;
+    int pageindex =(Convert.ToInt32( ViewBag.labelPageIndex)-1)*10;
+    AjaxOptions ajaxOption = new AjaxOptions
+    {
+        HttpMethod = "Post",
+        Confirm = "آیا از حذف این رکورد اطمینان دارید؟",
+        UpdateTargetId = "deleteResult",
+        OnSuccess = "onAjaxDeleteSuccess",
+        OnFailure = "onAjaxDeleteFailed",
+        LoadingElementId = "loadingDIV",
+        LoadingElementDuration = 500
+    };
+}
+<div class="row">
+    <div class="col-xs-12 table-responsive">
+        <table id="data" class="table table-bordered table-condensed table-striped table-hover">
+            <tr id="firsttr">
+                <th>
+                    ردیف
+                </th>
+            
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.DataCreate)
+                </th>
+                <th>
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr id="@item.Id">
+                    <td>
+                        @((pageindex + (row++)) )
+                    </td>
+             
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataCreate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("ویرایش", MVC.Users.Edit(item.Id)) |
+
+                        @*@Html.ActionLink("Delete", MVC.Users.Delete(item.Id))|*@
+                        @Ajax.ActionLink("حذف", "DeleteAJAX", new { Controller = "Users", Id = item.Id }, ajaxOption)
+                    </td>
+                </tr>
+            }
+            @*@Html.Partial(partialViewName: "~/Views/Shared/DisplayMessages.cshtml")*@
+        </table>
+        <div id="loadingDIV" style="">
+            در حال بارگذاری...
+            <img src="~/Content/loading.gif" />
+        </div>
+    </div>
+</div>
+<div class="col-sm-2">
+    <label>@ViewBag.labelPageIndex</label>&nbsp;
+    از
+    <label>@ViewBag.labelPageCount</label>
+
+</div>

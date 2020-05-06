@@ -16,25 +16,148 @@ namespace Main.Controllers
  
     public partial class UsersController : Infrastructure.BaseController
     {
+
         //
         public UsersController()
         {
-           
+
         }
+
         Hash oHash = new Hash();
         public UsersController(DAL.IUnitOfWork unitOfWork)
 			: base(unitOfWork)
 		{
         }
+
+        private int GetCountryCount()
+        {
+            int intCount =
+             db.Users
+                .Count();
+
+            return (intCount);
+        }
+ 
+
+        private int GetLastPageIndex()
+        {
+            int intCount = GetCountryCount();
+
+            int PageSize = Convert.ToInt32(TempData["PageSize"]);
+            TempData.Keep();
+            if (intCount % PageSize == 0)
+            {
+                return ((intCount / PageSize) - 1);
+            }
+            else
+            {
+                return (intCount / PageSize);
+            }
+        }
+
+        private List<User> DisplayUsers()
+        {
+            int PageSize = Convert.ToInt32(TempData["PageSize"]);
+            TempData.Keep();
+            int PageIndex = Convert.ToInt32(TempData["PageIndex"]);
+            TempData.Keep();
+            ViewBag.labelPageIndex = (PageIndex + 1).ToString("#,##0");
+            ViewBag.labelPageCount = (GetLastPageIndex() + 1).ToString("#,##0");
+
+            var Users =
+              db.Users
+             .OrderByDescending(current => current.DataCreate)
+             .Skip(PageIndex * PageSize)
+             .Take(PageSize)
+             .ToList()
+             ;
+            return Users;
+        }
+        [HttpGet]
+        public ActionResult Load()
+        {
+
+            TempData["PageSize"] =  10;
+            TempData["PageIndex"] = 0;
+
+            var model = DisplayUsers();
+            return PartialView("_PartialPaging", model);
+
+
+        }
+        [HttpGet]
+        public ActionResult Serche(string name)
+        {
+            ViewBag.labelPageIndex = 1;
+            ViewBag.labelPageCount = 1;
+
+            var Users =
+             db.Users
+             .Where(C=>C.Name.Contains(name.Trim()))
+            .OrderByDescending(current => current.DataCreate)
+            .ToList();
+         
+            ;
+            return PartialView("_PartialPaging", Users);
+
+
+        }
+        [HttpGet]
+        public ActionResult first()
+        {
+         
+            TempData["PageIndex"] = 0;
+            var model = DisplayUsers();
+            return PartialView("_PartialPaging", model);
+        }
+
+        [HttpGet]
+        public ActionResult previous()
+        {
+            int PageIndex = Convert.ToInt32(TempData["PageIndex"]);
+            TempData.Keep();
+            if (PageIndex > 0)
+            {
+                PageIndex--;
+                TempData["PageIndex"] = PageIndex;
+                var model = DisplayUsers();
+                return PartialView("_PartialPaging", model);
+            }
+
+            return Content("non");
+
+        }
+        [HttpGet]
+        public ActionResult next()
+        {
+            int PageIndex = Convert.ToInt32(TempData["PageIndex"]);
+            TempData.Keep();
+            if (PageIndex < GetLastPageIndex())
+            {
+                PageIndex++;
+                TempData["PageIndex"] = PageIndex;
+                var model = DisplayUsers();
+                return PartialView("_PartialPaging", model);
+            }
+
+            return Content("non");
+
+        }
+        [HttpGet]
+        public ActionResult last()
+        {
+         
+            TempData["PageIndex"] = GetLastPageIndex();
+
+            var model = DisplayUsers();
+            return PartialView("_PartialPaging", model);
+        }
+  
         // GET: Users
         public virtual ViewResult Index()
         {
-         
-            var users = db.Users
-                .OrderByDescending(current => current.DataCreate)
-               .ToList()
-               ;
-            return (View(users));
+    
+            return View ();
         }
 
         // GET: Users/Details/5

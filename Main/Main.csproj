@@ -160,6 +160,7 @@
     <Content Include="js\Orders\Index.js" />
     <Content Include="js\Orders\ordercustomer.js" />
     <Content Include="js\Report\Index.js" />
+    <Content Include="js\Users\index.js" />
     <Content Include="js\Watch\Index.js" />
     <Content Include="packages.config" />
     <Content Include="Picture\119357291966305_نوشابه زرد کوچک.jpg" />
@@ -256,6 +257,7 @@
     <Content Include="Views\About\HamidJalalat.cshtml" />
     <Content Include="Views\OrderMe\Index.cshtml" />
     <Content Include="Views\Shared\_Layout_Solid.cshtml" />
+    <Content Include="Views\Users\_PartialPaging.cshtml" />
     <None Include="Web.SanvichTaha.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -317,6 +319,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OrderMeController.cs" />
+    <Compile Include="Controllers\PagingResult.cs" />
     <Compile Include="Controllers\RegisterOrderController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\test.cs" />
