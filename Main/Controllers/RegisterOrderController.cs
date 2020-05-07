@@ -39,7 +39,8 @@ namespace Controllers
         {
             List<RegisterOrderViewModel> List = TempData["ListOrder"] as List<RegisterOrderViewModel>;
             TempData.Keep("ListOrder");
-       
+            ViewBag.Config = db.Configs.ToList();
+
             if (List==null)
             {
                 List = new List<RegisterOrderViewModel>();

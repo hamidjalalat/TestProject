@@ -1,6 +1,10 @@
 ﻿@model IEnumerable<ViewModels.RegisterOrder.RegisterOrderViewModel>
 
 @{ 
+    List<Models.Config> config = ViewBag.Config;
+    string IsMaxEnable = config.Where(C=>C.Name== "maxenable").FirstOrDefault().Value;
+    string Maxvalue = config.Where(C => C.Name == "maxvalue").FirstOrDefault().Value;
+    int MaxOrder = Convert.ToInt32( config.Where(C => C.Name == "maxorder").FirstOrDefault().Value);
     Int64 SumTotal = 0;
 }
 <!DOCTYPE html>
@@ -90,9 +94,16 @@
 
     </tr>
         }
-        
+   
 
     </table>
+    @if (IsMaxEnable == "1" && SumTotal< MaxOrder)
+    {
+        SumTotal = SumTotal + Convert.ToInt32(Maxvalue);
+        <label>هزینه پیک...................</label>
+            <label>@Maxvalue</label>
+            <br />
+    }
     <label>قابل پرداخت...................</label>
     <label>@SumTotal.ToString("#,##0 ")</label>
 

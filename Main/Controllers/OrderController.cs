@@ -178,6 +178,15 @@ namespace HJ_Template_MVC.Controllers
             var listProduct = db.Products
             .ToList();
 
+            var config = db.Configs.ToList();
+
+            ConfigViewModel configVm = new ConfigViewModel();
+
+            configVm.breadPrice= config.Where(Value => Value.Name == "non").FirstOrDefault().Value;
+            configVm.maxenable= config.Where(Value => Value.Name == "maxenable").FirstOrDefault().Value;
+            configVm.maxorder = config.Where(Value => Value.Name == "maxorder").FirstOrDefault().Value;
+            configVm.maxvalue = config.Where(Value => Value.Name == "maxvalue").FirstOrDefault().Value;
+
             List<ProductsViewModel> listProductVM = new List<ProductsViewModel>();
 
             foreach (var C in listProduct)
@@ -194,13 +203,14 @@ namespace HJ_Template_MVC.Controllers
                 obj.GroupProductId = C.GroupProductId;
                 obj.ShowBread = (C.GroupProductId == 3) ? true : false;
                 obj.isFlipped = true;
-                obj.breadPrice = db.Configs.Where(Value => Value.Name == "non").FirstOrDefault().Value;
+              
                 listProductVM.Add(obj);
             }
 
             var listGruopProduct = db.GroupProducts.Select(C => new { Id = C.Id, Name = C.Name }).ToList();
             var listProductresult = listProductVM.OrderBy(C => C.GroupProductId);
-            var result = new {listProduct = listProductresult, listGruopProduct = listGruopProduct };
+            var configSet = configVm;
+            var result = new {listProduct = listProductresult, listGruopProduct = listGruopProduct,config= configSet };
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }

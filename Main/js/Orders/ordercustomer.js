@@ -10,6 +10,8 @@ var app = new Vue({
 
     el: "#app",
     data: {
+        config: null,
+        costPeak:false,
         showproductprop: null,
         isFlippedCssClass: `isFlipped`,
         
@@ -66,12 +68,13 @@ var app = new Vue({
         },
 
         getAddProduct: function (item) {
+         
             item.isFlipped = !item.isFlipped;
 
             let itemGlobal = { Id: item.Id, Name: item.Name, Price: item.Price, count: item.count, hasBread: item.hasBread, Image_url: item.Image_url, Description: item.Description };
 
             if (itemGlobal.hasBread == true) {
-                itemGlobal.Price += parseInt(item.breadPrice);
+                itemGlobal.Price += parseInt(this.config.breadPrice);
                 itemGlobal.Name += "  با نان اضافه  "
             }
 
@@ -90,6 +93,7 @@ var app = new Vue({
                 this.selectionProduct.push(itemGlobal);
 
             }
+       
 
             document.cookie = "listProduct=" + JSON.stringify(this.selectionProduct);
         },
@@ -138,13 +142,27 @@ var app = new Vue({
 
             }
             this.selectionProduct.Total = total;
-            return separate(total)
+            return total
 
         },
+        getTotalFinished: function () {
+            var result = this.getTotal();
+
+            if ((this.getTotal() < this.config.maxorder) && (this.config.maxenable == "1")) {
+             
+                result = (parseInt(this.getTotal()) + parseInt(this.config.maxvalue));
+                this.costPeak = true;
+            } else {
+                this.costPeak = false;
+            }
+    
+            return separate(result);
+        }
+   
 
     },
     computed: {
-
+     
 
     },
 
@@ -160,6 +178,8 @@ var app = new Vue({
 
         axios.post('/Order/GetListProduct')
             .then(response => {
+           
+                this.config = response.data.config;
 
                 this.listProduct = response.data.listProduct;
                 this.groupList = response.data.listGruopProduct;

@@ -168,26 +168,38 @@
                             </tr>
                             <tr>
                                 <td colspan="4">جمع کل</td>
-                                <td>{{ getTotal() }}</td>
+                                <td>{{ getTotal()}}</td>
                             </tr>
                         </table>
                     </div>
 
                 </div>
+                <div v-if="config.maxenable==1">
+                    <div class="row" v-show="costPeak">
+                        <div class="col-sm-6">
+                            <label><b>هزینه پیک</b></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <span><b>{{config.maxvalue}} تومان</b></span>
+                        </div>
+
+                    </div>
+                </div>
+           
                 <div class="row">
                     <div class="col-sm-6">
                         <label><b>جمع کل پرداختی</b></label>
                     </div>
                     <div class="col-sm-6">
-                        <span><b>{{ getTotal() }} تومان</b></span>
+                        <span><b>{{getTotalFinished()}} تومان</b></span>
                     </div>
 
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="box-textarea-container">
-                            <div class="basket-header green" >
-                                <span class="icon-pencil-span"></span>    توضیحات سفارش
+                            <div class="basket-header green" style="    background-color:#4cd035;color:white" >
+                                <span class="icon-pencil-span "></span>    توضیحات سفارش
                             </div>
                             <textarea v-model="description" id="order_comment" maxlength="1024" name="order_comment" placeholder="اگر پیشنهادی درمورد نحوه‌ی ارسال یا سفارش خود دارید، در این قسمت بنویسید."></textarea>
                         </div>

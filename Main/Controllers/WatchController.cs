@@ -14,6 +14,8 @@ namespace HJ_Template_MVC.Controllers
         // GET: Watch
         public virtual ActionResult Index()
         {
+            ViewBag.Config = db.Configs.ToList();
+
             var listOrder = db.Factors
                 .Include(C => C.FactorDetails)
                 .Where(Now => Now.Date.Day == DateTime.Now.Day)

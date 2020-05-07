@@ -1,6 +1,12 @@
 ﻿@model IEnumerable<Models.Factor>
 
 @{
+    List<Models.Config> config = ViewBag.Config;
+
+    string IsMaxEnable = config.Where(C => C.Name == "maxenable").FirstOrDefault().Value;
+    string Maxvalue = config.Where(C => C.Name == "maxvalue").FirstOrDefault().Value;
+    int MaxOrder = Convert.ToInt32(config.Where(C => C.Name == "maxorder").FirstOrDefault().Value);
+
     var serche = ViewBag.Serche as ViewModels.Watch.FactorViewModel;
     if (serche == null)
     {
@@ -129,13 +135,23 @@
 
 
                                         </tr>
-                                                }
+                                     }
                                     <tr>
-                                        <td colspan="3">جمع کل</td>
+                                        
+                                    @if (IsMaxEnable == "1" && Sum < MaxOrder)
+                                    {
+                                        <td colspan="3">جمع کل با هزینه پیک</td>
+                                        Sum = Sum + Convert.ToInt32(Maxvalue);
                                         <td>@Sum.ToString("0#,##0 ")</td>
+                                    }
+                                    else
+                                    {
+                                        <td colspan="3">جمع کل </td>
+                                        <td>@Sum.ToString("0#,##0 ")</td>
+                                    }
                                     </tr>
                                 </table>
-
+                                
                                 <button id="@fac.Id" ma="@fac.Id" type="button" class="btn btn-primary btn-block btn-approve">تایید</button>
 
                                 <button id="@fac.Id" ma="@fac.Id" type="button" class="btn btn-danger btn-block btn-cancel">عدم تایید</button>
