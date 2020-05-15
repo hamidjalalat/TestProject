@@ -21,6 +21,7 @@ namespace HJ_Template_MVC.Controllers
                 .Where(Now => Now.Date.Day == DateTime.Now.Day)
                 .OrderBy(Date => Date.Date)
                 .ToList();
+
             var FirstOrder = db.Factors.Where(D=>D.approved==1).Select(C => C.UserName).ToArray();
             ViewBag.FirstOrder = FirstOrder;
             return View(listOrder);
@@ -30,6 +31,7 @@ namespace HJ_Template_MVC.Controllers
         public virtual ActionResult Index(FactorViewModel factor)
         {
 
+            ViewBag.Config = db.Configs.ToList();
             var listOrder = db.Factors
               .Include(C => C.FactorDetails)
               .AsQueryable();
@@ -52,8 +54,11 @@ namespace HJ_Template_MVC.Controllers
             {
                 listOrder = listOrder.Where(C => C.approved==0).AsQueryable();
             }
+
             ViewBag.Serche = factor;
+
             var FirstOrder = db.Factors.Where(D => D.approved == 0).Select(C => C.UserName).ToArray();
+
             ViewBag.FirstOrder = FirstOrder;
 
             var  result = listOrder

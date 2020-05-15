@@ -72,10 +72,23 @@
         </div>
 
         <br />
-        <select v-model="selectedGroupProductId" class="browser-default custom-select green" >
-            <option v-bind:value="null">فیلتر بر اساس نوع غذا</option>
-            <option v-for="item in groupList" v-bind:value="item.Id">{{ item.Name }}</option>
-        </select>
+        <div class="row">
+            <div class="col-lg-3">
+                <select v-model="selectedGroupProductId" class="browser-default custom-select green" >
+                    <option v-bind:value="null">فیلتر بر اساس نوع غذا</option>
+                    <option v-for="item in groupList" v-bind:value="item.Id">{{ item.Name }}</option>
+                </select>
+            </div>
+            <div class="col-lg-9" >
+                @if (ViewBag.messgae != null)
+            {
+                    <div style="height:85%;border-radius:3px 4px;background-color:#ef394e;color:white;text-align:center;">
+                        <p style="margin-right:5px;padding-top:5px">  @ViewBag.messgae</p>
+                    </div>
+                }
+            </div>
+        </div>
+     
         <br />
         <br />
 
@@ -141,7 +154,6 @@
 
             </div>
             <div class="col-lg-4">
-
                 <div class="row">
                     <div class="col-12 table-responsive">
                         <table class="table table-bordered table-striped table-hover table-sm">
@@ -149,6 +161,7 @@
                                 <td class="green" colspan="5" style="text-align:center;">سبد خرید</td>
                             </tr>
                             <tr>
+                               
                                 <th>نام</th>
                                 <th>قیمت</th>
                                 <th>تعداد</th>
@@ -160,9 +173,9 @@
                                 <td>{{ item.Price }}</td>
                                 <td>{{ item.count }}</td>
                                 <td>
-                                    <button type="button" v-on:click="plus(item)" class="btn btn-primary" style="margin-bottom:1px">+</button>
+                                    <button type="button" v-on:click="plus(item)" class="btn btn-primary" style="margin-bottom:3px;"  title="اضافه کردن">+</button>
                                     &nbsp;
-                                    <button type="button" v-on:click="minus(item)" class="btn btn-danger" style="margin-bottom:1px">-</button>
+                                    <button type="button" v-on:click="minus(item)" class="btn btn-danger" style="margin-bottom:3px;" title="کم کردن">-</button>
                                 </td>
                                 <td>{{ getSubTotal(item) }}</td>
                             </tr>
@@ -176,22 +189,22 @@
                 </div>
                 <div v-if="config.maxenable==1">
                     <div class="row" v-show="costPeak">
-                        <div class="col-sm-6">
-                            <label><b>هزینه پیک</b></label>
+                        <div class="col-6">
+                            <label>هزینه پیک</label>
                         </div>
-                        <div class="col-sm-6">
-                            <span><b>{{config.maxvalue}} تومان</b></span>
+                        <div class="col-6">
+                            <span>{{config.maxvalue|formatNumber}} تومان</span>
                         </div>
 
                     </div>
                 </div>
            
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-6">
                         <label><b>جمع کل پرداختی</b></label>
                     </div>
-                    <div class="col-sm-6">
-                        <span><b>{{getTotalFinished()}} تومان</b></span>
+                    <div class="col-6">
+                        <span><b>{{getTotalFinished}} تومان</b></span>
                     </div>
 
                 </div>

@@ -30,18 +30,10 @@
 
                 .then(response => {
 
-                    console.log(response.data);
                     this.detailsFactor = response.data;
 
                 })
-                .catch(error => {
-
-                    console.log(error)
-
-                })
-                .finally(() => {
-
-                })
+       
             $(`div#details`).modal();
         },
         getSubTotal: function (item) {
@@ -130,14 +122,7 @@
                     this.labelPageCount = (parseInt(this.GetLastPageIndex()) + 1);
 
                 })
-                .catch(error => {
-
-                    console.error(error)
-
-                })
-                .finally(() => {
-
-                })
+           
         }
 
     },

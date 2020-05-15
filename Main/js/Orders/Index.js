@@ -53,14 +53,7 @@ const app = new Vue({
                     } 
 
                 })
-                .catch(error => {
-
-                    console.error(error)
-
-                })
-                .finally(() => {
-
-                })
+          
         },
         editshow: function (id) {
             this.id.idEdit = id;
@@ -68,7 +61,6 @@ const app = new Vue({
             axios.post('/order/GetInfoEdit', this.id)
 
                 .then(response => {
-                    console.log(response.data.listGruopProduct);
                     this.editParameters.name = response.data.listProduct.Name;
                     this.editParameters.price = response.data.listProduct.Price;
                     this.editParameters.description = response.data.listProduct.Description;
@@ -78,14 +70,7 @@ const app = new Vue({
                     this.groupList = response.data.listGruopProduct;
 
                 })
-                .catch(error => {
-
-                    console.log(error)
-
-                })
-                .finally(() => {
-
-                })
+       
             $(`div#editModal`).modal();
             
         },
@@ -105,14 +90,7 @@ const app = new Vue({
                     } 
 
                 })
-                .catch(error => {
-
-                    console.error(error)
-
-                })
-                .finally(() => {
-
-                })
+       
         },
         deleteProducts: function (id) {
 
@@ -182,14 +160,7 @@ const app = new Vue({
                     this.labelPageCount = (parseInt(this.GetLastPageIndex()) + 1);
 
                 })
-                .catch(error => {
-
-                    console.error(error)
-
-                })
-                .finally(() => {
-
-                })
+    
         }
 
     },

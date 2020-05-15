@@ -10,11 +10,11 @@ var app = new Vue({
 
     el: "#app",
     data: {
-        config: null,
-        costPeak:false,
+        config: { maxenable: 0, maxorder: 0, maxvalue: 0},
+        costPeak: false,
         showproductprop: null,
         isFlippedCssClass: `isFlipped`,
-        
+
         selectedGroupProductId: null,
         listProduct: null,
         groupList: null,
@@ -27,14 +27,7 @@ var app = new Vue({
             $(`#showproduct`).modal();
         },
 
-        //redirectToAction() {
-        //    let result=  $.post('/RegisterOrder/FirstCheck', { jsonOrder: JSON.stringify(this.selectionProduct), description: this.description });
-        //    console.log(result)
-        //    alert(result.readyState)
 
-        //    window.location.href = "/RegisterOrder/SecondCheck";
-
-        //},
 
         redirectToAction() {
             if (this.selectionProduct.length != 0) {
@@ -53,7 +46,7 @@ var app = new Vue({
 
                  })
          .catch(error => {
-           
+
              $(`div#errormodal`).modal();
          })
          .finally(() => {
@@ -68,7 +61,7 @@ var app = new Vue({
         },
 
         getAddProduct: function (item) {
-         
+
             item.isFlipped = !item.isFlipped;
 
             let itemGlobal = { Id: item.Id, Name: item.Name, Price: item.Price, count: item.count, hasBread: item.hasBread, Image_url: item.Image_url, Description: item.Description };
@@ -93,7 +86,7 @@ var app = new Vue({
                 this.selectionProduct.push(itemGlobal);
 
             }
-       
+
 
             document.cookie = "listProduct=" + JSON.stringify(this.selectionProduct);
         },
@@ -145,60 +138,72 @@ var app = new Vue({
             return total
 
         },
+     
+
+
+    },
+    computed: {
         getTotalFinished: function () {
             var result = this.getTotal();
 
             if ((this.getTotal() < this.config.maxorder) && (this.config.maxenable == "1")) {
-             
                 result = (parseInt(this.getTotal()) + parseInt(this.config.maxvalue));
                 this.costPeak = true;
             } else {
                 this.costPeak = false;
             }
-    
+            if (this.getTotal() == 0) {
+                this.costPeak = false;
+                return 0;
+            }
+
+
             return separate(result);
         }
-   
 
     },
-    computed: {
-     
 
-    },
 
     created: function () {
+         axios.post('/Order/GetConfig')
+          .then(response => {
+
+           this.config = response.data.config;
+          })
 
         let jsonlistProduct = getCookie('listProduct');
-        if (jsonlistProduct != null) {
+   
+        try {
             this.selectionProduct = JSON.parse(jsonlistProduct);
+        } catch (e) {
+            this.selectionProduct = [];
         }
-     
+
     },
+
+
     mounted() {
-
         axios.post('/Order/GetListProduct')
-            .then(response => {
-           
-                this.config = response.data.config;
+    .then(response => {
 
-                this.listProduct = response.data.listProduct;
-                this.groupList = response.data.listGruopProduct;
+        this.config = response.data.config;
 
-                for (let index = 0; index < this.listProduct.length; index++) {
-                    Vue.set(this.listProduct[index], `hasBread`, false)
-                    Vue.set(this.listProduct[index], `count`, 1)
+        this.listProduct = response.data.listProduct;
+        this.groupList = response.data.listGruopProduct;
 
-                }
-            })
-            .catch(error => {
+        for (let index = 0; index < this.listProduct.length; index++) {
+            Vue.set(this.listProduct[index], `hasBread`, false)
+            Vue.set(this.listProduct[index], `count`, 1)
 
-                console.error(error)
+        }
+    })
+     
 
-            })
-            .finally(() => {
 
-            })
+    },
 
-        
-    }
+
+    
+
+
 })

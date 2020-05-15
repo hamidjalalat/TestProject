@@ -170,6 +170,17 @@ namespace HJ_Template_MVC.Controllers
         //[Infrastructure.Log]
         public virtual ActionResult OrederCustomer()
         {
+            var config = db.Configs.ToList();
+            ConfigViewModel configVm = new ConfigViewModel();
+            configVm.maxenable = config.Where(Value => Value.Name == "maxenable").FirstOrDefault().Value;
+            Int64 maxorder =Convert.ToInt64( config.Where(Value => Value.Name == "maxorder").FirstOrDefault().Value);
+            Int64 maxvalue =Convert.ToInt64( config.Where(Value => Value.Name == "maxvalue").FirstOrDefault().Value);
+            if (configVm.maxenable == "1")
+            {
+                string message = $"توجه:سفارش کمتر از {maxorder.ToString("#,##0 ")} تومان مشمول دریافت   {maxvalue.ToString("#,##0 ")} تومان هزینه پیک می گردد " ;
+                ViewBag.messgae = message;
+            }
+
             return View();
         }
         [HttpPost]
@@ -211,6 +222,28 @@ namespace HJ_Template_MVC.Controllers
             var listProductresult = listProductVM.OrderBy(C => C.GroupProductId);
             var configSet = configVm;
             var result = new {listProduct = listProductresult, listGruopProduct = listGruopProduct,config= configSet };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public virtual JsonResult GetConfig()
+        {
+        
+
+            var config = db.Configs.ToList();
+
+            ConfigViewModel configVm = new ConfigViewModel();
+
+            configVm.breadPrice = config.Where(Value => Value.Name == "non").FirstOrDefault().Value;
+            configVm.maxenable = config.Where(Value => Value.Name == "maxenable").FirstOrDefault().Value;
+            configVm.maxorder = config.Where(Value => Value.Name == "maxorder").FirstOrDefault().Value;
+            configVm.maxvalue = config.Where(Value => Value.Name == "maxvalue").FirstOrDefault().Value;
+
+
+
+            var configSet = configVm;
+            var result = new { config = configSet };
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
