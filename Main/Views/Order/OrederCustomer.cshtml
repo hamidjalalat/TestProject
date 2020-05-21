@@ -73,7 +73,7 @@
 
         <br />
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3"  style="margin-bottom:5px">
                 <select v-model="selectedGroupProductId" class="browser-default custom-select green" >
                     <option v-bind:value="null">فیلتر بر اساس نوع غذا</option>
                     <option v-for="item in groupList" v-bind:value="item.Id">{{ item.Name }}</option>
