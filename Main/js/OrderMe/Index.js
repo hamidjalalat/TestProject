@@ -3,6 +3,8 @@ const app = new Vue({
 
     el: "#app",
     data: {
+        config: { maxenable: 0, maxorder: 0, maxvalue: 0 },
+        
         selectGroupId: null,
         groupList: null,
         detailsFactor:[],
@@ -53,9 +55,11 @@ const app = new Vue({
 
             }
             this.detailsFactor.Total = total;
-            return separate(total)
+          
+            return total
 
         },
+     
 
 
         GetLastPageIndex: function () {
@@ -130,8 +134,50 @@ const app = new Vue({
         }
 
     },
-    computed: {
+    created: function () {
+        axios.post('/Order/GetConfig')
+         .then(response => {
 
+             this.config = response.data.config;
+         })
+    },
+
+    computed: {
+        costpeack() {
+
+            let total = 0
+
+            for (let index = 0; index < this.detailsFactor.length; index++) {
+
+                let currentItem = this.detailsFactor[index]
+
+                total +=
+                    this.getSubTotal(currentItem)
+
+            }
+            if (total < this.config.maxorder) {
+                return true;
+            }else
+            {
+                return false;
+            }
+           
+        },
+        getTotalFinished: function () {
+            var result = this.getTotal();
+
+            if ((this.getTotal() < this.config.maxorder) && (this.config.maxenable == "1")) {
+                result = (parseInt(this.getTotal()) + parseInt(this.config.maxvalue));
+            } else {
+            }
+            if (this.getTotal() == 0) {
+                return 0;
+            }
+
+
+            return separate(result);
+        },
+     
     },
     mounted() {
 

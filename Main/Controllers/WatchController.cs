@@ -18,7 +18,9 @@ namespace HJ_Template_MVC.Controllers
 
             var listOrder = db.Factors
                 .Include(C => C.FactorDetails)
-                .Where(Now => Now.Date.Day == DateTime.Now.Day)
+                .Where(Now => Now.Date.Day == DateTime.Now.Day &&
+                Now.Date.Month== DateTime.Now.Month &&
+               Now.Date.Year==DateTime.Now.Year)
                 .OrderBy(Date => Date.Date)
                 .ToList();
 
@@ -62,7 +64,9 @@ namespace HJ_Template_MVC.Controllers
             ViewBag.FirstOrder = FirstOrder;
 
             var  result = listOrder
-                 .Where(Now => Now.Date.Day == DateTime.Now.Day)
+               .Where(Now => Now.Date.Day == DateTime.Now.Day &&
+               Now.Date.Month == DateTime.Now.Month &&
+               Now.Date.Year == DateTime.Now.Year)
               .OrderBy(Date => Date.Date).ToList();
 
             return View(result);
